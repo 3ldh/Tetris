@@ -1,0 +1,39 @@
+##
+## Makefile for Makefile in /PSU_2015_my_printf/lib/my
+##
+## Made by maud marel
+## Login   <marel_m@epitech.net>
+##
+## Started on  Mon Nov  9 09:47:52 2015 maud marel
+## Last update Sun Feb 28 22:52:03 2016 maud marel
+##
+
+SRC	=	my_putstr_error.c \
+		my_power_rec.c \
+		my_strlen.c \
+		my_strcmp.c \
+		my_getnbr.c \
+		my_strcpy.c
+
+RM	=	rm -f
+
+NAME	=	libmy.a
+
+CC	=	gcc
+
+OBJ	=	$(SRC:.c=.o)
+
+$(NAME):	$(OBJ)
+		ar rc libmy.a $(OBJ)
+		ranlib libmy.a
+		cp libmy.a ../
+
+all:		$(NAME)
+
+clean:
+		$(RM) $(OBJ)
+
+fclean:		clean
+		$(RM) $(NAME)
+
+re:		fclean all
