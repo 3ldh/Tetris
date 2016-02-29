@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Mon Feb 29 17:05:34 2016 maud marel
+** Last update Mon Feb 29 17:31:04 2016 maud marel
 */
 
 #include <time.h>
@@ -46,23 +46,23 @@ int		main(int ac, char **av)
   WINDOW	*score;
   WINDOW	*game;
 
+  check_tetriminos(&tetris);
   /* init_tetris(&tetris); */
-  /* printf("%s\n", av[1]); */
   /* check_arg(&tetris, ac, av); */
-  initscr();
-  clear();
-  refresh();
-  tetris.start_time = time(0);
-  score = create_newwin(15, 20, 5, 0);
-  show_score(score, &tetris);
-  game = create_newwin(22, 12, 0, 30);
+  /* initscr(); */
+  /* clear(); */
+  /* refresh(); */
+  /* tetris.start_time = time(0); */
+  /* score = create_newwin(15, 20, 5, 0); */
+  /* show_score(score, &tetris); */
+  /* game = create_newwin(22, 12, 0, 30); */
   /* while (true) */
   /*   { */
   /*     tetris.time = time(0) - tetris.start_time; */
   /*     show_score(score, &tetris); */
   /*   } */
-  getch();
-  delwin(game);
-  endwin();
+  /* getch(); */
+  /* delwin(game); */
+  /* endwin(); */
   return (0);
 }

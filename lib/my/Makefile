@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Mon Nov  9 09:47:52 2015 maud marel
-## Last update Mon Feb 29 16:36:25 2016 maud marel
+## Last update Mon Feb 29 21:18:05 2016 maud marel
 ##
 
 SRC	=	my_putstr_error.c \
@@ -17,7 +17,10 @@ SRC	=	my_putstr_error.c \
 		my_strcpy.c \
 		my_put_nbr.c \
 		my_putchar.c \
-		my_strncpy.c
+		my_strncpy.c \
+		my_strcat.c \
+		my_strncat.c \
+		my_realloc.c
 
 RM	=	rm -f
 

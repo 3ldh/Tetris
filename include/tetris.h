@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Mon Feb 29 17:06:01 2016 maud marel
+** Last update Mon Feb 29 21:40:26 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -13,6 +13,7 @@
 # define UNUSED __attribute__((__unused__))
 
 #include <stdio.h>
+#include <stdlib.h>
 
 enum		check_opt
   {
@@ -43,6 +44,7 @@ enum		check_opt_simp
 
 typedef	struct	s_tetrimino
 {
+  int		index;
   int		height;
   int		width;
   int		color;
@@ -52,9 +54,9 @@ typedef	struct	s_tetrimino
 
 typedef	struct	s_list_tetrimino
 {
-  t_tetrimino	tetrimino;
-  t_tetrimino	*next;
-  t_tetrimino	*prev;
+  t_tetri	tetrimino;
+  struct s_list_tetrimino	*next;
+  struct s_list_tetrimino	*prev;
 }		t_list_tetri;
 
 typedef struct	s_options
@@ -74,6 +76,7 @@ typedef struct	s_options
 typedef	struct	s_tetris
 {
   t_options	*options;
+  t_list_tetri	*list_tetri;
   int		high_score;
   int		score;
   int		lines;
