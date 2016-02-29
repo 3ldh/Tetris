@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Mon Feb 29 14:09:22 2016 maud marel
+## Last update Mon Feb 29 17:06:14 2016 maud marel
 ##
 
 NAME		=	tetris
@@ -29,7 +29,7 @@ SRCS		=	srcs/main.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
-LDFLAGS		=	-Llib -lmy
+LDFLAGS		=	-Llib -lmy -lncurses
 
 CFLAGS		+=	-Iinclude/
 

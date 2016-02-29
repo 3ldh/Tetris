@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Mon Feb 29 16:33:28 2016 maud marel
+** Last update Mon Feb 29 17:06:01 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -41,6 +41,22 @@ enum		check_opt_simp
     MAX_CHECK_OPT_SIMP
   };
 
+typedef	struct	s_tetrimino
+{
+  int		height;
+  int		width;
+  int		color;
+  char		*name;
+  char		**tetrimino;
+}		t_tetri;
+
+typedef	struct	s_list_tetrimino
+{
+  t_tetrimino	tetrimino;
+  t_tetrimino	*next;
+  t_tetrimino	*prev;
+}		t_list_tetri;
+
 typedef struct	s_options
 {
   char		level;
@@ -58,6 +74,13 @@ typedef struct	s_options
 typedef	struct	s_tetris
 {
   t_options	*options;
+  int		high_score;
+  int		score;
+  int		lines;
+  int		start_time;
+  int		time;
+  int		level;
+  int		speed;
 }		t_tetris;
 
 typedef struct	s_check_opt
