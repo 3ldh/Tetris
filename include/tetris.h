@@ -5,12 +5,28 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Sun Feb 28 23:02:52 2016 maud marel
+** Last update Mon Feb 29 17:00:04 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
 # define TETRIS_H_
 # define UNUSED __attribute__((__unused__))
+
+typedef	struct	s_tetrimino
+{
+  int		height;
+  int		width;
+  int		color;
+  char		*name;
+  char		**tetrimino;
+}		t_tetri;
+
+typedef	struct	s_list_tetrimino
+{
+  t_tetrimino	tetrimino;
+  t_tetrimino	*next;
+  t_tetrimino	*prev;
+}		t_list_tetri;
 
 typedef struct	s_options
 {
@@ -29,6 +45,13 @@ typedef struct	s_options
 typedef	struct	s_tetris
 {
   t_options	*options;
+  int		high_score;
+  int		score;
+  int		lines;
+  int		start_time;
+  int		time;
+  int		level;
+  int		speed;
 }		t_tetris;
 
 typedef int(**t_tab_com)(t_tetris *, char *);
