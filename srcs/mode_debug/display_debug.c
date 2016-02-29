@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Sun Feb 28 23:26:47 2016 maud marel
+** Last update Mon Feb 29 16:45:22 2016 maud marel
 */
 
 #include "tetris.h"
@@ -13,22 +13,22 @@
 void	display_key(t_tetris *tetris)
 {
   write(1, "Key Left : ", 11);
-  write(1, tetris->options->left, 4);
+  write(1, tetris->options->left, my_strlen(tetris->options->left));
   write(1, "\n", 1);
   write(1, "Key Right : ", 12);
-  write(1, tetris->options->right, 4);
+  write(1, tetris->options->right, my_strlen(tetris->options->right));
   write(1, "\n", 1);
   write(1, "Key Turn : ", 11);
-  /* write(1, tetris->options->turn, my_strlen(tetris->options->turn)); */
+  write(1, tetris->options->turn, my_strlen(tetris->options->turn));
   write(1, "\n", 1);
   write(1, "Key Drop : ", 11);
-  /* write(1, tetris->options->drop, my_strlen(tetris->options->drop)); */
+  write(1, tetris->options->drop, my_strlen(tetris->options->drop));
   write(1, "\n", 1);
   write(1, "Key Quit : ", 11);
-  write(1, tetris->options->quit, 2);
+  write(1, tetris->options->quit, my_strlen(tetris->options->quit));
   write(1, "\n", 1);
-  write(1, "Key Pause : ", 11);
-  /* write(1, tetris->options->pause, my_strlen(tetris->options->pause)); */
+  write(1, "Key Pause : ", 12);
+  write(1, tetris->options->pause, my_strlen(tetris->options->pause));
   write(1, "\n", 1);
 }
 
@@ -41,12 +41,12 @@ void	display_more_info(t_tetris *tetris)
     write(1, "No", 2);
   write(1, "\n", 1);
   write(1, "Level : ", 8);
-  write(1, tetris->options->level, 1);
+  my_put_nbr(tetris->options->level);
   write(1, "\n", 1);
   write(1, "Size : ", 7);
-  write(1, tetris->options->row, 2);
+  my_put_nbr(tetris->options->row);
   write(1, "*", 1);
-  write(1, tetris->options->col, 2);
+  my_put_nbr(tetris->options->col);
   write(1, "\n", 1);
 }
 
