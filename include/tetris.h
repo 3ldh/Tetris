@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Mon Feb 29 17:00:04 2016 Mathieu Sauvau
+** Last update Mon Feb 29 18:26:05 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -17,15 +17,17 @@ typedef	struct	s_tetrimino
   int		height;
   int		width;
   int		color;
+  int		x;
+  int		y;
   char		*name;
   char		**tetrimino;
 }		t_tetri;
 
 typedef	struct	s_list_tetrimino
 {
-  t_tetrimino	tetrimino;
-  t_tetrimino	*next;
-  t_tetrimino	*prev;
+  t_tetri	tetrimino;
+  t_tetri	*next;
+  t_tetri	*prev;
 }		t_list_tetri;
 
 typedef struct	s_options
