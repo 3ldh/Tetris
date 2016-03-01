@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Tue Mar  1 10:05:41 2016 maud marel
+** Last update Tue Mar  1 15:34:33 2016 maud marel
 */
 
 #include <unistd.h>
@@ -47,15 +47,16 @@ void		stock_tetriminos(char *str, t_tetris *tetris)
   char		*file;
   char		*way;
 
-  if ((way = malloc(sizeof(char) * 11)) == NULL)
+  if ((way = malloc(sizeof(char) * 12)) == NULL)
     exit(1);
-  way = "tetriminos/";
+  my_strcpy(way, "tetriminos/");
   if ((way = my_realloc(way, my_strlen(str) + 1)) == NULL)
     exit(1);
   my_strcat(way, str);
   if ((fd = open(way, O_RDONLY)) == -1)
     exit(1);
-  file = get_next_line(fd);
+  if ((file = get_next_line(fd)) == NULL)
+    exit(1);
   stock(file, tetris, fd, str);
   if (close(fd) == -1)
     exit(1);
@@ -103,6 +104,7 @@ void		check_tetriminos(t_tetris *tetris)
 {
   DIR		*dirp;
   struct dirent	*entry;
+  int		i;
 
   if ((dirp = opendir("tetriminos")) == NULL)
     {
@@ -110,9 +112,14 @@ void		check_tetriminos(t_tetris *tetris)
       exit(1);
     }
   create_list(tetris);
+  i = 0;
   while ((entry = readdir(dirp)) != NULL)
     {
       if (entry->d_name[0] != '.')
-	check_first(tetris, entry->d_name);
+	{
+	  i++;
+	  check_first(tetris, entry->d_name);
+	}
     }
+  tetris->list_tetri->nb_tetri = i;
 }

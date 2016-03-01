@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Tue Mar  1 11:28:51 2016 maud marel
+** Last update Tue Mar  1 15:41:58 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -56,6 +56,7 @@ typedef	struct	s_tetrimino
 typedef	struct	s_list_tetrimino
 {
   t_tetri	tetrimino;
+  int		nb_tetri;
   struct s_list_tetrimino	*next;
   struct s_list_tetrimino	*prev;
 }		t_list_tetri;
@@ -119,6 +120,8 @@ void		change_key_quit_simp(t_tetris *, char *);
 void		change_key_pause_simp(t_tetris *, char *);
 void		change_without_next_simp(t_tetris *, char *);
 
+char		*get_next_line(const int);
+char		*my_realloc(char *, int);
 int		my_strcmp(char *, char *);
 
 #endif /* !TETRIS_H_ */

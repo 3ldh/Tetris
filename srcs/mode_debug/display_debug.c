@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Tue Mar  1 11:06:43 2016 maud marel
+** Last update Tue Mar  1 15:48:56 2016 maud marel
 */
 
 #include "tetris.h"
@@ -48,6 +48,9 @@ void	display_more_info(t_tetris *tetris)
   write(1, "*", 1);
   my_put_nbr(tetris->options->col);
   write(1, "\n", 1);
+  write(1, "Tetriminos : ", 13);
+  my_put_nbr(tetris->list_tetri->nb_tetri);
+  my_putchar('\n');
 }
 
 void	print_tetriminos(t_list_tetri *tetris)
@@ -70,7 +73,12 @@ void	print_tetriminos(t_list_tetri *tetris)
       write(1, " : color ", 9);
       my_put_nbr(tetris->tetrimino.color);
       write(1, " :\n", 3);
-      my_putstr(tetris->tetrimino.tetrimino);
+      i = -1;
+      while (++i < tetris->tetrimino.height)
+	{
+	  my_putstr(tetris->tetrimino.tetrimino[i]);
+	  my_putchar('\n');
+	}
     }
 }
 

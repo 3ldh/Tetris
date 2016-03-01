@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 19:30:09 2016 maud marel
-** Last update Mon Feb 29 16:45:34 2016 maud marel
+** Last update Tue Mar  1 14:27:12 2016 maud marel
 */
 
 #include "tetris.h"
@@ -18,22 +18,22 @@ void	init_tetris(t_tetris *tetris)
   tetris->options->row = 20;
   tetris->options->col = 10;
   tetris->options->hide_next = 0;
-  if ((tetris->options->left = malloc(sizeof(char) * 4)) == NULL)
+  if ((tetris->options->left = malloc(sizeof(char) * 5)) == NULL)
     exit(1);
   my_strcpy(tetris->options->left, "^E[C");
-  if ((tetris->options->right = malloc(sizeof(char) * 4)) == NULL)
+  if ((tetris->options->right = malloc(sizeof(char) * 5)) == NULL)
     exit(1);
   my_strcpy(tetris->options->right, "^E[D");
-  if ((tetris->options->turn = malloc(sizeof(char) * 4)) == NULL)
+  if ((tetris->options->turn = malloc(sizeof(char) * 5)) == NULL)
     exit(1);
   my_strcpy(tetris->options->turn, "^E[A");
-  if ((tetris->options->drop = malloc(sizeof(char) * 4)) == NULL)
+  if ((tetris->options->drop = malloc(sizeof(char) * 5)) == NULL)
     exit(1);
   my_strcpy(tetris->options->drop, "^E[B");
-  if ((tetris->options->quit = malloc(sizeof(char) * 2)) == NULL)
+  if ((tetris->options->quit = malloc(sizeof(char) * 3)) == NULL)
     exit(1);
   my_strcpy(tetris->options->quit, "^E");
-  if ((tetris->options->pause = malloc(sizeof(char) * 7)) == NULL)
+  if ((tetris->options->pause = malloc(sizeof(char) * 8)) == NULL)
     exit(1);
   my_strcpy(tetris->options->pause, "(space)");
 }

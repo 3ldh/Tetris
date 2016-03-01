@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Mon Nov  9 09:47:52 2015 maud marel
-## Last update Tue Mar  1 11:04:39 2016 maud marel
+## Last update Tue Mar  1 14:30:46 2016 maud marel
 ##
 
 SRC	=	my_putstr_error.c \
@@ -27,7 +27,7 @@ RM	=	rm -f
 
 NAME	=	libmy.a
 
-CC	=	gcc
+CC	=	gcc -g
 
 OBJ	=	$(SRC:.c=.o)
 

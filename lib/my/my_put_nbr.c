@@ -1,79 +1,47 @@
 /*
-** my_put_nbr.c for my_put_nbr in /lib/my
+** my_put_nbr.c for my_put_nbr in /PSU_2015_my_printf
 **
 ** Made by maud marel
 ** Login   <marel_m@epitech.net>
 **
-** Started on  Tue Oct  6 11:02:44 2015 maud marel
-** Last update Mon Feb 29 16:35:56 2016 maud marel
+** Started on  Wed Sep 30 14:07:08 2015 maud marel
+** Last update Tue Mar  1 14:32:28 2016 maud marel
 */
 
-int	size(int nb)
+int	isneg2(int *nb)
 {
-  int	i;
-
-  i = 0;
-  while (nb >= 10)
-    {
-      nb /= 10;
-      i++;
-    }
-  return (i);
-}
-
-int	powerten(int nb)
-{
-  int	j;
-  int	i;
-
-  j = 10;
-  i = size(nb);
-  while (i > 1)
-    {
-      j *= 10;
-      i--;
-    }
-  return (j);
-}
-
-int	general(int nb, int r, int j)
-{
-  while (r >= 1)
-    {
-      nb = r / j;
-      my_putchar(nb + 48);
-      if (nb < 10 && nb >= 1)
-	{
-	  while (j != 1)
-	    {
-	      my_putchar(48);
-	      j = j / 10;
-	    }
-	}
-      r = r % j;
-      j = j / 10;
-    }
+  if (*nb < 0)
+  {
+    my_putchar('-');
+    *nb = -(*nb);
+    return (1);
+  }
+  return (0);
 }
 
 int	my_put_nbr(int nb)
 {
-  int	r;
-  int	j;
+  int	div_nbr;
+  int	result;
+  int	len;
 
-  if (nb < 0)
+  div_nbr = 1;
+  result = 0;
+  len = 0;
+  if (nb == -2147483648)
     {
-      my_putchar('-');
-      nb = -nb;
+      my_putstr("-2147483648");
+      return (11);
     }
-  j = powerten(nb);
-  r = nb;
-  if (nb == 0)
-    my_putchar('0');
-  if (nb < 10 && nb >= 1)
+  len = isneg2(&nb);
+  while ((nb / div_nbr) >= 10)
+    div_nbr = div_nbr * 10;
+  while (div_nbr > 0)
     {
-      nb = nb % j;
-      my_putchar(nb + 48);
+      result = (nb / div_nbr) % 10;
+      my_putchar(48 + result);
+      div_nbr = div_nbr / 10;
+      len++;
     }
-  if (nb >= 10)
-    general(nb, r, j);
+  return (len);
 }
