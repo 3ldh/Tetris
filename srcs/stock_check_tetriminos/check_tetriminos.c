@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Tue Mar  1 15:34:33 2016 maud marel
+** Last update Tue Mar  1 21:45:35 2016 maud marel
 */
 
 #include <unistd.h>
@@ -94,7 +94,7 @@ void		show_list(t_list_tetri *elem)
   elem_next = elem->next;
   while (elem_next != elem)
     {
-      printf("%s\n", elem_next->tetrimino.name);
+      printf("%s\n", elem_next->tetrimino->name);
       elem_next = elem_next->next;
     }
 }

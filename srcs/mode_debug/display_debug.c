@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Tue Mar  1 15:48:56 2016 maud marel
+** Last update Tue Mar  1 22:19:14 2016 maud marel
 */
 
 #include "tetris.h"
@@ -13,22 +13,22 @@
 void	display_key(t_tetris *tetris)
 {
   write(1, "Key Left : ", 11);
-  write(1, tetris->options->left, my_strlen(tetris->options->left));
+  my_putchar(tetris->options->left);
   write(1, "\n", 1);
   write(1, "Key Right : ", 12);
-  write(1, tetris->options->right, my_strlen(tetris->options->right));
+  my_putchar(tetris->options->right);
   write(1, "\n", 1);
   write(1, "Key Turn : ", 11);
-  write(1, tetris->options->turn, my_strlen(tetris->options->turn));
+  my_putchar(tetris->options->turn);
   write(1, "\n", 1);
   write(1, "Key Drop : ", 11);
-  write(1, tetris->options->drop, my_strlen(tetris->options->drop));
+  my_putchar(tetris->options->drop);
   write(1, "\n", 1);
   write(1, "Key Quit : ", 11);
-  write(1, tetris->options->quit, my_strlen(tetris->options->quit));
+  my_putchar(tetris->options->quit);
   write(1, "\n", 1);
   write(1, "Key Pause : ", 12);
-  write(1, tetris->options->pause, my_strlen(tetris->options->pause));
+  my_putchar(tetris->options->pause);
   write(1, "\n", 1);
 }
 
@@ -59,24 +59,24 @@ void	print_tetriminos(t_list_tetri *tetris)
 
   i = -1;
   write(1, "Tetriminos : Name ", 18);
-  while (tetris->tetrimino.name[++i] != '.')
-    write(1, &tetris->tetrimino.name[i], 1);
+  while (tetris->tetrimino->name[++i] != '.')
+    write(1, &tetris->tetrimino->name[i], 1);
   write(1, " : ", 3);
-  if (tetris->tetrimino.width == 0)
+  if (tetris->tetrimino->width == 0)
     write(1, "Error\n", 6);
   else
     {
       write(1, "Size ", 5);
-      my_put_nbr(tetris->tetrimino.height);
+      my_put_nbr(tetris->tetrimino->height);
       write(1, "*", 1);
-      my_put_nbr(tetris->tetrimino.width);
+      my_put_nbr(tetris->tetrimino->width);
       write(1, " : color ", 9);
-      my_put_nbr(tetris->tetrimino.color);
+      my_put_nbr(tetris->tetrimino->color);
       write(1, " :\n", 3);
       i = -1;
-      while (++i < tetris->tetrimino.height)
+      while (++i < tetris->tetrimino->height)
 	{
-	  my_putstr(tetris->tetrimino.tetrimino[i]);
+	  my_putstr(tetris->tetrimino->tetrimino[i]);
 	  my_putchar('\n');
 	}
     }

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Tue Mar  1 15:41:58 2016 maud marel
+** Last update Tue Mar  1 23:14:55 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -25,7 +25,6 @@ enum		check_opt
     QUIT,
     PAUSE,
     SIZE,
-    NEXT,
     MAX_CHECK_OPT
   };
 
@@ -38,7 +37,6 @@ enum		check_opt_simp
     DROP_S,
     QUIT_S,
     PAUSE_S,
-    NEXT_S,
     MAX_CHECK_OPT_SIMP
   };
 
@@ -55,7 +53,7 @@ typedef	struct	s_tetrimino
 
 typedef	struct	s_list_tetrimino
 {
-  t_tetri	tetrimino;
+  t_tetri	*tetrimino;
   int		nb_tetri;
   struct s_list_tetrimino	*next;
   struct s_list_tetrimino	*prev;
@@ -63,16 +61,16 @@ typedef	struct	s_list_tetrimino
 
 typedef struct	s_options
 {
-  char		level;
+  int		level;
   int		row;
   int		col;
   int		hide_next;
-  char		*left;
-  char		*right;
-  char		*turn;
-  char		*drop;
-  char		*quit;
-  char		*pause;
+  char		left;
+  char		right;
+  char		turn;
+  char		drop;
+  char		quit;
+  char		pause;
 }		t_options;
 
 typedef	struct	s_tetris

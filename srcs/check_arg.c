@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:40:47 2016 maud marel
-** Last update Mon Feb 29 14:25:27 2016 maud marel
+** Last update Tue Mar  1 23:16:43 2016 maud marel
 */
 
 #include <stdlib.h>
@@ -34,8 +34,6 @@ t_check_opt	*init_tab_comp_arg()
   tab[PAUSE].ft_com = &change_key_pause;
   tab[SIZE].opt = "--map-size=";
   tab[SIZE].ft_com = &change_map_size;
-  tab[NEXT].opt = "--without-next=";
-  tab[NEXT].ft_com = &change_without_next;
   return (tab);
 }
 
@@ -75,8 +73,6 @@ t_check_opt_simp	*init_tab_simp_arg()
   tab[QUIT_S].ft_simp = &change_key_quit_simp;
   tab[PAUSE_S].opt = "-kp";
   tab[PAUSE_S].ft_simp = &change_key_pause_simp;
-  tab[NEXT_S].opt = "-w";
-  tab[NEXT_S].ft_simp = &change_without_next_simp;
   return (tab);
 }
 
@@ -107,8 +103,10 @@ void	check_arg(t_tetris *tetris, int ac, char **av)
   debug = 0;
   while (++i < ac)
     {
-      if (my_strcmp(av[i], "-d") == 0)
+      if (my_strcmp(av[i], "-d") == 0 || my_strcmp(av[i], "--debug") == 0)
 	debug = 1;
+      else if (my_strcmp(av[i], "-w") == 0 || my_strcmp(av[i], "--without-next") == 0)
+	tetris->options->hide_next = 1;
       else if (my_strcmp(av[i], "--help") == 0
 	       && ac == 2)
 	display_help();

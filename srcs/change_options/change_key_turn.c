@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:54:34 2016 maud marel
-** Last update Tue Mar  1 09:38:31 2016 maud marel
+** Last update Tue Mar  1 22:15:29 2016 maud marel
 */
 
 #include "tetris.h"
@@ -13,7 +13,6 @@
 void	change_key_turn(t_tetris *tetris, char *str)
 {
   int   i;
-  int   j;
 
   i = 0;
   while (str[i] != '=' && str)
@@ -24,30 +23,15 @@ void	change_key_turn(t_tetris *tetris, char *str)
       write(2, "Wrong arg: --key-turn={K}\n", 26);
       exit(1);
     }
-  j = 0;
-  if ((tetris->options->turn = malloc(sizeof(char))) == NULL)
-    exit(1);
-  while (str[i] != '\0')
-    {
-      tetris->options->turn[j++] = str[i];
-      i++;
-    }
-  tetris->options->turn[j] = '\0';
+  tetris->options->turn = str[i];
 }
 
 void	change_key_turn_simp(t_tetris *tetris, char *str)
 {
-  int   i;
-
   if (str[1] != '\0')
     {
       write(2, "Wrong args: -kt 'K'\n", 19);
       exit(1);
     }
-  if ((tetris->options->turn = malloc(sizeof(char))) == NULL)
-    exit(1);
-  i = -1;
-  while (str[++i] != '\0' && str)
-    tetris->options->turn[i] = str[i];
-  tetris->options->turn[i] = '\0';
+  tetris->options->turn = str[0];
 }
