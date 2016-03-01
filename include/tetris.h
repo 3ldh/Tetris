@@ -1,11 +1,11 @@
-/*
+ /*
 ** tetris.h for tetris in /home/marel_m/Rendu/Semestre_2/Systeme_Unix/PSU_2015_tetris
 **
 ** Made by maud marel
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Mon Feb 29 21:40:26 2016 maud marel
+** Last update Tue Mar  1 09:46:11 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -44,7 +44,6 @@ enum		check_opt_simp
 
 typedef	struct	s_tetrimino
 {
-  int		index;
   int		height;
   int		width;
   int		color;

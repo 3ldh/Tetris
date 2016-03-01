@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Oct  6 14:22:38 2015 maud marel
-** Last update Mon Feb 29 19:40:20 2016 maud marel
+** Last update Tue Mar  1 09:55:46 2016 maud marel
 */
 
 char	*my_strcat(char *dest, char *src)
@@ -15,7 +15,7 @@ char	*my_strcat(char *dest, char *src)
 
   l = 0;
   dest_size = my_strlen(dest);
-  while (src[l] != '\0')
+  while (src[l] != '\0' && src)
     {
       dest[dest_size + l] = src[l];
       l = l + 1;

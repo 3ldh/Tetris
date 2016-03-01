@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Mon Feb 29 22:55:29 2016 maud marel
+** Last update Tue Mar  1 10:05:41 2016 maud marel
 */
 
 #include <unistd.h>
@@ -50,7 +50,7 @@ void		stock_tetriminos(char *str, t_tetris *tetris)
   if ((way = malloc(sizeof(char) * 11)) == NULL)
     exit(1);
   way = "tetriminos/";
-  if ((way = my_realloc(way, my_strlen(str))) == NULL)
+  if ((way = my_realloc(way, my_strlen(str) + 1)) == NULL)
     exit(1);
   my_strcat(way, str);
   if ((fd = open(way, O_RDONLY)) == -1)

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:56:56 2016 maud marel
-** Last update Mon Feb 29 16:15:59 2016 maud marel
+** Last update Tue Mar  1 09:38:08 2016 maud marel
 */
 
 #include "tetris.h"
@@ -39,7 +39,7 @@ void	change_key_quit_simp(t_tetris *tetris, char *str)
 {
   int   i;
 
-  if (str[1] != NULL)
+  if (str[1] != '\0')
     {
       write(2, "Wrong args: -kq 'K'\n", 20);
     }
