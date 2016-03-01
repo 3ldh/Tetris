@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Mon Feb 29 19:43:48 2016 Mathieu Sauvau
+** Last update Tue Mar  1 09:37:58 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -134,8 +134,8 @@ int		main(int ac, char **av)
   WINDOW	*game;
   WINDOW	*next;
 
+  check_tetriminos(&tetris);
   /* init_tetris(&tetris); */
-  /* printf("%s\n", av[1]); */
   /* check_arg(&tetris, ac, av); */
   initscr();
   curs_set(0);

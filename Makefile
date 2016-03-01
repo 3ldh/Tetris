@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Mon Feb 29 15:32:21 2016 Mathieu Sauvau
+## Last update Mon Feb 29 19:12:54 2016 maud marel
 ##
 
 NAME		=	tetris
@@ -17,6 +17,7 @@ SRCS		=	srcs/main.c \
 			srcs/display_help.c \
 			srcs/init_options.c \
 			srcs/mode_debug/display_debug.c \
+			srcs/get_next_line.c \
 			$(OPTS)change_key_drop.c \
 			$(OPTS)change_key_left.c \
 			$(OPTS)change_key_pause.c \
@@ -26,6 +27,8 @@ SRCS		=	srcs/main.c \
 			$(OPTS)change_level.c \
 			$(OPTS)change_map_size.c \
 			$(OPTS)change_without_next.c \
+			srcs/stock_check_tetriminos/check_tetriminos.c \
+			srcs/stock_check_tetriminos/stock.c
 
 OBJS		=	$(SRCS:.c=.o)
 
@@ -37,7 +40,7 @@ CFLAGS		+=	$(LIBS)
 
 FLAGS		=	$(LDFLAGS)
 
-CC		=	gcc
+CC		=	gcc -g
 
 RM		=	rm -f
 
