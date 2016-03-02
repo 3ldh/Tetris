@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 17:01:48 2016 maud marel
-** Last update Tue Mar  1 23:42:44 2016 maud marel
+** Last update Wed Mar  2 11:51:47 2016 maud marel
 */
 
 #include <unistd.h>
@@ -16,6 +16,7 @@ int	check_form(t_list_tetri *tetris, int fd)
   char  *file;
   int   h;
   int   w;
+  int	i;
 
   w = 0;
   h = 0;
@@ -29,7 +30,17 @@ int	check_form(t_list_tetri *tetris, int fd)
       if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
 						    * (my_strlen(file) + 1))) == NULL)
 	exit(1);
-      my_strcpy(tetris->tetrimino->tetrimino[h], file);
+      i = -1;
+      while (file[++i] != '\0')
+	{
+	  if (file[i] != ' ' && file[i] != '*')
+	    {
+	      tetris->tetrimino->width = 0;
+	      return (1);
+	    }
+	  tetris->tetrimino->tetrimino[h][i] = file[i];
+	}
+      tetris->tetrimino->tetrimino[h][i] = '\0';
       h++;
     }
   if (w != tetris->tetrimino->width || h != tetris->tetrimino->height)
@@ -82,14 +93,9 @@ int	check_info(char *f_l, t_list_tetri *tetris)
 
 void	stock(char *file, t_tetris *tetris, int fd, char *name)
 {
-  t_list_tetri	*new;
+  t_list_tetri  *new;
 
-  if ((new = malloc(sizeof(t_list_tetri))) == NULL)
-    exit(1);
-  new->prev = tetris->list_tetri;
-  new->next = tetris->list_tetri->next;
-  tetris->list_tetri->next->prev = new;
-  tetris->list_tetri->next = new;
+  new = add_list_before(tetris->list_tetri);
   if ((new->tetrimino = malloc(sizeof(t_tetri))) == NULL)
     exit(1);
   if ((new->tetrimino->name = malloc(sizeof(char) * my_strlen(name) + 1)) == NULL)
