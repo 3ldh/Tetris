@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Tue Mar  1 09:38:41 2016 Mathieu Sauvau
+** Last update Tue Mar  1 13:38:07 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -54,12 +54,12 @@ typedef	struct	s_tetrimino
   char		**tetrimino;
 }		t_tetri;
 
-typedef	struct	s_list_tetrimino
+typedef	struct			s_list_tetrimino
 {
-  t_tetri	tetrimino;
+  t_tetri			tetrimino;
   struct s_list_tetrimino	*next;
   struct s_list_tetrimino	*prev;
-}		t_list_tetri;
+}				t_list_tetri;
 
 typedef struct	s_options
 {
@@ -79,6 +79,7 @@ typedef	struct	s_tetris
 {
   t_options	*options;
   t_list_tetri	*list_tetri;
+  char		**tab_pos;
   int		high_score;
   int		score;
   int		lines;
