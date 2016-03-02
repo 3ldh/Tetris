@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Wed Mar  2 10:26:50 2016 Mathieu Sauvau
+** Last update Wed Mar  2 15:25:54 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <curses.h>
 
 enum		check_opt
   {
@@ -59,6 +60,12 @@ typedef	struct			s_list_tetrimino
   struct s_list_tetrimino	*prev;
 }				t_list_tetri;
 
+typedef struct	s_cell
+{
+  char		color;
+  bool		on;
+}		t_cell;
+
 typedef struct	s_options
 {
   int		level;
@@ -77,7 +84,7 @@ typedef	struct	s_tetris
 {
   t_options	*options;
   t_list_tetri	*list_tetri;
-  char		**tab_pos;
+  t_cell	**board;
   int		high_score;
   int		score;
   int		lines;
