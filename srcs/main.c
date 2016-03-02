@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Wed Mar  2 10:29:07 2016 Mathieu Sauvau
+** Last update Wed Mar  2 10:29:51 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -297,7 +297,6 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
 
 void		init_ncurses()
 {
-<<<<<<< HEAD
   initscr();
   curs_set(0);
   nodelay(stdscr, true);
