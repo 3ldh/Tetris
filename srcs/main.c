@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Wed Mar  2 10:56:24 2016 Mathieu Sauvau
+** Last update Wed Mar  2 11:03:13 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -350,7 +350,7 @@ void		show_tetri(t_list_tetri *elem)
       	    }
       	  printf("\n");
       	}
-      	  printf("\n");
+      printf("\n");
       elem_next = elem_next->next;
     }
 }
