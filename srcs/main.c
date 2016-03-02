@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Wed Mar  2 10:29:51 2016 Mathieu Sauvau
+** Last update Wed Mar  2 10:33:47 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -97,7 +97,7 @@ void	print_game(WINDOW *game, t_tetri *tetri, t_list_tetri *static_tetri)
   print_tetri(game, tetri);
   while (static_tetri != NULL)
     {
-      print_tetri(game, &static_tetri->tetrimino);
+      print_tetri(game, static_tetri->tetrimino);
       static_tetri = static_tetri->next;
     }
 }
@@ -148,9 +148,10 @@ t_list_tetri	*add_tetri(t_list_tetri *list, t_tetri *tetri)
 {
   t_list_tetri	*new;
 
-  if ((new = malloc(sizeof(t_list_tetri))) == NULL)
+  if ((new = malloc(sizeof(t_list_tetri))) == NULL
+      || (new->tetrimino = malloc(sizeof(t_tetri))) == NULL)
     exit(1);
-  new->tetrimino = *tetri;
+  *new->tetrimino = *tetri;
   new->prev = NULL;
   new->next = list;
   return (new);
