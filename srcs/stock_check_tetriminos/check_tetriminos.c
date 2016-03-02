@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Wed Mar  2 11:47:34 2016 maud marel
+** Last update Wed Mar  2 19:00:20 2016 maud marel
 */
 
 #include <unistd.h>
@@ -64,7 +64,6 @@ void		check_tetriminos(t_tetris *tetris)
 {
   DIR		*dirp;
   struct dirent	*entry;
-  int		i;
 
   if ((dirp = opendir("tetriminos")) == NULL)
     {
@@ -72,14 +71,11 @@ void		check_tetriminos(t_tetris *tetris)
       exit(1);
     }
   create_list(tetris);
-  i = 0;
+  tetris->list_tetri->nb_tetri = 0;
   while ((entry = readdir(dirp)) != NULL)
-    {
-      if (entry->d_name[0] != '.')
-	{
-	  i++;
-	  check_first(tetris, entry->d_name);
-	}
-    }
-  tetris->list_tetri->nb_tetri = i;
+    if (entry->d_name[0] != '.')
+      {
+	tetris->list_tetri->nb_tetri++;
+	check_first(tetris, entry->d_name);
+      }
 }

@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Wed Mar  2 11:47:59 2016 maud marel
+## Last update Wed Mar  2 17:45:38 2016 maud marel
 ##
 
 NAME		=	tetris
@@ -26,6 +26,7 @@ SRCS		=	srcs/main.c \
 			$(OPTS)change_key_turn.c \
 			$(OPTS)change_level.c \
 			$(OPTS)change_map_size.c \
+			$(OPTS)wrong_options.c \
 			srcs/stock_check_tetriminos/check_tetriminos.c \
 			srcs/stock_check_tetriminos/stock.c \
 			srcs/stock_check_tetriminos/put_in_list.c

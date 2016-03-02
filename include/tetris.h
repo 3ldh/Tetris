@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Wed Mar  2 15:25:54 2016 Mathieu Sauvau
+** Last update Wed Mar  2 18:43:21 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -125,6 +125,8 @@ void		change_key_drop_simp(t_tetris *, char *);
 void		change_key_quit_simp(t_tetris *, char *);
 void		change_key_pause_simp(t_tetris *, char *);
 void		change_without_next_simp(t_tetris *, char *);
+t_list_tetri	*add_list_before(t_list_tetri *);
+t_list_tetri	*which_order(t_tetris *, char *);
 
 char		*get_next_line(const int);
 char		*my_realloc(char *, int);

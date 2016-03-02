@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:46:17 2016 maud marel
-** Last update Tue Mar  1 22:47:53 2016 maud marel
+** Last update Wed Mar  2 17:45:06 2016 maud marel
 */
 
 #include "tetris.h"
@@ -22,19 +22,13 @@ void	change_map_size(t_tetris *tetris, char *str)
     i++;
   i++;
   if (i == my_strlen(str))
-    {
-      write(2, "Wrong arg: --map-size={row,col}\n", 32);
-      exit(1);
-    }
+    wrong_options();
   j = i;
   nb = 0;
   while (str[i] != ',')
     {
       if (str[i] < '0' || str[i] > '9')
-	{
-	  write(2, "Wrong arg: --map-size={row,col}\n", 32);
-	  exit(1);
-	}
+	wrong_options();
       i++;
       nb++;
     }
@@ -52,10 +46,7 @@ void	change_map_size(t_tetris *tetris, char *str)
   while (str[i] != '\0')
     {
       if (str[i] < '0' || str[i] > '9')
-	{
-	  write(2, "Wrong arg: --map-size={row,col}\n", 32);
-	  exit(1);
-	}
+	wrong_options();
       i++;
       nb++;
     }

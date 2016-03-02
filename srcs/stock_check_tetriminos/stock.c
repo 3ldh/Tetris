@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 17:01:48 2016 maud marel
-** Last update Wed Mar  2 11:51:47 2016 maud marel
+** Last update Wed Mar  2 18:44:18 2016 maud marel
 */
 
 #include <unistd.h>
@@ -21,7 +21,7 @@ int	check_form(t_list_tetri *tetris, int fd)
   w = 0;
   h = 0;
   if ((tetris->tetrimino->tetrimino = malloc(sizeof(char*)
-						    * tetris->tetrimino->height)) == NULL)
+  						    * tetris->tetrimino->height)) == NULL)
     exit(1);
   while ((file = get_next_line(fd)) != NULL)
     {
@@ -95,7 +95,7 @@ void	stock(char *file, t_tetris *tetris, int fd, char *name)
 {
   t_list_tetri  *new;
 
-  new = add_list_before(tetris->list_tetri);
+  new = which_order(tetris, name);
   if ((new->tetrimino = malloc(sizeof(t_tetri))) == NULL)
     exit(1);
   if ((new->tetrimino->name = malloc(sizeof(char) * my_strlen(name) + 1)) == NULL)
