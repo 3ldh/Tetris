@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Wed Mar  2 10:33:47 2016 Mathieu Sauvau
+** Last update Wed Mar  2 10:56:24 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -328,6 +328,33 @@ char		**init_tab_pos(t_tetris *tetris)
   return (tab_pos);
 }
 
+void		show_tetri(t_list_tetri *elem)
+{
+  t_list_tetri	*elem_next;
+  int		x;
+  int		y;
+
+  elem_next = elem->next;
+  while (elem_next != elem)
+    {
+      printf("%s\n", elem_next->tetrimino->name);
+      printf("%d\n", elem_next->tetrimino->width);
+      printf("%d\n", elem_next->tetrimino->height);
+      y = -1;
+      while (++y < elem_next->tetrimino->height)
+      	{
+      	  x = -1;
+      	  while (++x < elem_next->tetrimino->width)
+      	    {
+      	      printf("%c", elem_next->tetrimino->tetrimino[y][x]);
+      	    }
+      	  printf("\n");
+      	}
+      	  printf("\n");
+      elem_next = elem_next->next;
+    }
+}
+
 int		main(int ac, char **av)
 {
   t_tetris	tetris;
@@ -336,21 +363,21 @@ int		main(int ac, char **av)
   WINDOW	*next;
 
   check_tetriminos(&tetris);
-  init_tetris(&tetris);
   check_arg(&tetris, ac, av);
-  init_tetris(&tetris);
-  check_arg(&tetris, ac, av);
-  init_ncurses();
-  tetris.start_time = time(0);
-  score = create_newwin(15, 22, 5, 0);
-  next = create_newwin(7, 15, 0, tetris.options->col + 35);
-  show_score(score, &tetris);
-  tetris.tab_pos = init_tab_pos(&tetris);
-  show_tab_pos(&tetris);
-  game = create_newwin(tetris.options->row, tetris.options->col, 0, 30);
-  loop(game, score, next, &tetris);
-  getch();
-  delwin(game);
-  endwin();
+  //show_list(tetris.list_tetri);
+  show_tetri(tetris.list_tetri);
+  /* init_tetris(&tetris); */
+  /* init_ncurses(); */
+  /* tetris.start_time = time(0); */
+  /* score = create_newwin(15, 22, 5, 0); */
+  /* next = create_newwin(7, 15, 0, tetris.options->col + 35); */
+  /* show_score(score, &tetris); */
+  /* tetris.tab_pos = init_tab_pos(&tetris); */
+  /* show_tab_pos(&tetris); */
+  /* game = create_newwin(tetris.options->row, tetris.options->col, 0, 30); */
+  /* loop(game, score, next, &tetris); */
+  /* getch(); */
+  /* delwin(game); */
+  /* endwin(); */
   return (0);
 }
