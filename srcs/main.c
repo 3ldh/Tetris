@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Tue Mar  1 14:41:37 2016 Mathieu Sauvau
+** Last update Wed Mar  2 10:29:07 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -297,6 +297,7 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
 
 void		init_ncurses()
 {
+<<<<<<< HEAD
   initscr();
   curs_set(0);
   nodelay(stdscr, true);
@@ -334,9 +335,10 @@ int		main(int ac, char **av)
   WINDOW	*game;
   WINDOW	*next;
 
-  /*check_tetriminos(&tetris); */
-  /* test(); */
-   init_tetris(&tetris);
+  check_tetriminos(&tetris);
+  init_tetris(&tetris);
+  check_arg(&tetris, ac, av);
+  init_tetris(&tetris);
   check_arg(&tetris, ac, av);
   init_ncurses();
   tetris.start_time = time(0);

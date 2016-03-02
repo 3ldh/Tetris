@@ -1,11 +1,11 @@
-/*
+ /*
 ** tetris.h for tetris in /home/marel_m/Rendu/Semestre_2/Systeme_Unix/PSU_2015_tetris
 **
 ** Made by maud marel
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Tue Mar  1 13:38:07 2016 Mathieu Sauvau
+** Last update Wed Mar  2 10:26:50 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -25,7 +25,6 @@ enum		check_opt
     QUIT,
     PAUSE,
     SIZE,
-    NEXT,
     MAX_CHECK_OPT
   };
 
@@ -38,13 +37,11 @@ enum		check_opt_simp
     DROP_S,
     QUIT_S,
     PAUSE_S,
-    NEXT_S,
     MAX_CHECK_OPT_SIMP
   };
 
 typedef	struct	s_tetrimino
 {
-  int		index;
   int		height;
   int		width;
   int		color;
@@ -56,23 +53,24 @@ typedef	struct	s_tetrimino
 
 typedef	struct			s_list_tetrimino
 {
-  t_tetri			tetrimino;
+  t_tetri			*tetrimino;
+  int				nb_tetri;
   struct s_list_tetrimino	*next;
   struct s_list_tetrimino	*prev;
 }				t_list_tetri;
 
 typedef struct	s_options
 {
-  char		level;
+  int		level;
   int		row;
   int		col;
   int		hide_next;
-  char		*left;
-  char		*right;
-  char		*turn;
-  char		*drop;
-  char		*quit;
-  char		*pause;
+  char		left;
+  char		right;
+  char		turn;
+  char		drop;
+  char		quit;
+  char		pause;
 }		t_options;
 
 typedef	struct	s_tetris
@@ -121,6 +119,8 @@ void		change_key_quit_simp(t_tetris *, char *);
 void		change_key_pause_simp(t_tetris *, char *);
 void		change_without_next_simp(t_tetris *, char *);
 
+char		*get_next_line(const int);
+char		*my_realloc(char *, int);
 int		my_strcmp(char *, char *);
 
 #endif /* !TETRIS_H_ */
