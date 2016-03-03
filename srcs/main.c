@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Wed Mar  2 17:56:57 2016 maud marel
+** Last update Thu Mar  3 09:49:10 2016 maud marel
 */
 
 #include <time.h>
@@ -439,22 +439,19 @@ int		main(int ac, char **av)
   check_tetriminos(&tetris);
   init_tetris(&tetris);
   check_arg(&tetris, ac, av);
-  if (ac == 1)
-    {
-      srand(time(0));
-      show_tetri(tetris.list_tetri);
-      init_ncurses();
-      tetris.start_time = time(0);
-      score = create_newwin(15, 22, 5, 0);
-      next = create_newwin(7, 15, 0, tetris.options->col + 35);
-      show_score(score, &tetris);
-      tetris.board = init_board(&tetris);
-      show_board(&tetris);
-      game = create_newwin(tetris.options->row, tetris.options->col, 0, 30);
-      loop(game, score, next, &tetris);
-      getch();
-      delwin(game);
-      endwin();
-    }
+  /* srand(time(0)); */
+  /* show_tetri(tetris.list_tetri); */
+  /* init_ncurses(); */
+  /* tetris.start_time = time(0); */
+  /* score = create_newwin(15, 22, 5, 0); */
+  /* next = create_newwin(7, 15, 0, tetris.options->col + 35); */
+  /* show_score(score, &tetris); */
+  /* tetris.board = init_board(&tetris); */
+  /* show_board(&tetris); */
+  /* game = create_newwin(tetris.options->row, tetris.options->col, 0, 30); */
+  /* loop(game, score, next, &tetris); */
+  /* getch(); */
+  /* delwin(game); */
+  /* endwin(); */
   return (0);
 }

@@ -5,12 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar  2 11:47:01 2016 maud marel
-** Last update Wed Mar  2 18:55:49 2016 maud marel
+** Last update Thu Mar  3 11:28:07 2016 maud marel
 */
 
 #include "tetris.h"
 
-void    create_list(t_tetris *tetris)
+void		create_list(t_tetris *tetris)
 {
   t_list_tetri  *new;
 
@@ -34,7 +34,7 @@ t_list_tetri	*add_list_after(t_list_tetri *old)
   return (new);
 }
 
-t_list_tetri    *add_list_before(t_list_tetri *old)
+t_list_tetri	*add_list_before(t_list_tetri *old)
 {
   t_list_tetri  *new;
 
@@ -52,18 +52,19 @@ t_list_tetri	*which_order(t_tetris *tetris, char *str)
   t_list_tetri	*new;
   t_list_tetri	*tmp;
 
-  if (tetris->list_tetri->nb_tetri == 1)
-    new = add_list_after(tetris->list_tetri);
-  else
-    {
-      tmp = tetris->list_tetri->next;
-      printf("%s %s\n", str, tmp->tetrimino->name);
-      while (my_strcmp(str, tmp->tetrimino->name) > 0)
-	{
-	  printf("%s %s\n", str, tmp->tetrimino->name);
-	  tmp = tmp->next;
-	}
-      new = add_list_after(tetris->list_tetri);
-    }
+  /* if (tetris->list_tetri->nb_tetri == 1) */
+    new = add_list_before(tetris->list_tetri);
+  /* else */
+  /*   { */
+  /*     tmp = tetris->list_tetri->next; */
+  /*     printf("str -> %s %s\n", str, tmp->tetrimino->name); */
+  /*     while (my_strcmp(str, tmp->tetrimino->name) < 0) */
+  /* 	{ */
+  /* 	  printf("%d\n", my_strcmp(str, tmp->tetrimino->name)); */
+  /* 	  printf("tmp -> %s\n", tmp->tetrimino->name); */
+  /* 	  tmp = tmp->next; */
+  /* 	} */
+  /*     new = add_list_after(tetris->list_tetri); */
+  /*   } */
   return (new);
 }

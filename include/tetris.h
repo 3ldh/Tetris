@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Wed Mar  2 18:43:21 2016 maud marel
+** Last update Thu Mar  3 13:32:41 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -106,6 +106,8 @@ typedef struct	s_check_opt_smp
   void		(*ft_simp)(t_tetris *, char *);
 }		t_check_opt_simp;
 
+void		check_tetriminos(t_tetris *);
+void		init_tetris(t_tetris *);
 void		check_arg(t_tetris *, int, char **);
 void		display_help();
 void		change_level(t_tetris *, char *);
@@ -127,9 +129,21 @@ void		change_key_pause_simp(t_tetris *, char *);
 void		change_without_next_simp(t_tetris *, char *);
 t_list_tetri	*add_list_before(t_list_tetri *);
 t_list_tetri	*which_order(t_tetris *, char *);
+int		stock(char *, t_tetris *, int, char *);
+void		create_list(t_tetris *);
+void		wrong_options();
+void		display_debug(t_tetris *);
 
 char		*get_next_line(const int);
 char		*my_realloc(char *, int);
 int		my_strcmp(char *, char *);
+int		my_strncmp(char *, char *, int);
+char		*my_strcpy(char *, char *);
+int		my_strlen(char *);
+int		my_put_nbr(int);
+void		my_putchar(char);
+void		my_putstr(char *);
+int		my_getnbr(char *);
+char		*my_strcat(char *, char *);
 
 #endif /* !TETRIS_H_ */

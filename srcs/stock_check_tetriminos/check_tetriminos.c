@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Wed Mar  2 19:00:20 2016 maud marel
+** Last update Thu Mar  3 10:39:43 2016 maud marel
 */
 
 #include <unistd.h>
@@ -31,6 +31,7 @@ void		stock_tetriminos(char *str, t_tetris *tetris)
   if ((file = get_next_line(fd)) == NULL)
     exit(1);
   stock(file, tetris, fd, str);
+  while (get_next_line(fd) != NULL);
   if (close(fd) == -1)
     exit(1);
 }
