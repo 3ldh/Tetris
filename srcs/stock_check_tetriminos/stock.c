@@ -5,59 +5,11 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 17:01:48 2016 maud marel
-** Last update Thu Mar  3 11:33:26 2016 maud marel
+** Last update Thu Mar  3 14:33:42 2016 maud marel
 */
 
 #include <unistd.h>
 #include "tetris.h"
-
-int	copy_tetri(t_list_tetri *tetris, int *h, int *w, char *file)
-{
-  int	i;
-
-  if (my_strlen(file) > (*w))
-    (*w) = my_strlen(file);
-  if ((tetris->tetrimino->tetrimino[(*h)] = malloc(sizeof(char)
-						   * (my_strlen(file) + 1))) == NULL)
-    exit(1);
-  i = -1;
-  while (file[++i] != '\0')
-    {
-      if (file[i] != ' ' && file[i] != '*')
-	{
-	  tetris->tetrimino->width = 0;
-	  return (1);
-	}
-      tetris->tetrimino->tetrimino[(*h)][i] = file[i];
-    }
-  tetris->tetrimino->tetrimino[(*h)][i] = '\0';
-  if (tetris->tetrimino->height - 1 > (*h))
-    (*h)++;
-  return (0);
-}
-
-int	check_form(t_list_tetri *tetris, int fd)
-{
-  char  *file;
-  int   h;
-  int   w;
-
-  w = 0;
-  h = 0;
-  if ((tetris->tetrimino->tetrimino = malloc(sizeof(char*)
-  						    * tetris->tetrimino->height)) == NULL)
-    exit(1);
-  while ((file = get_next_line(fd)) != NULL)
-    if (copy_tetri(tetris, &h, &w, file) == 1)
-      return (1);
-  if (w != tetris->tetrimino->width || h != tetris->tetrimino->height - 1)
-    {
-      tetris->tetrimino->width = 0;
-      while (get_next_line(fd) != NULL);
-      return (1);
-    }
-  return (0);
-}
 
 int	stock_elem(t_list_tetri *tetris, int j, int i, char *f_l)
 {

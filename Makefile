@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar  3 13:22:16 2016 maud marel
+## Last update Thu Mar  3 14:34:09 2016 maud marel
 ##
 
 NAME		=	tetris
@@ -29,7 +29,8 @@ SRCS		=	srcs/main.c \
 			$(OPTS)wrong_options.c \
 			srcs/stock_check_tetriminos/check_tetriminos.c \
 			srcs/stock_check_tetriminos/stock.c \
-			srcs/stock_check_tetriminos/put_in_list.c
+			srcs/stock_check_tetriminos/put_in_list.c \
+			srcs/stock_check_tetriminos/stock_tetrimino.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
