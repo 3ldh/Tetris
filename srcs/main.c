@@ -5,13 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Wed Mar  2 16:37:24 2016 Mathieu Sauvau
+** Last update Thu Mar  3 13:40:33 2016 Mathieu Sauvau
 */
 
 #include <time.h>
 #include <stdlib.h>
 #include "tetris.h"
-
 
 WINDOW		*create_newwin(int height, int width, int starty, int startx)
 {
@@ -26,7 +25,7 @@ WINDOW		*create_newwin(int height, int width, int starty, int startx)
 void		show_score(WINDOW *wscore, t_tetris *tetris)
 {
   mvwprintw(wscore, 1, 1, "High Score");
-  mvwprintw(wscore, 1, 15, "%d\n", 1234567);
+  mvwprintw(wscore, 1, 15, "%d\n", tetris->high_score);
   mvwprintw(wscore, 2, 1, "Score");
   mvwprintw(wscore, 2, 15, "%d\n", tetris->score);
   mvwprintw(wscore, 4, 1, "Lines");
@@ -80,12 +79,12 @@ void		check_color()
   if (has_colors())
     {
       start_color();
-      init_pair(1, COLOR_RED, COLOR_WHITE);
-      init_pair(2, COLOR_GREEN, COLOR_WHITE);
-      init_pair(3, COLOR_BLUE, COLOR_WHITE);
-      init_pair(4, COLOR_YELLOW, COLOR_WHITE);
-      init_pair(5, COLOR_MAGENTA, COLOR_WHITE);
-      init_pair(6, COLOR_CYAN,COLOR_WHITE);
+      init_pair(1, COLOR_RED, COLOR_RED);
+      init_pair(2, COLOR_GREEN, COLOR_GREEN);
+      init_pair(3, COLOR_BLUE, COLOR_BLUE);
+      init_pair(4, COLOR_YELLOW, COLOR_YELLOW);
+      init_pair(5, COLOR_MAGENTA, COLOR_MAGENTA);
+      init_pair(6, COLOR_CYAN,COLOR_CYAN);
       init_pair(7, COLOR_WHITE, COLOR_WHITE);
     }
 }
@@ -102,11 +101,11 @@ void	print_game(WINDOW *game, t_tetris *data, t_tetri *tetri)
       x = -1;
       while (++x < data->options->col - 2)
   	{
-  	    if (data->board[y][x].on)
+  	    if (data->board[y][x] != 0)
   	      {
-  		wattron(game, COLOR_PAIR(data->board[y][x].color));
+  		wattron(game, COLOR_PAIR(data->board[y][x]));
   		mvwprintw(game, y + 1, x + 1, "*\n");
-  		wattroff(game, COLOR_PAIR(data->board[y][x].color));
+  		wattroff(game, COLOR_PAIR(data->board[y][x]));
   	      }
   	}
     }
@@ -127,7 +126,7 @@ bool		space_occupied_down(t_tetris *data, t_tetri *tetri)
       x = -1;
       while (++x < tetri->width)
 	if (tetri->y > 0 && tetri->tetrimino[y][x] == '*'
-	    && data->board[y + tetri->y][x + tetri->x - 1].on == true)
+	    && data->board[y + tetri->y][x + tetri->x - 1] != 0)
 	  return (true);
     }
   return (false);
@@ -146,7 +145,7 @@ bool		space_occupied_right(t_tetris *data, t_tetri *tetri)
       x = -1;
       while (++x < tetri->width)
 	if (tetri->y > 0 && tetri->tetrimino[y][x] == '*'
-	    && data->board[y + tetri->y - 1][x + tetri->x].on == true)
+	    && data->board[y + tetri->y - 1][x + tetri->x] != 0)
 	  return (true);
     }
   return (false);
@@ -165,7 +164,7 @@ bool		space_occupied_left(t_tetris *data, t_tetri *tetri)
       x = -1;
       while (++x < tetri->width)
 	if (tetri->y > 0 && tetri->tetrimino[y][x] == '*'
-	    && data->board[y + tetri->y - 1][x + tetri->x - 2].on == true)
+	    && data->board[y + tetri->y - 1][x + tetri->x - 2] != 0)
 	  return (true);
     }
   return (false);
@@ -239,7 +238,7 @@ void		show_board(t_tetris *tetris)
     {
       x = -1;
       while (++x < tetris->options->col - 2)
-	mvprintw(y, x + 60,"%d", tetris->board[y][x].on);
+	mvprintw(y, x + 60,"%d", tetris->board[y][x]);
       printw("\n");
     }
 }
@@ -280,9 +279,69 @@ void		update_board(WINDOW *game, t_tetris *tetris, t_tetri *tetri)
 	    {
 	      pos_x = x + tetri->x - 1;
 	      pos_y = y + tetri->y - 1;
-	      tetris->board[pos_y][pos_x].on = true;
-	      tetris->board[pos_y][pos_x].color = tetri->color;
+	      tetris->board[pos_y][pos_x] = tetri->color;
 	    }
+	}
+    }
+}
+
+void		clear_line(t_tetris *data, int line)
+{
+  int		x;
+
+  x = -1;
+  while (++x < data->options->col - 2)
+    data->board[line][x] = 0;
+}
+
+void		fall(WINDOW *game, t_tetris *data)
+{
+  int		x;
+  int		y;
+  int		i;
+
+  y = data->options->row - 2;
+  while (--y >= 0)
+    {
+      x = data->options->col - 2;
+      while (--x >= 0)
+	{
+	  if (y - 1 > 0
+	      && data->board[y][x] == 0)
+	    {
+	      data->board[y][x] = data->board[y - 1][x];
+	      data->board[y - 1][x] = 0;
+	    }
+	}
+      usleep(100);
+      wrefresh(game);
+    }
+}
+
+void		line_completion(t_tetris *data, WINDOW *game)
+{
+  int		x;
+  int		y;
+  bool		is_complete;
+
+  y = -1;
+  while (++y < data->options->row - 2)
+    {
+      x = -1;
+      is_complete = true;
+      while (++x < data->options->col - 2)
+	{
+	  if (data->board[y][x] == 0)
+	    {
+	      is_complete = false;
+	      break;
+	    }
+	}
+      if (is_complete)
+	{
+	  ++data->lines;
+	  clear_line(data, y);
+	  fall(game, data);
 	}
     }
 }
@@ -293,7 +352,6 @@ t_list_tetri	*get_valid_tetri(t_list_tetri *all_tetri)
   int		n;
 
   valid = all_tetri->next;
-  n = 0;
   while (valid != all_tetri)
     {
       if (valid->tetrimino->width == 0)
@@ -320,25 +378,21 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
   valid_tetri = get_valid_tetri(tetris->list_tetri);
   nb_tetri = max_tetri(valid_tetri);
   tetri = *random_tetri(valid_tetri, nb_tetri);
-  printw("tetri = %s\n", tetri.name);
-  tetris->speed = 10;
   tetri.x = tetris->options->col / 2;
   tetri.y = -tetri.height;
   next = *random_tetri(valid_tetri, nb_tetri);
   show_next(wnext, &next);
-  printw("next = %s\n", next.name);
   while (true)
     {
       if (!can_move_down(tetris, &tetri))
 	{
 	  update_board(game, tetris, &tetri);
+	  line_completion(tetris, game);
 	  show_board(tetris);
 	  tetri = next;
-	  printw("af tetri = %s\n", tetri.name);
 	  tetri.x = tetris->options->col / 2;
 	  tetri.y = -tetri.height;
 	  next = *random_tetri(valid_tetri, nb_tetri);
-	  printw("af next = %s\n", next.name);
 	  show_next(wnext, &next);
 	}
       tetris->time = time(0) - tetris->start_time;
@@ -379,25 +433,27 @@ void		init_ncurses()
   check_color();
 }
 
-t_cell		**init_board(t_tetris *tetris)
+t_tetri		*rotate_tetri(t_tetri *tetri)
 {
-  t_cell	**board;
+
+}
+
+char		**init_board(t_tetris *tetris)
+{
+  char		**board;
   int		x;
   int		y;
 
   y = -1;
-  if ((board = malloc(sizeof(t_cell *) * (tetris->options->row - 2))) == NULL)
+  if ((board = malloc(sizeof(char *) * (tetris->options->row - 2))) == NULL)
     return (NULL);
   while (++y < tetris->options->row - 2)
     {
       x = -1;
-      if ((board[y] = malloc(sizeof(t_cell) * (tetris->options->col - 2))) == NULL)
+      if ((board[y] = malloc(sizeof(char) * (tetris->options->col - 2))) == NULL)
 	return (NULL);
       while (++x < tetris->options->col - 2)
-	{
-	  board[y][x].on = false;
-	  board[y][x].color = 0;
-	}
+	  board[y][x] = 0;
     }
   return (board);
 }
@@ -429,6 +485,15 @@ void		show_tetri(t_list_tetri *elem)
     }
 }
 
+void	init_score(t_tetris *data)
+{
+  data->high_score = 0;
+  data->score = 0;
+  data->lines = 0;
+  data->level = 0;
+  data->speed = 10;
+}
+
 int		main(int ac, char **av)
 {
   t_tetris	tetris;
@@ -437,11 +502,12 @@ int		main(int ac, char **av)
   WINDOW	*next;
 
   check_tetriminos(&tetris);
-  check_arg(&tetris, ac, av);
   init_tetris(&tetris);
+  check_arg(&tetris, ac, av);
   srand(time(0));
   /* show_tetri(tetris.list_tetri); */
   init_ncurses();
+  init_score(&tetris);
   tetris.start_time = time(0);
   score = create_newwin(15, 22, 5, 0);
   next = create_newwin(7, 15, 0, tetris.options->col + 35);
