@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:55:33 2016 maud marel
-** Last update Tue Mar  1 22:12:44 2016 maud marel
+** Last update Thu Mar  3 13:30:58 2016 maud marel
 */
 
 #include "tetris.h"
@@ -19,21 +19,13 @@ void	change_key_drop(t_tetris *tetris, char *str)
     i++;
   i++;
   if (i == my_strlen(str) || my_strlen(str) - i != 1)
-    {
-      write(2, "Wrong arg: --key-drop={K}\n", 26);
-      exit(1);
-    }
+    wrong_options();
   tetris->options->drop = str[i];
 }
 
 void	change_key_drop_simp(t_tetris *tetris, char *str)
 {
-  int	i;
-
   if (str[1] != '\0')
-    {
-      write(2, "Wrong args: -kd 'K'\n", 19);
-      exit(1);
-    }
+    wrong_options();
   tetris->options->drop = str[0];
 }

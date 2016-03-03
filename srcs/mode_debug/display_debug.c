@@ -5,9 +5,10 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Tue Mar  1 22:19:14 2016 maud marel
+** Last update Thu Mar  3 13:31:35 2016 maud marel
 */
 
+#include <unistd.h>
 #include "tetris.h"
 
 void	display_key(t_tetris *tetris)
@@ -44,9 +45,9 @@ void	display_more_info(t_tetris *tetris)
   my_put_nbr(tetris->options->level);
   write(1, "\n", 1);
   write(1, "Size : ", 7);
-  my_put_nbr(tetris->options->row);
+  my_put_nbr(tetris->options->row - 2);
   write(1, "*", 1);
-  my_put_nbr(tetris->options->col);
+  my_put_nbr(tetris->options->col - 2);
   write(1, "\n", 1);
   write(1, "Tetriminos : ", 13);
   my_put_nbr(tetris->list_tetri->nb_tetri);

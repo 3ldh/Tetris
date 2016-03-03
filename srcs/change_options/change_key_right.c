@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:51:59 2016 maud marel
-** Last update Tue Mar  1 22:14:59 2016 maud marel
+** Last update Wed Mar  2 17:43:43 2016 maud marel
 */
 
 #include "tetris.h"
@@ -19,19 +19,13 @@ void	change_key_right(t_tetris *tetris, char *str)
     i++;
   i++;
   if (i == my_strlen(str) || my_strlen(str) - i != 1)
-    {
-      write(2, "Wrong arg: --key-right={K}\n", 27);
-      exit(1);
-    }
+    wrong_options();
   tetris->options->right = str[i];
 }
 
 void	change_key_right_simp(t_tetris *tetris, char *str)
 {
   if (str[1] != '\n')
-    {
-      write(2, "Wrong args: -kr 'K'\n", 20);
-      exit(1);
-    }
+    wrong_options();
   tetris->options->right = str[0];
 }

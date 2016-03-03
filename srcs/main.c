@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Thu Mar  3 13:40:33 2016 Mathieu Sauvau
+** Last update Thu Mar  3 13:49:41 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -117,8 +117,6 @@ bool		space_occupied_down(t_tetris *data, t_tetri *tetri)
 {
   int		x;
   int		y;
-  int		x2;
-  int		y2;
 
   y = -1;
   while (++y < tetri->height)
@@ -136,8 +134,6 @@ bool		space_occupied_right(t_tetris *data, t_tetri *tetri)
 {
   int		x;
   int		y;
-  int		x2;
-  int		y2;
 
   y = -1;
   while (++y < tetri->height)
@@ -155,8 +151,6 @@ bool		space_occupied_left(t_tetris *data, t_tetri *tetri)
 {
   int		x;
   int		y;
-  int		x2;
-  int		y2;
 
   y = -1;
   while (++y < tetri->height)
@@ -436,6 +430,7 @@ void		init_ncurses()
 t_tetri		*rotate_tetri(t_tetri *tetri)
 {
 
+  return (tetri);
 }
 
 char		**init_board(t_tetris *tetris)
