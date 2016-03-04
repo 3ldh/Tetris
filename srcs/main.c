@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Thu Mar  3 14:16:56 2016 maud marel
+** Last update Fri Mar  4 13:23:18 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -34,7 +34,7 @@ void		show_score(WINDOW *wscore, t_tetris *tetris)
   mvwprintw(wscore, 5, 15, "%d\n", tetris->level);
   mvwprintw(wscore, 7, 1, "Timer");
   mvwprintw(wscore, 7, 15, "%d:", tetris->time / 60);
-  mvwprintw(wscore, 7, 17, "%d\n", tetris->time % 60);
+  mvwprintw(wscore, 7, 17, "%.2d\n", tetris->time % 60);
   box(wscore, 0 , 0);
   wrefresh(wscore);
 }
@@ -367,6 +367,7 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
   t_tetri	tetri;
   t_tetri	next;
   int		nb_tetri;
+  bool		move;
 
   i = 0;
   valid_tetri = get_valid_tetri(tetris->list_tetri);
@@ -380,24 +381,49 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
     {
       if (!can_move_down(tetris, &tetri))
 	{
-	  update_board(game, tetris, &tetri);
-	  line_completion(tetris, game);
-	  show_board(tetris);
-	  tetri = next;
-	  tetri.x = tetris->options->col / 2;
-	  tetri.y = -tetri.height;
-	  next = *random_tetri(valid_tetri, nb_tetri);
-	  show_next(wnext, &next);
+	  while (i < tetris->speed + 5)
+	    {
+	      c = getch();
+	      if (c == KEY_RIGHT && can_move_right(tetris, &tetri) && !move)
+		{
+		  tetri.x += 1;
+		  move = true;
+		}
+	      else if (c == KEY_LEFT && can_move_left(tetris, &tetri) && !move)
+		{
+		  tetri.x -= 1;
+		  move = true;
+		}
+	      print_game(game, tetris, &tetri);
+	      i += 0.001;
+	    }
+	  if (!can_move_down(tetris, & tetri))
+	    {
+	      update_board(game, tetris, &tetri);
+	      line_completion(tetris, game);
+	      show_board(tetris);
+	      tetri = next;
+	      tetri.x = tetris->options->col / 2;
+	      tetri.y = -tetri.height;
+	      next = *random_tetri(valid_tetri, nb_tetri);
+	      show_next(wnext, &next);
+	    }
 	}
       tetris->time = time(0) - tetris->start_time;
       show_score(score, tetris);
       c = getch();
       if (c == 'q')
 	break;
-      if (c == KEY_LEFT && can_move_left(tetris, &tetri))
-	tetri.x -= 1;
-      if (c == KEY_RIGHT && can_move_right(tetris, &tetri))
-	tetri.x += 1;
+      if (c == KEY_LEFT && can_move_left(tetris, &tetri) && !move)
+	{
+	  tetri.x -= 1;
+	  move = true;
+	}
+      if (c == KEY_RIGHT && can_move_right(tetris, &tetri) && !move)
+	{
+	  tetri.x += 1;
+	  move = true;
+	}
       if (c == KEY_DOWN)
 	i += 5;
       else
@@ -405,10 +431,9 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
       if (i > tetris->speed)
 	{
 	  if (can_move_down(tetris, &tetri))
-	    {
-	      tetri.y += 1;
-	    }
+	    tetri.y += 1;
 	  print_game(game, tetris, &tetri);
+	  move = false;
 	  i = 0;
 	}
       usleep(1);
@@ -429,7 +454,6 @@ void		init_ncurses()
 
 t_tetri		*rotate_tetri(t_tetri *tetri)
 {
-
   return (tetri);
 }
 
@@ -501,18 +525,21 @@ int		main(int ac, char **av)
   check_arg(&tetris, ac, av);
   srand(time(0));
   /* show_tetri(tetris.list_tetri); */
-  /* init_ncurses(); */
-  /* init_score(&tetris); */
-  /* tetris.start_time = time(0); */
-  /* score = create_newwin(15, 22, 5, 0); */
-  /* next = create_newwin(7, 15, 0, tetris.options->col + 35); */
-  /* show_score(score, &tetris); */
-  /* tetris.board = init_board(&tetris); */
-  /* show_board(&tetris); */
-  /* game = create_newwin(tetris.options->row, tetris.options->col, 0, 30); */
-  /* loop(game, score, next, &tetris); */
-  /* getch(); */
-  /* delwin(game); */
-  /* endwin(); */
+  init_ncurses();
+  init_score(&tetris);
+  tetris.start_time = time(0);
+  if ((score = create_newwin(15, 22, 5, 0)) == NULL
+      || (next = create_newwin(7, 15, 0, tetris.options->col + 35)) == NULL)
+    return (1);
+  show_score(score, &tetris);
+  if ((tetris.board = init_board(&tetris)) == NULL)
+    return (1);
+  show_board(&tetris);
+  if ((game = create_newwin(tetris.options->row, tetris.options->col, 0, 30)) == NULL)
+    return (1);
+  loop(game, score, next, &tetris);
+  getch();
+  delwin(game);
+  endwin();
   return (0);
 }
