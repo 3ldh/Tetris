@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Mar  2 11:47:01 2016 maud marel
-** Last update Fri Mar  4 16:06:30 2016 maud marel
+** Last update Fri Mar  4 17:31:55 2016 maud marel
 */
 
 #include "tetris.h"
@@ -34,32 +34,14 @@ t_list_tetri	*add_list_after(t_list_tetri *old)
   return (new);
 }
 
-t_list_tetri	*add_list_before(t_list_tetri *old)
-{
-  t_list_tetri  *new;
-
-  if ((new = malloc(sizeof(t_list_tetri))) == NULL)
-    exit(1);
-  new->prev = old;
-  new->next = old->next;
-  old->next->prev = new;
-  old->next = new;
-  return (new);
-}
-
 t_list_tetri	*which_order(t_tetris *tetris, char *str)
 {
   t_list_tetri	*new;
   t_list_tetri	*tmp;
 
-  if (tetris->list_tetri->nb_tetri == 1)
-    new = add_list_before(tetris->list_tetri);
-  else
-    {
-      tmp = tetris->list_tetri->next;
-      while (tmp->next != tetris->list_tetri && my_strcmp(str, tmp->tetrimino->name) < 0)
-	tmp = tmp->next;
-      new = add_list_before(tmp->prev);
-    }
+  tmp = tetris->list_tetri->next;
+  while (tmp != tetris->list_tetri && my_strcmp(str, tmp->tetrimino->name) > 0)
+    tmp = tmp->next;
+  new = add_list_after(tmp);
   return (new);
 }
