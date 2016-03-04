@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Thu Mar  3 15:14:19 2016 maud marel
+** Last update Fri Mar  4 15:49:56 2016 maud marel
 */
 
 #include <unistd.h>
@@ -78,5 +78,6 @@ void		check_tetriminos(t_tetris *tetris)
       {
 	tetris->list_tetri->nb_tetri++;
 	check_first(tetris, entry->d_name);
+	display_tetriminos(tetris);
       }
 }
