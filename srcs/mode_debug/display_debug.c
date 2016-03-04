@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Thu Mar  3 13:31:35 2016 maud marel
+** Last update Thu Mar  3 23:18:25 2016 maud marel
 */
 
 #include <unistd.h>
@@ -87,11 +87,11 @@ void	display_tetriminos(t_tetris *tetris)
 {
   t_list_tetri	*elem_next;
 
-  elem_next = tetris->list_tetri->next;
+  elem_next = tetris->list_tetri->prev;
   while (elem_next != tetris->list_tetri)
     {
       print_tetriminos(elem_next);
-      elem_next = elem_next->next;
+      elem_next = elem_next->prev;
     }
 }
 
