@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Fri Mar  4 21:16:00 2016 maud marel
+** Last update Sat Mar  5 09:52:51 2016 maud marel
 */
 
 #include "tetris.h"
@@ -13,22 +13,22 @@
 void	display_key(t_tetris *tetris)
 {
   my_putstr("Key Left : ");
-  my_putchar(tetris->options->left);
+  my_putstr(tetris->options->left);
   my_putchar('\n');
   my_putstr("Key Right : ");
-  my_putchar(tetris->options->right);
+  my_putstr(tetris->options->right);
   my_putchar('\n');
   my_putstr("Key Turn : ");
-  my_putchar(tetris->options->turn);
+  my_putstr(tetris->options->turn);
   my_putchar('\n');
   my_putstr("Key Drop : ");
-  my_putchar(tetris->options->drop);
+  my_putstr(tetris->options->drop);
   my_putchar('\n');
   my_putstr("Key Quit : ");
-  my_putchar(tetris->options->quit);
+  my_putstr(tetris->options->quit);
   my_putchar('\n');
   my_putstr("Key Pause : ");
-  my_putchar(tetris->options->pause);
+  my_putstr(tetris->options->pause);
   my_putchar('\n');
 }
 

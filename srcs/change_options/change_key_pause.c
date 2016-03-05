@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:57:45 2016 maud marel
-** Last update Fri Mar  4 21:34:45 2016 maud marel
+** Last update Sat Mar  5 10:11:14 2016 maud marel
 */
 
 #include "tetris.h"
@@ -13,19 +13,29 @@
 void	change_key_pause(t_tetris *tetris, char *str)
 {
   int   i;
+  int	j;
 
   i = 0;
-  while (str[i] != '=' && str)
+  while (str && str[i] != '=')
     i++;
   i++;
-  if (i == my_strlen(str) || my_strlen(str) - i != 1)
+  if (i == my_strlen(str))
     wrong_options(str);
-  tetris->options->pause = str[i];
+  if ((tetris->options->pause = malloc(sizeof(char) * my_strlen(str) - (i + 1))) == NULL)
+    exit(1);
+  j = 0;
+  while (str[i] != '\0')
+    {
+      tetris->options->pause[j] = str[i];
+      i++;
+      j++;
+    }
+  tetris->options->pause[j] = '\0';
 }
 
 void	change_key_pause_simp(t_tetris *tetris, char *str)
 {
-  if (str[1] != '\0')
-    wrong_options(str);
-  tetris->options->pause = str[0];
+  if ((tetris->options->pause = malloc(sizeof(char) * my_strlen(str) + 1)) == NULL)
+    exit(1);
+  my_strcpy(tetris->options->pause, str);
 }

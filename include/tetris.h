@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Fri Mar  4 21:39:30 2016 maud marel
+** Last update Sat Mar  5 09:52:03 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -26,6 +26,8 @@ enum		check_opt
     QUIT,
     PAUSE,
     SIZE,
+    NEXT,
+    NEXT_S,
     MAX_CHECK_OPT
   };
 
@@ -66,12 +68,12 @@ typedef struct	s_options
   int		row;
   int		col;
   int		hide_next;
-  char		left;
-  char		right;
-  char		turn;
-  char		drop;
-  char		quit;
-  char		pause;
+  char		*left;
+  char		*right;
+  char		*turn;
+  char		*drop;
+  char		*quit;
+  char		*pause;
 }		t_options;
 
 typedef	struct	s_tetris
@@ -130,6 +132,7 @@ void		change_key_drop(t_tetris *, char *);
 void		change_key_quit(t_tetris *, char *);
 void		change_key_pause(t_tetris *, char *);
 void		change_map_size(t_tetris *, char *);
+void		hide_next(t_tetris *, char *);
 void		change_without_next(t_tetris *, char *);
 void		change_level_simp(t_tetris *, char *);
 void		change_key_left_simp(t_tetris *, char *);
@@ -164,6 +167,7 @@ void		my_putchar(char);
 void		my_putstr(char *);
 int		my_getnbr(char *);
 char		*my_strcat(char *, char *);
-char		*my_putstr_error(char *);
+void		my_putstr_error(char *);
+void		my_putchar_error(char);
 
 #endif /* !TETRIS_H_ */

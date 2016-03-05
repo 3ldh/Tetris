@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:51:59 2016 maud marel
-** Last update Fri Mar  4 21:35:05 2016 maud marel
+** Last update Sat Mar  5 10:08:37 2016 maud marel
 */
 
 #include "tetris.h"
@@ -13,6 +13,7 @@
 void	change_key_right(t_tetris *tetris, char *str)
 {
   int   i;
+  int	j;
 
   i = 0;
   while (str[i] != '=' && str)
@@ -20,12 +21,21 @@ void	change_key_right(t_tetris *tetris, char *str)
   i++;
   if (i == my_strlen(str) || my_strlen(str) - i != 1)
     wrong_options(str);
-  tetris->options->right = str[i];
+  if ((tetris->options->right = malloc(sizeof(char) * my_strlen(str) - (i + 1))) == NULL)
+    exit(1);
+  j = 0;
+  while (str[i] != '\0')
+    {
+      tetris->options->right[j] = str[i];
+      i++;
+      j++;
+    }
+  tetris->options->right[j] = '\0';
 }
 
 void	change_key_right_simp(t_tetris *tetris, char *str)
 {
-  if (str[1] != '\n')
-    wrong_options(str);
-  tetris->options->right = str[0];
+  if ((tetris->options->right = malloc(sizeof(char) * my_strlen(str) + 1)) == NULL)
+    exit(1);
+  my_strcpy(tetris->options->right, str);
 }
