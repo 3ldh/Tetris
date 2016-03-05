@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Fri Mar  4 17:07:35 2016 maud marel
+** Last update Fri Mar  4 21:14:17 2016 maud marel
 */
 
 #include <time.h>
@@ -523,6 +523,7 @@ int		main(int ac, char **av)
   check_tetriminos(&tetris);
   init_tetris(&tetris);
   check_arg(&tetris, ac, av);
+  verif_size_all(&tetris);
   srand(time(0));
   /* show_tetri(tetris.list_tetri); */
   /* init_ncurses(); */

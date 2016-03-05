@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar  3 14:33:13 2016 maud marel
-** Last update Thu Mar  3 15:25:13 2016 maud marel
+** Last update Fri Mar  4 21:04:36 2016 maud marel
 */
 
 #include "tetris.h"
@@ -17,7 +17,7 @@ int	check_big_one(t_list_tetri *tetris)
   return (tetris->tetrimino->width);
 }
 
-int     copy_tetri(t_list_tetri *tetris, int *h, char *file, int max)
+int	copy_tetri(t_list_tetri *tetris, int *h, char *file, int max)
 {
   int   i;
   int	w;
@@ -45,7 +45,7 @@ int     copy_tetri(t_list_tetri *tetris, int *h, char *file, int max)
   return (w);
 }
 
-int     check_form(t_list_tetri *tetris, int fd)
+int	check_form(t_list_tetri *tetris, int fd)
 {
   char  *file;
   int   h;

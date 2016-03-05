@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar  3 14:34:09 2016 maud marel
+## Last update Fri Mar  4 21:15:13 2016 maud marel
 ##
 
 NAME		=	tetris
@@ -18,6 +18,7 @@ SRCS		=	srcs/main.c \
 			srcs/init_options.c \
 			srcs/mode_debug/display_debug.c \
 			srcs/get_next_line.c \
+			srcs/verif_size_all.c \
 			$(OPTS)change_key_drop.c \
 			$(OPTS)change_key_left.c \
 			$(OPTS)change_key_pause.c \

@@ -5,58 +5,57 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:53:52 2016 maud marel
-** Last update Thu Mar  3 13:51:26 2016 maud marel
+** Last update Fri Mar  4 21:02:31 2016 maud marel
 */
 
-#include <unistd.h>
 #include "tetris.h"
 
 void	display_space(int i)
 {
   while (++i < 25)
-    write(1, " ", 1);
+    my_putchar(' ');
 }
 
 void	display_help_end()
 {
-  write(1, "  -kd --key-drop={K}", 20);
+  my_putstr("  -kd --key-drop={K}");
   display_space(19);
-  write(1, "Set default DROP on key K\n", 26);
-  write(1, "  -kq --key-quit={K}", 20);
+  my_putstr("Set default DROP on key K\n");
+  my_putstr("  -kq --key-quit={K}");
   display_space(19);
-  write(1, "Quit program when press key K\n", 30);
-  write(1, "  -kp --key-pause={K}", 21);
+  my_putstr("Quit program when press key K\n");
+  my_putstr("  -kp --key-pause={K}");
   display_space(20);
-  write(1, "Pause and restart game when press key K\n", 40);
-  write(1, "  --map-size={row,col}", 22);
+  my_putstr("Pause and restart game when press key K\n");
+  my_putstr("  --map-size={row,col}");
   display_space(21);
-  write(1, "Set game size at row, col\n", 26);
-  write(1, "  -w --without-next", 19);
+  my_putstr("Set game size at row, col\n");
+  my_putstr("  -w --without-next");
   display_space(18);
-  write(1, "Hide next tetrimino\n", 20);
-  write(1, "  -d --debug", 12);
+  my_putstr("Hide next tetrimino\n");
+  my_putstr("  -d --debug");
   display_space(11);
-  write(1, "Debug mode\n", 11);
+  my_putstr("Debug mode\n");
 }
 
 void	display_help()
 {
-  write(1, "Usage: ./tetris [options]\n", 26);
-  write(1, "Options:\n", 9);
-  write(1, "  --help", 8);
+  my_putstr("Usage: ./tetris [options]\n");
+  my_putstr("Options:\n");
+  my_putstr("  --help");
   display_space(7);
-  write(1, "Display this help\n", 18);
-  write(1, "  -l --level={num}", 18);
+  my_putstr("Display this help\n");
+  my_putstr("  -l --level={num}");
   display_space(17);
-  write(1, "Start Tetris at level num\n", 26);
-  write(1, "  -kl --key-left={K}", 20);
+  my_putstr("Start Tetris at level num\n");
+  my_putstr("  -kl --key-left={K}");
   display_space(19);
-  write(1, "Move tetrimino on LEFT with key K\n", 34);
-  write(1, "  -kr --key-right={K}", 21);
+  my_putstr("Move tetrimino on LEFT with key K\n");
+  my_putstr("  -kr --key-right={K}");
   display_space(20);
-  write(1, "Move tetrimino on RIGHT with key K\n", 35);
-  write(1, "  -kt --key-turn={K}", 20);
+  my_putstr("Move tetrimino on RIGHT with key K\n");
+  my_putstr("  -kt --key-turn={K}");
   display_space(19);
-  write(1, "Turn tetrimino with key K\n", 26);
+  my_putstr("Turn tetrimino with key K\n");
   display_help_end();
 }

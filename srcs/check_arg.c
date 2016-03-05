@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:40:47 2016 maud marel
-** Last update Tue Mar  1 23:16:43 2016 maud marel
+** Last update Fri Mar  4 21:12:59 2016 maud marel
 */
 
 #include <stdlib.h>
@@ -121,7 +121,7 @@ void	check_arg(t_tetris *tetris, int ac, char **av)
 	n = 1;
       if (n == 1)
 	{
-	  write(2, "Wrong arguments\n", 16);
+	  my_putstr_error("Wrong arguments\n");
 	  exit(1);
 	}
     }

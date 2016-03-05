@@ -5,51 +5,50 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Fri Mar  4 17:08:55 2016 maud marel
+** Last update Fri Mar  4 21:16:00 2016 maud marel
 */
 
-#include <unistd.h>
 #include "tetris.h"
 
 void	display_key(t_tetris *tetris)
 {
-  write(1, "Key Left : ", 11);
+  my_putstr("Key Left : ");
   my_putchar(tetris->options->left);
-  write(1, "\n", 1);
-  write(1, "Key Right : ", 12);
+  my_putchar('\n');
+  my_putstr("Key Right : ");
   my_putchar(tetris->options->right);
-  write(1, "\n", 1);
-  write(1, "Key Turn : ", 11);
+  my_putchar('\n');
+  my_putstr("Key Turn : ");
   my_putchar(tetris->options->turn);
-  write(1, "\n", 1);
-  write(1, "Key Drop : ", 11);
+  my_putchar('\n');
+  my_putstr("Key Drop : ");
   my_putchar(tetris->options->drop);
-  write(1, "\n", 1);
-  write(1, "Key Quit : ", 11);
+  my_putchar('\n');
+  my_putstr("Key Quit : ");
   my_putchar(tetris->options->quit);
-  write(1, "\n", 1);
-  write(1, "Key Pause : ", 12);
+  my_putchar('\n');
+  my_putstr("Key Pause : ");
   my_putchar(tetris->options->pause);
-  write(1, "\n", 1);
+  my_putchar('\n');
 }
 
 void	display_more_info(t_tetris *tetris)
 {
-  write(1, "Next : ", 7);
+  my_putstr("Next : ");
   if (tetris->options->hide_next == 0)
-    write(1, "Yes", 3);
+    my_putstr("Yes");
   else
-    write(1, "No", 2);
-  write(1, "\n", 1);
-  write(1, "Level : ", 8);
+    my_putstr("No");
+  my_putchar('\n');
+  my_putstr("Level : ");
   my_put_nbr(tetris->options->level);
-  write(1, "\n", 1);
-  write(1, "Size : ", 7);
+  my_putchar('\n');
+  my_putstr("Size : ");
   my_put_nbr(tetris->options->row - 2);
-  write(1, "*", 1);
+  my_putchar('*');
   my_put_nbr(tetris->options->col - 2);
-  write(1, "\n", 1);
-  write(1, "Tetriminos : ", 13);
+  my_putchar('\n');
+  my_putstr("Tetriminos : ");
   my_put_nbr(tetris->list_tetri->nb_tetri);
   my_putchar('\n');
 }
@@ -59,21 +58,21 @@ void	print_tetriminos(t_list_tetri *tetris)
   int	i;
 
   i = -1;
-  write(1, "Tetriminos : Name ", 18);
+  my_putstr("Tetriminos : Name ");
   while (tetris->tetrimino->name[++i] != '.')
-    write(1, &tetris->tetrimino->name[i], 1);
-  write(1, " : ", 3);
+    my_putchar(tetris->tetrimino->name[i]);
+  my_putstr(" : ");
   if (tetris->tetrimino->width == 0)
-    write(1, "Error\n", 6);
+    my_putstr("Error\n");
   else
     {
-      write(1, "Size ", 5);
+      my_putstr("Size ");
       my_put_nbr(tetris->tetrimino->height);
-      write(1, "*", 1);
+      my_putchar('*');
       my_put_nbr(tetris->tetrimino->width);
-      write(1, " : color ", 9);
+      my_putstr(" : color ");
       my_put_nbr(tetris->tetrimino->color);
-      write(1, " :\n", 3);
+      my_putstr(" :\n");
       i = -1;
       while (++i < tetris->tetrimino->height)
 	{
@@ -83,7 +82,7 @@ void	print_tetriminos(t_list_tetri *tetris)
     }
 }
 
-void	display_tetriminos(t_tetris *tetris)
+void		display_tetriminos(t_tetris *tetris)
 {
   t_list_tetri	*elem_next;
 
@@ -97,9 +96,9 @@ void	display_tetriminos(t_tetris *tetris)
 
 void	display_debug(t_tetris *tetris)
 {
-  write(1, "*** DEBUG MODE ***\n", 19);
+  my_putstr("*** DEBUG MODE ***\n");
   display_key(tetris);
   display_more_info(tetris);
   display_tetriminos(tetris);
-  write(1, "Press a key to start Tetris\n", 28);
+  my_putstr("Press a key to start Tetris\n");
 }
