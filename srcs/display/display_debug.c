@@ -5,9 +5,10 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Sat Mar  5 09:52:51 2016 maud marel
+** Last update Sat Mar  5 11:23:28 2016 maud marel
 */
 
+#include <termios.h>
 #include "tetris.h"
 
 void	display_key(t_tetris *tetris)
@@ -94,11 +95,23 @@ void		display_tetriminos(t_tetris *tetris)
     }
 }
 
-void	display_debug(t_tetris *tetris)
+void			display_debug(t_tetris *tetris, int n)
 {
-  my_putstr("*** DEBUG MODE ***\n");
-  display_key(tetris);
-  display_more_info(tetris);
-  display_tetriminos(tetris);
-  my_putstr("Press a key to start Tetris\n");
+  struct termios	term;
+
+  if (n == 1)
+    {
+      my_putstr("*** DEBUG MODE ***\n");
+      display_key(tetris);
+      display_more_info(tetris);
+      display_tetriminos(tetris);
+      my_putstr("Press a key to start Tetris\n");
+      term.c_lflag&= ~(ICANON);
+      term.c_lflag &= ~(ECHO);
+      term.c_cc[VMIN] = 1;
+      term.c_cc[VTIME] = 0;
+      if (tcsetattr(0, TCSADRAIN, &term) == -1)
+        exit(1);
+      while (get_next_line(0) == NULL);
+    }
 }

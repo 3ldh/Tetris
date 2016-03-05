@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:40:47 2016 maud marel
-** Last update Sat Mar  5 09:13:54 2016 maud marel
+** Last update Sat Mar  5 11:10:33 2016 maud marel
 */
 
 #include <stdlib.h>
@@ -96,11 +96,11 @@ int			check_simp_arg(t_tetris *tetris, char *str, char *new)
   return (1);
 }
 
-void	check_arg(t_tetris *tetris, int ac, char **av)
+void			check_arg(t_tetris *tetris, int ac, char **av)
 {
-  int	i;
-  int	n;
-  int	debug;
+  int			i;
+  int			n;
+  int			debug;
 
   i = 0;
   n = 0;
@@ -127,6 +127,5 @@ void	check_arg(t_tetris *tetris, int ac, char **av)
 	  display_help_error();
 	}
     }
-  if (debug == 1)
-    display_debug(tetris);
+  display_debug(tetris, debug);
 }
