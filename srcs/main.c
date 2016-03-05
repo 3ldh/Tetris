@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Sat Mar  5 11:03:21 2016 maud marel
+** Last update Sat Mar  5 16:45:45 2016 maud marel
 */
 
 #include <time.h>
@@ -264,10 +264,10 @@ void		update_board(WINDOW *game, t_tetris *tetris, t_tetri *tetri)
   int		pos_y;
 
   y = -1;
-  while(++y < tetri->height)
+  while (++y < tetri->height)
     {
       x = -1;
-      while(++x < tetri->width)
+      while (++x < tetri->width)
 	{
 	  if (tetri->tetrimino[y][x] == '*')
 	    {
@@ -522,7 +522,7 @@ int		main(int ac, char **av)
 
   check_tetriminos(&tetris);
   init_tetris(&tetris);
-  check_arg(&tetris, ac, av);
+  read_arg(&tetris, ac, av);
   verif_size_all(&tetris);
   srand(time(0));
   /* show_tetri(tetris.list_tetri); */

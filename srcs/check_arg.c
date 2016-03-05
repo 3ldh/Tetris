@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:40:47 2016 maud marel
-** Last update Sat Mar  5 11:10:33 2016 maud marel
+** Last update Sat Mar  5 16:57:55 2016 maud marel
 */
 
 #include <stdlib.h>
@@ -94,38 +94,4 @@ int			check_simp_arg(t_tetris *tetris, char *str, char *new)
 	return (0);
       }
   return (1);
-}
-
-void			check_arg(t_tetris *tetris, int ac, char **av)
-{
-  int			i;
-  int			n;
-  int			debug;
-
-  i = 0;
-  n = 0;
-  debug = 0;
-  while (++i < ac)
-    {
-      if (my_strcmp(av[i], "-d") == 0 || my_strcmp(av[i], "--debug") == 0)
-	debug = 1;
-      else if (my_strcmp(av[i], "--help") == 0
-	       && ac == 2)
-	display_help();
-      else if ((av[i][0] == '-' && av[i][1] == '-') || my_strcmp(av[i], "-w") == 0)
-	n = check_complex_arg(tetris, av[i]);
-      else if (av[i][0] == '-')
-	{
-	  n = check_simp_arg(tetris, av[i], av[i + 1]);
-	  i++;
-	}
-      else
-	n = 1;
-      if (n == 1)
-	{
-	  my_putstr_error("Wrong arguments\n\n");
-	  display_help_error();
-	}
-    }
-  display_debug(tetris, debug);
 }
