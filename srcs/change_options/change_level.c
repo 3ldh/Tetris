@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:44:38 2016 maud marel
-** Last update Fri Mar  4 21:37:04 2016 maud marel
+** Last update Sun Mar  6 16:05:49 2016 
 */
 
 #include "tetris.h"
@@ -34,6 +34,7 @@ void	change_level(t_tetris *tetris, char *str)
     }
   tmp[j] = '\0';
   tetris->options->level = my_getnbr(tmp);
+  free(tmp);
 }
 
 void	change_level_simp(t_tetris *tetris, char *str)
@@ -52,4 +53,5 @@ void	change_level_simp(t_tetris *tetris, char *str)
     }
   tmp[i] = '\0';
   tetris->options->level = my_getnbr(tmp);
+  free(tmp);
 }

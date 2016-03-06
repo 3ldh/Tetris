@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:46:17 2016 maud marel
-** Last update Fri Mar  4 21:35:49 2016 maud marel
+** Last update Sun Mar  6 16:06:27 2016 
 */
 
 #include "tetris.h"
@@ -60,8 +60,7 @@ void	change_map_size(t_tetris *tetris, char *str)
     tmp[j++] = str[i++];
   tmp[j] = '\0';
   tetris->options->row = my_getnbr(tmp) + 2;
-  i++;
-  init_j_nb(&j, &nb, i);
+  init_j_nb(&j, &nb, ++i);
   check_good_size(str, '\0', &i, &nb);
   if ((tmp = malloc(sizeof(char) * (nb + 1))) == NULL)
     exit(1);
@@ -70,4 +69,5 @@ void	change_map_size(t_tetris *tetris, char *str)
     tmp[j++] = str[i++];
   tmp[j] = '\0';
   tetris->options->col = my_getnbr(tmp) + 2;
+  free(tmp);
 }

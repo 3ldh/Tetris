@@ -5,10 +5,12 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Sat Mar  5 16:46:19 2016 maud marel
+## Last update Sun Mar  6 15:33:42 2016 
 ##
 
 NAME		=	tetris
+
+ARGS		=	srcs/actions_arg/
 
 DISP		=	srcs/display/
 
@@ -16,12 +18,14 @@ OPTS		=	srcs/change_options/
 
 TETRI		=	srcs/stock_check_tetriminos/
 
+FREE		=	srcs/free/
+
 SRCS		=	srcs/main.c \
-			srcs/check_arg.c \
-			srcs/read_arg.c \
-			srcs/init_options.c \
 			srcs/get_next_line.c \
-			srcs/verif_size_all.c \
+			$(ARGS)check_arg.c \
+			$(ARGS)read_arg.c \
+			$(ARGS)init_options.c \
+			$(ARGS)verif_size_all.c \
 			$(DISP)display_help.c \
 			$(DISP)display_help_error.c \
 			$(DISP)display_debug.c \
@@ -39,6 +43,8 @@ SRCS		=	srcs/main.c \
 			$(TETRI)stock.c \
 			$(TETRI)put_in_list.c \
 			$(TETRI)stock_tetrimino.c \
+			$(FREE)free_options.c \
+			$(FREE)free_struct.c \
 
 OBJS		=	$(SRCS:.c=.o)
 

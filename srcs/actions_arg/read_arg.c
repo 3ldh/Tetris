@@ -5,12 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Mar  5 16:37:41 2016 maud marel
-** Last update Sat Mar  5 16:56:54 2016 maud marel
+** Last update Sun Mar  6 15:09:58 2016 
 */
 
 #include "tetris.h"
 
-int	check_good_arg(t_tetris *tetris, char **av, int ac, int *i)
+int	check_good_arg(t_tetris *tetris, char **av, int *i)
 {
   int	n;
 
@@ -44,7 +44,7 @@ void    read_arg(t_tetris *tetris, int ac, char **av)
       else if (my_strcmp(av[i], "--help") == 0 && ac == 2)
 	display_help();
       else
-	n = check_good_arg(tetris, av, ac, &i);
+	n = check_good_arg(tetris, av, &i);
       if (n == 1)
 	{
 	  my_putstr_error("Wrong arguments\n\n");

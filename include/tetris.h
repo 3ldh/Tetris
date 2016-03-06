@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Sat Mar  5 11:10:23 2016 maud marel
+** Last update Sun Mar  6 10:32:03 2016 
 */
 
 #ifndef TETRIS_H_
@@ -124,6 +124,9 @@ void		init_tetris(t_tetris *);
 */
 
 void		check_arg(t_tetris *, int, char **);
+void		read_arg(t_tetris *, int, char **);
+int		check_complex_arg(t_tetris *, char *);
+int		check_simp_arg(t_tetris *, char *, char *);
 void		change_level(t_tetris *, char *);
 void		change_key_left(t_tetris *, char *);
 void		change_key_right(t_tetris *, char *);
@@ -143,6 +146,7 @@ void		change_key_quit_simp(t_tetris *, char *);
 void		change_key_pause_simp(t_tetris *, char *);
 void		change_without_next_simp(t_tetris *, char *);
 void		wrong_options(char *);
+void		verif_size_all(t_tetris *);
 
 /*
 ** Display
