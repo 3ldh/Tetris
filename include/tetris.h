@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Thu Mar  3 15:26:49 2016 maud marel
+** Last update Sun Mar  6 17:39:13 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -43,6 +43,7 @@ enum		check_opt_simp
 
 typedef	struct	s_tetrimino
 {
+  int		max;
   int		height;
   int		width;
   int		color;
@@ -85,7 +86,7 @@ typedef	struct	s_tetris
   int		start_time;
   int		time;
   int		level;
-  int		speed;
+  float		speed;
 }		t_tetris;
 
 typedef struct	s_check_opt
@@ -140,5 +141,41 @@ void		my_putchar(char);
 void		my_putstr(char *);
 int		my_getnbr(char *);
 char		*my_strcat(char *, char *);
+
+/*
+**GAME PART
+*/
+WINDOW		*create_newwin(int, int, int, int);
+void		show_score(WINDOW *, t_tetris *);
+void		init_tetri(t_tetri *tetri);
+void		print_tetri(WINDOW *game, t_tetri *tetri);
+void		check_color();
+void		print_game(WINDOW *game, t_tetris *data, t_tetri *tetri);
+bool		space_occupied_down(t_tetris *data, t_tetri *tetri);
+bool		space_occupied_right(t_tetris *data, t_tetri *tetri);
+bool		space_occupied_left(t_tetris *data, t_tetri *tetri);
+bool		can_move_left(t_tetris *data, t_tetri *tetri);
+bool		can_move_right(t_tetris *data, t_tetri *tetri);
+t_list_tetri	*add_tetri(t_list_tetri *list, t_tetri *tetri);
+int		max_tetri(t_list_tetri *list_tetri);
+t_tetri		*cpy_tetri(t_tetri *tetri);
+t_tetri		*random_tetri(t_list_tetri *list_tetri, int nb_tetri);
+bool		can_move_down(t_tetris *data, t_tetri *tetri);
+void		show_next(WINDOW *wnext,t_tetri *next);
+void		update_board(WINDOW *game, t_tetris *tetris, t_tetri *tetri);
+void		clear_line(t_tetris *data, int line);
+void		fall(WINDOW *game, t_tetris *data);
+void		line_completion(t_tetris *data, WINDOW *game);
+t_list_tetri	*get_valid_tetri(t_list_tetri *all_tetri);
+t_tetri		*rotate_tetri(t_tetri *tetri);
+void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
+		     t_tetris *tetris);
+void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
+		     t_tetris *tetris);
+void		init_ncurses();
+char		**init_board(t_tetris *tetris);
+void		init_score(t_tetris *data);
+void		center_tetri(t_list_tetri *list_tetri);
+bool		check_window(t_tetris *tetris);
 
 #endif /* !TETRIS_H_ */

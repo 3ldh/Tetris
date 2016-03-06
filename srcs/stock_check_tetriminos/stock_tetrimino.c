@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar  3 14:33:13 2016 maud marel
-** Last update Thu Mar  3 15:25:13 2016 maud marel
+** Last update Fri Mar  4 20:39:26 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -54,6 +54,7 @@ int     check_form(t_list_tetri *tetris, int fd)
 
   h = 0;
   max = check_big_one(tetris);
+  tetris->tetrimino->max = max;
   if ((tetris->tetrimino->tetrimino = malloc(sizeof(char*)
 					     * max)) == NULL)
     exit(1);

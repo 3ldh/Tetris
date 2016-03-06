@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar  3 14:34:09 2016 maud marel
+## Last update Sun Mar  6 18:47:27 2016 Mathieu Sauvau
 ##
 
 NAME		=	tetris
@@ -31,6 +31,13 @@ SRCS		=	srcs/main.c \
 			srcs/stock_check_tetriminos/stock.c \
 			srcs/stock_check_tetriminos/put_in_list.c \
 			srcs/stock_check_tetriminos/stock_tetrimino.c \
+			srcs/ncurses/init.c \
+			srcs/ncurses/movement.c \
+			srcs/ncurses/collision.c \
+			srcs/ncurses/print_game.c \
+			srcs/ncurses/mechanic.c \
+			srcs/ncurses/main_loop.c \
+			srcs/ncurses/purge_tetri.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
