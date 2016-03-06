@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Sun Mar  6 19:00:16 2016 Mathieu Sauvau
+** Last update Sun Mar  6 19:53:45 2016 
 */
 
 #include <time.h>
@@ -84,7 +84,7 @@ int		main(int ac, char **av, char **env)
   /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
   /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
   //  rotate_tetri(tetris.list_tetri->next->next->next->tetrimino);
-  show_tetri(tetris.list_tetri);
+  /* show_tetri(tetris.list_tetri); */
   init_ncurses();
   if (!check_window(&tetris))
     return (1);
@@ -96,7 +96,7 @@ int		main(int ac, char **av, char **env)
   show_score(score, &tetris);
   if ((tetris.board = init_board(&tetris)) == NULL)
     return (1);
-  show_board(&tetris);
+  /* show_board(&tetris); */
   if ((game = create_newwin(tetris.options->row, tetris.options->col, 0, 30)) == NULL)
     return (1);
   loop(game, score, next, &tetris);
