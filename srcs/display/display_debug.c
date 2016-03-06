@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Sat Mar  5 15:54:04 2016 maud marel
+** Last update Sun Mar  6 01:04:01 2016 
 */
 
 #include <termios.h>
@@ -97,7 +97,6 @@ void		display_tetriminos(t_tetris *tetris)
 
 void			display_debug(t_tetris *tetris, int n)
 {
-  char			*name_term;
   struct termios	term;
 
   if (n == 1)
@@ -107,10 +106,6 @@ void			display_debug(t_tetris *tetris, int n)
       display_more_info(tetris);
       display_tetriminos(tetris);
       my_putstr("Press a key to start Tetris\n");
-      if ((name_term = getenv("TERM")) == NULL)
-	exit(1);
-      if (tgetent(NULL, name_term) == ERR)
-	exit(1);
       if (tcgetattr(0, &term) == -1)
 	exit(1);
       term.c_lflag &= ~(ICANON);
