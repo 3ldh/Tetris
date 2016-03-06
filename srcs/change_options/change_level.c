@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:44:38 2016 maud marel
-** Last update Wed Mar  2 17:44:33 2016 maud marel
+** Last update Sun Mar  6 16:05:49 2016 
 */
 
 #include "tetris.h"
@@ -21,19 +21,20 @@ void	change_level(t_tetris *tetris, char *str)
     i++;
   i++;
   if (i == my_strlen(str))
-    wrong_options();
+    wrong_options(str);
   j = 0;
   if ((tmp = malloc(sizeof(char) * (my_strlen(str) - i))) == NULL)
     exit(1);
   while (str[i] != '\0')
     {
       if (str[i] < '0' || str[i] > '9')
-	wrong_options();
+	wrong_options(str);
       tmp[j++] = str[i];
       i++;
     }
   tmp[j] = '\0';
   tetris->options->level = my_getnbr(tmp);
+  free(tmp);
 }
 
 void	change_level_simp(t_tetris *tetris, char *str)
@@ -47,9 +48,10 @@ void	change_level_simp(t_tetris *tetris, char *str)
   while (str[++i] != '\0' && str)
     {
       if (str[i] < '0' || str[i] > '9')
-	wrong_options();
+	wrong_options(str);
       tmp[i] = str[i];
     }
   tmp[i] = '\0';
   tetris->options->level = my_getnbr(tmp);
+  free(tmp);
 }

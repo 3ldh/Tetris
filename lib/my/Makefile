@@ -5,10 +5,12 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Mon Nov  9 09:47:52 2015 maud marel
-## Last update Tue Mar  1 14:30:46 2016 maud marel
+## Last update Fri Mar  4 21:41:51 2016 maud marel
 ##
 
 SRC	=	my_putstr_error.c \
+		my_putchar.c \
+		my_putchar_error.c \
 		my_power_rec.c \
 		my_strlen.c \
 		my_strcmp.c \
@@ -16,7 +18,6 @@ SRC	=	my_putstr_error.c \
 		my_getnbr.c \
 		my_strcpy.c \
 		my_put_nbr.c \
-		my_putchar.c \
 		my_strncpy.c \
 		my_strcat.c \
 		my_strncat.c \

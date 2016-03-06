@@ -5,19 +5,30 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Sun Mar  6 18:47:27 2016 Mathieu Sauvau
+## Last update Sun Mar  6 19:03:00 2016 Mathieu Sauvau
 ##
 
 NAME		=	tetris
 
+ARGS		=	srcs/actions_arg/
+
+DISP		=	srcs/display/
+
 OPTS		=	srcs/change_options/
 
+TETRI		=	srcs/stock_check_tetriminos/
+
+FREE		=	srcs/free/
+
 SRCS		=	srcs/main.c \
-			srcs/check_arg.c \
-			srcs/display_help.c \
-			srcs/init_options.c \
-			srcs/mode_debug/display_debug.c \
 			srcs/get_next_line.c \
+			$(ARGS)check_arg.c \
+			$(ARGS)read_arg.c \
+			$(ARGS)init_options.c \
+			$(ARGS)verif_size_all.c \
+			$(DISP)display_help.c \
+			$(DISP)display_help_error.c \
+			$(DISP)display_debug.c \
 			$(OPTS)change_key_drop.c \
 			$(OPTS)change_key_left.c \
 			$(OPTS)change_key_pause.c \
@@ -26,11 +37,8 @@ SRCS		=	srcs/main.c \
 			$(OPTS)change_key_turn.c \
 			$(OPTS)change_level.c \
 			$(OPTS)change_map_size.c \
+			$(OPTS)hide_next.c \
 			$(OPTS)wrong_options.c \
-			srcs/stock_check_tetriminos/check_tetriminos.c \
-			srcs/stock_check_tetriminos/stock.c \
-			srcs/stock_check_tetriminos/put_in_list.c \
-			srcs/stock_check_tetriminos/stock_tetrimino.c \
 			srcs/ncurses/init.c \
 			srcs/ncurses/movement.c \
 			srcs/ncurses/collision.c \
@@ -38,6 +46,12 @@ SRCS		=	srcs/main.c \
 			srcs/ncurses/mechanic.c \
 			srcs/ncurses/main_loop.c \
 			srcs/ncurses/purge_tetri.c \
+			$(TETRI)check_tetriminos.c \
+			$(TETRI)stock.c \
+			$(TETRI)put_in_list.c \
+			$(TETRI)stock_tetrimino.c \
+			$(FREE)free_options.c \
+			$(FREE)free_struct.c \
 
 OBJS		=	$(SRCS:.c=.o)
 

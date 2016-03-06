@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Oct 14 14:50:44 2015 maud marel
-** Last update Sun Feb  7 22:14:04 2016 Maud MAREL
+** Last update Sat Mar  5 15:32:46 2016 maud marel
 */
 
 int	my_getnbr(char *str)

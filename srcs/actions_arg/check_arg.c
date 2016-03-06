@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:40:47 2016 maud marel
-** Last update Tue Mar  1 23:16:43 2016 maud marel
+** Last update Sat Mar  5 16:57:55 2016 maud marel
 */
 
 #include <stdlib.h>
@@ -34,6 +34,10 @@ t_check_opt	*init_tab_comp_arg()
   tab[PAUSE].ft_com = &change_key_pause;
   tab[SIZE].opt = "--map-size=";
   tab[SIZE].ft_com = &change_map_size;
+  tab[NEXT].opt = "-w";
+  tab[NEXT].ft_com = &hide_next;
+  tab[NEXT_S].opt = "--without-next";
+  tab[NEXT_S].ft_com = &hide_next;
   return (tab);
 }
 
@@ -90,41 +94,4 @@ int			check_simp_arg(t_tetris *tetris, char *str, char *new)
 	return (0);
       }
   return (1);
-}
-
-void	check_arg(t_tetris *tetris, int ac, char **av)
-{
-  int	i;
-  int	n;
-  int	debug;
-
-  i = 0;
-  n = 0;
-  debug = 0;
-  while (++i < ac)
-    {
-      if (my_strcmp(av[i], "-d") == 0 || my_strcmp(av[i], "--debug") == 0)
-	debug = 1;
-      else if (my_strcmp(av[i], "-w") == 0 || my_strcmp(av[i], "--without-next") == 0)
-	tetris->options->hide_next = 1;
-      else if (my_strcmp(av[i], "--help") == 0
-	       && ac == 2)
-	display_help();
-      else if (av[i][0] == '-' && av[i][1] == '-')
-	n = check_complex_arg(tetris, av[i]);
-      else if (av[i][0] == '-')
-	{
-	  n = check_simp_arg(tetris, av[i], av[i + 1]);
-	  i++;
-	}
-      else
-	n = 1;
-      if (n == 1)
-	{
-	  write(2, "Wrong arguments\n", 16);
-	  exit(1);
-	}
-    }
-  if (debug == 1)
-    display_debug(tetris);
 }

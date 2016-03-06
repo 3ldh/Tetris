@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Sun Mar  6 18:47:05 2016 Mathieu Sauvau
+** Last update Sun Mar  6 19:00:16 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -62,16 +62,19 @@ void		show_tetri(t_list_tetri *elem)
     }
 }
 
-int		main(int ac, char **av)
+int		main(int ac, char **av, char **env)
 {
   t_tetris	tetris;
   WINDOW	*score;
   WINDOW	*game;
   WINDOW	*next;
 
+  if (env == NULL)
+    return (-1);
   check_tetriminos(&tetris);
   init_tetris(&tetris);
-  check_arg(&tetris, ac, av);
+  read_arg(&tetris, ac, av);
+  verif_size_all(&tetris);
   srand(time(0));
   //  show_tetri(tetris.list_tetri);
   tetris.list_tetri = get_valid_tetri(tetris.list_tetri);
@@ -100,5 +103,7 @@ int		main(int ac, char **av)
   getch();
   delwin(game);
   endwin();
+  free_options(&tetris);
+  free_struct(&tetris);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:46:17 2016 maud marel
-** Last update Thu Mar  3 12:14:31 2016 maud marel
+** Last update Sun Mar  6 16:06:27 2016 
 */
 
 #include "tetris.h"
@@ -15,7 +15,7 @@ void	check_good_size(char *str, char c, int *i, int *nb)
   while (str[(*i)] != c)
     {
       if (str[(*i)] < '0' || str[(*i)] > '9')
-	wrong_options();
+	wrong_options(str);
       (*i)++;
       (*nb)++;
     }
@@ -28,7 +28,7 @@ void	check_if_size(char *str, int *i)
     (*i)++;
   (*i)++;
   if ((*i) == my_strlen(str))
-    wrong_options();
+    wrong_options(str);
 }
 
 void	init_j_nb(int *j, int *nb, int i)
@@ -60,8 +60,7 @@ void	change_map_size(t_tetris *tetris, char *str)
     tmp[j++] = str[i++];
   tmp[j] = '\0';
   tetris->options->row = my_getnbr(tmp) + 2;
-  i++;
-  init_j_nb(&j, &nb, i);
+  init_j_nb(&j, &nb, ++i);
   check_good_size(str, '\0', &i, &nb);
   if ((tmp = malloc(sizeof(char) * (nb + 1))) == NULL)
     exit(1);
@@ -70,4 +69,5 @@ void	change_map_size(t_tetris *tetris, char *str)
     tmp[j++] = str[i++];
   tmp[j] = '\0';
   tetris->options->col = my_getnbr(tmp) + 2;
+  free(tmp);
 }

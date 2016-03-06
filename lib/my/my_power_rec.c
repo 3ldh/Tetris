@@ -1,11 +1,11 @@
 /*
 ** my_power_rec.c for my_power_rec.c in /lib/my
-** 
+**
 ** Made by maud marel
 ** Login   <marel_m@epitech.net>
-** 
+**
 ** Started on  Fri Oct  2 14:26:26 2015 maud marel
-** Last update Thu Oct 15 14:19:39 2015 maud marel
+** Last update Sat Mar  5 15:33:56 2016 maud marel
 */
 
 int	my_power_rec(int nb, int power)

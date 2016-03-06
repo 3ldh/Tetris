@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Thu Mar  3 15:14:19 2016 maud marel
+** Last update Sun Mar  6 16:01:41 2016 
 */
 
 #include <unistd.h>
@@ -31,6 +31,7 @@ void		stock_tetriminos(char *str, t_tetris *tetris)
   if ((file = get_next_line(fd)) == NULL)
     exit(1);
   stock(file, tetris, fd, str);
+  free(way);
   while (get_next_line(fd) != NULL);
   if (close(fd) == -1)
     exit(1);
@@ -46,7 +47,7 @@ void	check_first(t_tetris *tetris, char *name)
   i++;
   if (name[i] == '\0')
     {
-      write(2, "Wrong name of tetriminos\n", 25);
+      my_putstr_error("Wrong name of tetriminos\n");
       exit(1);
     }
   if (name[i++] != 't' && name[i++] != 'e' &&
@@ -55,7 +56,7 @@ void	check_first(t_tetris *tetris, char *name)
       name[i++] != 'i' && name[i++] != 'n' &&
       name[i++] != 'o')
     {
-      write(2, "Wrong name of tetriminos\n", 25);
+      my_putstr_error("Wrong name of tetriminos\n");
       exit(1);
     }
   stock_tetriminos(name, tetris);
@@ -68,7 +69,7 @@ void		check_tetriminos(t_tetris *tetris)
 
   if ((dirp = opendir("tetriminos")) == NULL)
     {
-      write(2, "Not existing directory tetriminos\n", 34);
+      my_putstr_error("Not existing directory tetriminos\n");
       exit(1);
     }
   create_list(tetris);
