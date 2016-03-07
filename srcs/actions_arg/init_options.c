@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 19:30:09 2016 maud marel
-** Last update Sun Mar  6 19:42:52 2016 
+** Last update Mon Mar  7 10:44:21 2016 maud marel
 */
 
 #include "tetris.h"
@@ -22,10 +22,10 @@ void	init_direct(t_tetris *tetris)
     display_help_error();
   if ((tetris->options->left = malloc(sizeof(char) * 5)) == NULL)
     exit(1);
-  my_strcpy(tetris->options->left, tigetstr("kcuf1"));
+  my_strcpy(tetris->options->left, tigetstr("kcub1"));
   if ((tetris->options->right = malloc(sizeof(char) * 5)) == NULL)
     exit(1);
-  my_strcpy(tetris->options->right, tigetstr("kcub1"));
+  my_strcpy(tetris->options->right, tigetstr("kcuf1"));
   if ((tetris->options->turn = malloc(sizeof(char) * 5)) == NULL)
     exit(1);
   my_strcpy(tetris->options->turn, tigetstr("kcuu1"));
