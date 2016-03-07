@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Sun Mar  6 01:04:01 2016 
+** Last update Mon Mar  7 09:26:19 2016 maud marel
 */
 
 #include <termios.h>
@@ -110,7 +110,7 @@ void			display_debug(t_tetris *tetris, int n)
 	exit(1);
       term.c_lflag &= ~(ICANON);
       term.c_lflag &= ~(ECHO);
-      term.c_cc[VMIN] = 0;
+      term.c_cc[VMIN] = 1;
       term.c_cc[VTIME] = 0;
       if (tcsetattr(0, TCSADRAIN, &term) == -1)
         exit(1);

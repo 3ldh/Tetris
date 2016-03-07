@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar  3 14:33:13 2016 maud marel
-** Last update Sun Mar  6 18:53:56 2016 Mathieu Sauvau
+** Last update Mon Mar  7 09:30:58 2016 maud marel
 */
 
 #include "tetris.h"
@@ -17,28 +17,49 @@ int	check_big_one(t_list_tetri *tetris)
   return (tetris->tetrimino->width);
 }
 
-int	copy_tetri(t_list_tetri *tetris, int *h, char *file, int max)
+int	check_line(t_list_tetri *tetris, char *file)
 {
-  int   i;
+  int	i;
   int	w;
 
+  i = -1;
   w = 0;
-  if (my_strlen(file) > w)
-    w = my_strlen(file);
+  while (file[++i] != '\0')
+    {
+      if (i < tetris->tetrimino->width)
+	{
+	  if (file[i] != ' ' && file[i] != '*')
+	    {
+	      tetris->tetrimino->width = 0;
+	      return (-1);
+	    }
+	  w++;
+	}
+      else
+	if (file[i] != ' ')
+	  {
+	    tetris->tetrimino->width = 0;
+	    return (-1);
+	  }
+    }
+  return (w);
+}
+
+int	copy_tetri(t_list_tetri *tetris, int *h, char *file, int w)
+{
+  int   i;
+  int	n;
+
+  if ((n = check_line(tetris, file)) == -1)
+    return (-1);
+  if (n > w)
+    w = n;
   if ((tetris->tetrimino->tetrimino[(*h)] = malloc(sizeof(char)
-						   * (max + 1))) == NULL)
+						   * (tetris->tetrimino->max + 1))) == NULL)
     exit(1);
   i = -1;
   while (file[++i] != '\0')
-    {
-      if ((file[i] != ' ' && file[i] != '*')
-	  || i >= tetris->tetrimino->width)
-        {
-          tetris->tetrimino->width = 0;
-          return (-1);
-        }
-      tetris->tetrimino->tetrimino[(*h)][i] = file[i];
-    }
+    tetris->tetrimino->tetrimino[(*h)][i] = file[i];
   tetris->tetrimino->tetrimino[(*h)][i] = '\0';
   if (tetris->tetrimino->height - 1 > (*h))
     (*h)++;
@@ -49,17 +70,16 @@ int	check_form(t_list_tetri *tetris, int fd)
 {
   char  *file;
   int   h;
-  int   w;
-  int	max;
+  int	w;
 
   h = 0;
-  max = check_big_one(tetris);
-  tetris->tetrimino->max = max;
+  w = 0;
+  tetris->tetrimino->max = check_big_one(tetris);
   if ((tetris->tetrimino->tetrimino = malloc(sizeof(char*)
-					     * max)) == NULL)
+					     * tetris->tetrimino->max)) == NULL)
     exit(1);
   while ((file = get_next_line(fd)) != NULL)
-    if ((w = copy_tetri(tetris, &h, file, max)) == -1)
+    if ((w = copy_tetri(tetris, &h, file, w)) == -1)
       return (1);
   if (w != tetris->tetrimino->width || h != tetris->tetrimino->height - 1)
     {
