@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Mon Mar  7 09:26:19 2016 maud marel
+** Last update Mon Mar  7 10:54:41 2016 maud marel
 */
 
 #include <termios.h>
@@ -68,9 +68,9 @@ void	print_tetriminos(t_list_tetri *tetris)
   else
     {
       my_putstr("Size ");
-      my_put_nbr(tetris->tetrimino->height);
-      my_putchar('*');
       my_put_nbr(tetris->tetrimino->width);
+      my_putchar('*');
+      my_put_nbr(tetris->tetrimino->height);
       my_putstr(" : color ");
       my_put_nbr(tetris->tetrimino->color);
       my_putstr(" :\n");
