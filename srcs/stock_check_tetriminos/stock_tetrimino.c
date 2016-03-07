@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar  3 14:33:13 2016 maud marel
-** Last update Mon Mar  7 09:30:58 2016 maud marel
+** Last update Mon Mar  7 10:36:06 2016 maud marel
 */
 
 #include "tetris.h"
@@ -58,7 +58,7 @@ int	copy_tetri(t_list_tetri *tetris, int *h, char *file, int w)
 						   * (tetris->tetrimino->max + 1))) == NULL)
     exit(1);
   i = -1;
-  while (file[++i] != '\0')
+  while (++i < w)
     tetris->tetrimino->tetrimino[(*h)][i] = file[i];
   tetris->tetrimino->tetrimino[(*h)][i] = '\0';
   if (tetris->tetrimino->height - 1 > (*h))
