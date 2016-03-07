@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Mar  5 16:37:41 2016 maud marel
-** Last update Sun Mar  6 15:09:58 2016 
+** Last update Mon Mar  7 13:35:46 2016 maud marel
 */
 
 #include "tetris.h"
@@ -42,7 +42,7 @@ void    read_arg(t_tetris *tetris, int ac, char **av)
       if (my_strcmp(av[i], "-d") == 0 || my_strcmp(av[i], "--debug") == 0)
 	debug = 1;
       else if (my_strcmp(av[i], "--help") == 0 && ac == 2)
-	display_help();
+	display_help(av[0]);
       else
 	n = check_good_arg(tetris, av, &i);
       if (n == 1)

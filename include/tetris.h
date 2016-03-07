@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Mon Mar  7 18:48:42 2016 Mathieu Sauvau
+** Last update Mon Mar  7 19:57:25 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -154,7 +154,9 @@ void		verif_size_all(t_tetris *);
 */
 
 void		display_debug(t_tetris *, int);
-void		display_help();
+void		display_debug_key(char *);
+void		display_key(t_tetris *);
+void		display_help(char *);
 void		display_help_error();
 
 /*

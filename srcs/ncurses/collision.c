@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:35:45 2016 Mathieu Sauvau
-** Last update Mon Mar  7 19:46:16 2016 Mathieu Sauvau
+** Last update Mon Mar  7 19:58:21 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -25,6 +25,7 @@ int		get_last_star_on_y(t_tetri *tetri)
 	    return (y);
 	}
     }
+  return (0);
 }
 
 int		get_first_star_on_x(t_tetri *tetri)
@@ -42,6 +43,7 @@ int		get_first_star_on_x(t_tetri *tetri)
 	    return (y + 1);
 	}
     }
+  return (0);
 }
 
 int		get_last_star_on_x(t_tetri *tetri)
@@ -59,6 +61,7 @@ int		get_last_star_on_x(t_tetri *tetri)
 	    return (x);
 	}
     }
+  return (0);
 }
 
 bool		space_occupied_down(t_tetris *data, t_tetri *tetri)

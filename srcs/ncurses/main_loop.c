@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Mon Mar  7 17:25:08 2016 Mathieu Sauvau
+** Last update Mon Mar  7 19:58:46 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -84,7 +84,6 @@ void		reset_buffer(char *buffer)
 void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
 		     t_tetris *tetris)
 {
-  char		*c;
   int		r;
   float		i;
   t_tetri	*tetri;

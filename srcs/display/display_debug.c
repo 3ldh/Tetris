@@ -5,35 +5,13 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Mon Mar  7 12:59:17 2016 Mathieu Sauvau
+** Last update Mon Mar  7 19:56:48 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include "tetris.h"
-
-void	display_key(t_tetris *tetris)
-{
-  my_putstr("Key Left : ");
-  my_putstr(tetris->options->left);
-  my_putchar('\n');
-  my_putstr("Key Right : ");
-  my_putstr(tetris->options->right);
-  my_putchar('\n');
-  my_putstr("Key Turn : ");
-  my_putstr(tetris->options->turn);
-  my_putchar('\n');
-  my_putstr("Key Drop : ");
-  my_putstr(tetris->options->drop);
-  my_putchar('\n');
-  my_putstr("Key Quit : ");
-  my_putstr(tetris->options->quit);
-  my_putchar('\n');
-  my_putstr("Key Pause : ");
-  my_putstr(tetris->options->pause);
-  my_putchar('\n');
-}
 
 void	display_more_info(t_tetris *tetris)
 {
@@ -70,10 +48,10 @@ void	print_tetriminos(t_list_tetri *tetris)
   else
     {
       my_putstr("Size ");
-      my_put_nbr(tetris->tetrimino->height);
-      my_putchar('*');
       my_put_nbr(tetris->tetrimino->width);
-      my_putstr(" : color ");
+      my_putchar('*');
+      my_put_nbr(tetris->tetrimino->height);
+      my_putstr(" : Color ");
       my_put_nbr(tetris->tetrimino->color);
       my_putstr(" :\n");
       i = -1;
