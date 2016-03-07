@@ -5,12 +5,13 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:40:29 2016 Mathieu Sauvau
-** Last update Sun Mar  6 18:41:12 2016 Mathieu Sauvau
+** Last update Mon Mar  7 17:38:00 2016 Mathieu Sauvau
 */
 
+#include <unistd.h>
 #include "tetris.h"
 
-void		update_board(WINDOW *game, t_tetris *tetris, t_tetri *tetri)
+void		update_board(t_tetris *tetris, t_tetri *tetri)
 {
   int		x;
   int		y;
@@ -46,7 +47,6 @@ void		fall(WINDOW *game, t_tetris *data)
 {
   int		x;
   int		y;
-  int		i;
 
   y = data->options->row - 2;
   while (--y >= 0)

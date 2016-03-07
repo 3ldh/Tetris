@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Sun Mar  6 19:53:45 2016 
+** Last update Mon Mar  7 18:32:13 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -37,11 +37,25 @@ void		show_board(t_tetris *tetris)
     }
 }
 
-void		show_tetri(t_list_tetri *elem)
+
+void		show_tetri(t_tetri *tetri)
 {
-  t_list_tetri	*elem_next;
   int		x;
   int		y;
+
+  y = -1;
+  while (++y < tetri->max)
+    {
+      x = -1;
+      while (++x < tetri->max)
+	printf("%c", tetri->tetrimino[y][x]);
+      printf("\n");
+    }
+}
+
+void		show_list_tetri(t_list_tetri *elem)
+{
+  t_list_tetri	*elem_next;
 
   elem_next = elem->next;
   while (elem_next != elem)
@@ -49,14 +63,7 @@ void		show_tetri(t_list_tetri *elem)
       printf("%s width = %d height = %d max = %d\n", elem_next->tetrimino->name
 	     , elem_next->tetrimino->width, elem_next->tetrimino->height,
 	     elem_next->tetrimino->max);
-      y = -1;
-      while (++y < elem_next->tetrimino->max)
-      	{
-      	  x = -1;
-      	  while (++x < elem_next->tetrimino->max)
-       	      printf("%c", elem_next->tetrimino->tetrimino[y][x]);
-       	  printf("\n");
-      	}
+      show_tetri(elem_next->tetrimino);
       printf("\n");
       elem_next = elem_next->next;
     }
@@ -76,15 +83,18 @@ int		main(int ac, char **av, char **env)
   read_arg(&tetris, ac, av);
   verif_size_all(&tetris);
   srand(time(0));
-  //  show_tetri(tetris.list_tetri);
+  //  show_list_tetri(tetris.list_tetri);
   tetris.list_tetri = get_valid_tetri(tetris.list_tetri);
-  center_tetri(tetris.list_tetri);
-  /* show_tetri(tetris.list_tetri); */
+  //  center_tetri(tetris.list_tetri);
+  /* show_tetri(tetris.list_tetri->next->next->next->tetrimino); */
   /* printf("name %s\n", tetris.list_tetri->next->next->next->tetrimino->name); */
   /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
   /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
-  //  rotate_tetri(tetris.list_tetri->next->next->next->tetrimino);
-  /* show_tetri(tetris.list_tetri); */
+  /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
+  //rotate_tetri(tetris.list_tetri->next->next->next->next->tetrimino);
+ /*  rotate_tetri(tetris.list_tetri->next->next->next->next->tetrimino); */
+ // rotate_tetri(tetris.list_tetri->next->next->next->next->tetrimino);
+  show_tetri(tetris.list_tetri->next->next->next->tetrimino);
   init_ncurses();
   if (!check_window(&tetris))
     return (1);
