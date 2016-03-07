@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:53:52 2016 maud marel
-** Last update Sat Mar  5 18:03:04 2016 maud marel
+** Last update Mon Mar  7 13:35:22 2016 maud marel
 */
 
 #include "tetris.h"
@@ -38,9 +38,11 @@ void	display_help_end()
   my_putstr("Debug mode\n");
 }
 
-void	display_help()
+void	display_help(char *str)
 {
-  my_putstr("Usage: ./tetris [options]\n");
+  my_putstr("Usage: ");
+  my_putstr(str);
+  my_putstr(" [options]\n");
   my_putstr("Options:\n");
   my_putstr("  --help");
   display_space(7);

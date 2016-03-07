@@ -5,33 +5,11 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Mon Mar  7 10:54:41 2016 maud marel
+** Last update Mon Mar  7 13:27:25 2016 maud marel
 */
 
 #include <termios.h>
 #include "tetris.h"
-
-void	display_key(t_tetris *tetris)
-{
-  my_putstr("Key Left : ");
-  my_putstr(tetris->options->left);
-  my_putchar('\n');
-  my_putstr("Key Right : ");
-  my_putstr(tetris->options->right);
-  my_putchar('\n');
-  my_putstr("Key Turn : ");
-  my_putstr(tetris->options->turn);
-  my_putchar('\n');
-  my_putstr("Key Drop : ");
-  my_putstr(tetris->options->drop);
-  my_putchar('\n');
-  my_putstr("Key Quit : ");
-  my_putstr(tetris->options->quit);
-  my_putchar('\n');
-  my_putstr("Key Pause : ");
-  my_putstr(tetris->options->pause);
-  my_putchar('\n');
-}
 
 void	display_more_info(t_tetris *tetris)
 {
