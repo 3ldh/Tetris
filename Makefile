@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Mon Mar  7 13:27:46 2016 maud marel
+## Last update Tue Mar  8 21:31:12 2016 maud marel
 ##
 
 NAME		=	tetris
@@ -21,7 +21,7 @@ TETRI		=	srcs/stock_check_tetriminos/
 FREE		=	srcs/free/
 
 SRCS		=	srcs/main.c \
-			srcs/get_next_line.c \
+			$(ARGS)get_next_line.c \
 			$(ARGS)check_arg.c \
 			$(ARGS)read_arg.c \
 			$(ARGS)init_options.c \

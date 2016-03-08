@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Tue Mar  8 17:35:16 2016 Mathieu Sauvau
+** Last update Tue Mar  8 21:33:48 2016 maud marel
 */
 
 #include <time.h>
@@ -47,9 +47,7 @@ void		show_tetri(t_tetri *tetri)
   while (++y < tetri->max)
     {
       x = -1;
-      while (++x < tetri->max)
-	printf("%c", tetri->tetrimino[y][x]);
-      printf("\n");
+      while (++x < tetri->max);
     }
 }
 
@@ -60,11 +58,7 @@ void		show_list_tetri(t_list_tetri *elem)
   elem_next = elem->next;
   while (elem_next != elem)
     {
-      printf("%s width = %d height = %d max = %d\n", elem_next->tetrimino->name
-	     , elem_next->tetrimino->width, elem_next->tetrimino->height,
-	     elem_next->tetrimino->max);
       show_tetri(elem_next->tetrimino);
-      printf("\n");
       elem_next = elem_next->next;
     }
 }
@@ -78,25 +72,15 @@ int		main(int ac, char **av, char **env)
 
   if (env == NULL)
     return (-1);
-  check_tetriminos(&tetris);
+  if (check_tetriminos(&tetris) == -1)
+    return (-1);
   init_tetris(&tetris);
   if (read_arg(&tetris, ac, av) == -1)
     return (-1);
   verif_size_all(&tetris);
   srand(time(0));
-  //  show_list_tetri(tetris.list_tetri);
   tetris.list_tetri = get_valid_tetri(tetris.list_tetri);
-  //  center_tetri(tetris.list_tetri);
   show_list_tetri(tetris.list_tetri);
-  /* show_tetri(tetris.list_tetri->next->next->next->tetrimino); */
-  /* printf("name %s\n", tetris.list_tetri->next->next->next->tetrimino->name); */
-  /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
-  /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
-  /* rotate_tetri(tetris.list_tetri->next->next->next->tetrimino); */
-  //rotate_tetri(tetris.list_tetri->next->next->next->next->tetrimino);
- /*  rotate_tetri(tetris.list_tetri->next->next->next->next->tetrimino); */
- // rotate_tetri(tetris.list_tetri->next->next->next->next->tetrimino);
-  /* show_tetri(tetris.list_tetri->next->next->next->tetrimino); */
   init_ncurses();
   if (!check_window(&tetris))
     return (1);
@@ -108,7 +92,6 @@ int		main(int ac, char **av, char **env)
   show_score(score, &tetris);
   if ((tetris.board = init_board(&tetris)) == NULL)
     return (1);
-  /* show_board(&tetris); */
   if ((game = create_newwin(tetris.options->row, tetris.options->col, 0, 30)) == NULL)
     return (1);
   loop(game, score, next, &tetris);

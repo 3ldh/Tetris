@@ -5,14 +5,14 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 19:30:09 2016 maud marel
-** Last update Tue Mar  8 09:36:26 2016 maud marel
+** Last update Tue Mar  8 21:31:27 2016 maud marel
 */
 
 #include "tetris.h"
 #include <curses.h>
 #include <term.h>
 
-void	init_direct(t_tetris *tetris)
+int	init_direct(t_tetris *tetris)
 {
   int	i;
   int	ret;
@@ -20,22 +20,26 @@ void	init_direct(t_tetris *tetris)
   i = setupterm(NULL, 0, &ret);
   if (i == ERR)
     display_help_error();
-  tetris->options->left = my_strdup(tigetstr("kcub1"));
-  tetris->options->right = my_strdup(tigetstr("kcuf1"));
-  tetris->options->turn = my_strdup(tigetstr("kcuu1"));
-  tetris->options->drop = my_strdup(tigetstr("kcud1"));
-  tetris->options->quit = my_strdup("q");
-  tetris->options->pause = my_strdup(" ");
+  if ((tetris->options->left = my_strdup(tigetstr("kcub1"))) == NULL
+      || (tetris->options->right = my_strdup(tigetstr("kcuf1"))) == NULL
+      || (tetris->options->turn = my_strdup(tigetstr("kcuu1"))) == NULL
+      || (tetris->options->drop = my_strdup(tigetstr("kcud1"))) == NULL
+      || (tetris->options->quit = my_strdup("q")) == NULL
+      || (tetris->options->pause = my_strdup(" ")) == NULL)
+    return (-1);
+  return (0);
 }
 
-void	init_tetris(t_tetris *tetris)
+int	init_tetris(t_tetris *tetris)
 {
 
   if ((tetris->options = malloc(sizeof(t_options))) == NULL)
-    exit(1);
+    return (-1);
   tetris->options->level = 1;
   tetris->options->row = 22;
   tetris->options->col = 12;
   tetris->options->hide_next = 0;
-  init_direct(tetris);
+  if (init_direct(tetris) == -1)
+    return (-1);
+  return (0);
 }

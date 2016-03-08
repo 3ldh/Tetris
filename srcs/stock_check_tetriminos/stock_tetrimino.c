@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar  3 14:33:13 2016 maud marel
-** Last update Tue Mar  8 14:43:01 2016 Mathieu Sauvau
+** Last update Tue Mar  8 21:54:19 2016 maud marel
 */
 
 #include "tetris.h"
@@ -56,7 +56,7 @@ int	copy_tetri(t_list_tetri *tetris, int h, char *file, int w)
     w = n;
   if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
 						   * (tetris->tetrimino->max + 1))) == NULL)
-    exit(1);
+    return (-2);
   i = -1;
   while (++i < w)
     tetris->tetrimino->tetrimino[h][i] = file[i];
@@ -64,39 +64,48 @@ int	copy_tetri(t_list_tetri *tetris, int h, char *file, int w)
   return (w);
 }
 
+int	complete_form(t_list_tetri *tetris, int h)
+{
+  int	i;
+
+  while (h < tetris->tetrimino->max)
+    {
+      i = -1;
+      if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
+						    * (tetris->tetrimino->max + 1))) == NULL)
+	return (-1);
+      while (++i < tetris->tetrimino->max)
+	tetris->tetrimino->tetrimino[h][i] = 0;
+      h++;
+    }
+  return (0);
+}
+
 int	check_form(t_list_tetri *tetris, int fd)
 {
   char  *file;
   int   h;
   int	w;
-  int	i;
 
   h = 0;
   w = 0;
   tetris->tetrimino->max = check_big_one(tetris);
   if ((tetris->tetrimino->tetrimino = malloc(sizeof(char*)
 					     * tetris->tetrimino->max)) == NULL)
-    exit(1);
+    return (-1);
   while ((file = get_next_line(fd)) != NULL)
     {
-      if ((w = copy_tetri(tetris, h, file, w)) == -1)
+      if ((w = copy_tetri(tetris, h++, file, w)) == -1)
 	return (1);
-      h++;
+      else if (w == -2)
+	return (-1);
     }
   if (w != tetris->tetrimino->width || h != tetris->tetrimino->height)
     {
       tetris->tetrimino->width = 0;
       return (1);
     }
-  while (h < tetris->tetrimino->max)
-    {
-      i = -1;
-      if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
-						    * (tetris->tetrimino->max + 1))) == NULL)
-	exit(1);
-      while (++i < tetris->tetrimino->max)
-	tetris->tetrimino->tetrimino[h][i] = 0;
-      h++;
-    }
+  if (complete_form(tetris, h) == -1)
+    return (-1);
   return (0);
 }
