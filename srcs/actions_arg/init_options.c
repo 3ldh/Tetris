@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 19:30:09 2016 maud marel
-** Last update Mon Mar  7 13:25:06 2016 maud marel
+** Last update Tue Mar  8 09:36:26 2016 maud marel
 */
 
 #include "tetris.h"
@@ -20,19 +20,12 @@ void	init_direct(t_tetris *tetris)
   i = setupterm(NULL, 0, &ret);
   if (i == ERR)
     display_help_error();
-  if ((tetris->options->left = malloc(sizeof(char) * 5)) == NULL
-      || (tetris->options->right = malloc(sizeof(char) * 5)) == NULL
-      || (tetris->options->turn = malloc(sizeof(char) * 5)) == NULL
-      || (tetris->options->drop = malloc(sizeof(char) * 5)) == NULL
-      || (tetris->options->quit = malloc(sizeof(char) * 2)) == NULL
-      || (tetris->options->pause = malloc(sizeof(char) * 2)) == NULL)
-    exit(1);
-  my_strcpy(tetris->options->left, tigetstr("kcub1"));
-  my_strcpy(tetris->options->right, tigetstr("kcuf1"));
-  my_strcpy(tetris->options->turn, tigetstr("kcuu1"));
-  my_strcpy(tetris->options->drop, tigetstr("kcud1"));
-  my_strcpy(tetris->options->quit, "q");
-  my_strcpy(tetris->options->pause, " ");
+  tetris->options->left = my_strdup(tigetstr("kcub1"));
+  tetris->options->right = my_strdup(tigetstr("kcuf1"));
+  tetris->options->turn = my_strdup(tigetstr("kcuu1"));
+  tetris->options->drop = my_strdup(tigetstr("kcud1"));
+  tetris->options->quit = my_strdup("q");
+  tetris->options->pause = my_strdup(" ");
 }
 
 void	init_tetris(t_tetris *tetris)

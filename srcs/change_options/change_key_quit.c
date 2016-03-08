@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:56:56 2016 maud marel
-** Last update Sat Mar  5 11:13:07 2016 maud marel
+** Last update Tue Mar  8 09:39:53 2016 maud marel
 */
 
 #include "tetris.h"
@@ -36,8 +36,5 @@ void	change_key_quit(t_tetris *tetris, char *str)
 
 void	change_key_quit_simp(t_tetris *tetris, char *str)
 {
-  if ((tetris->options->quit = malloc(sizeof(char)
-				      * my_strlen(str) + 1)) == NULL)
-    exit(1);
-  my_strcpy(tetris->options->quit, str);
+  tetris->options->quit = my_strdup(str);
 }

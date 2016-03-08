@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar  3 14:33:13 2016 maud marel
-** Last update Tue Mar  8 14:10:43 2016 Mathieu Sauvau
+** Last update Tue Mar  8 14:17:02 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -45,7 +45,7 @@ int	check_line(t_list_tetri *tetris, char *file)
   return (w);
 }
 
-int	copy_tetri(t_list_tetri *tetris, int *h, char *file, int w)
+int	copy_tetri(t_list_tetri *tetris, int h, char *file, int w)
 {
   int   i;
   int	n;
@@ -54,13 +54,13 @@ int	copy_tetri(t_list_tetri *tetris, int *h, char *file, int w)
     return (-1);
   if (n > w)
     w = n;
-  if ((tetris->tetrimino->tetrimino[(*h)] = malloc(sizeof(char)
+  if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
 						   * (tetris->tetrimino->max + 1))) == NULL)
     exit(1);
   i = -1;
   while (++i < w)
-    tetris->tetrimino->tetrimino[(*h)][i] = file[i];
-  tetris->tetrimino->tetrimino[(*h)][i] = '\0';
+    tetris->tetrimino->tetrimino[h][i] = file[i];
+  tetris->tetrimino->tetrimino[h][i] = '\0';
   return (w);
 }
 
@@ -69,6 +69,7 @@ int	check_form(t_list_tetri *tetris, int fd)
   char  *file;
   int   h;
   int	w;
+  int	i;
 
   h = 0;
   w = 0;
@@ -78,7 +79,7 @@ int	check_form(t_list_tetri *tetris, int fd)
     exit(1);
   while ((file = get_next_line(fd)) != NULL)
     {
-      if ((w = copy_tetri(tetris, &h, file, w)) == -1)
+      if ((w = copy_tetri(tetris, h, file, w)) == -1)
 	return (1);
       h++;
     }
@@ -86,6 +87,16 @@ int	check_form(t_list_tetri *tetris, int fd)
     {
       tetris->tetrimino->width = 0;
       return (1);
+    }
+  while (h < tetris->tetrimino->max)
+    {
+      i = -1;
+      if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
+						    * (tetris->tetrimino->max + 1))) == NULL)
+	exit(1);
+      while (++i < tetris->tetrimino->max)
+	tetris->tetrimino->tetrimino[h][i] = 0;
+      h++;
     }
   return (0);
 }

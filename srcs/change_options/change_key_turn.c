@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:54:34 2016 maud marel
-** Last update Sat Mar  5 11:13:48 2016 maud marel
+** Last update Tue Mar  8 09:40:35 2016 maud marel
 */
 
 #include "tetris.h"
@@ -36,8 +36,5 @@ void	change_key_turn(t_tetris *tetris, char *str)
 
 void	change_key_turn_simp(t_tetris *tetris, char *str)
 {
-  if ((tetris->options->turn = malloc(sizeof(char)
-				      * my_strlen(str) + 1)) == NULL)
-    exit(1);
-  my_strcpy(tetris->options->turn, str);
+  tetris->options->turn = my_strdup(str);
 }

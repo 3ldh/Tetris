@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:46:17 2016 maud marel
-** Last update Sun Mar  6 16:06:27 2016 
+** Last update Tue Mar  8 09:44:38 2016 maud marel
 */
 
 #include "tetris.h"
@@ -53,18 +53,18 @@ void	change_map_size(t_tetris *tetris, char *str)
   check_if_size(str, &i);
   init_j_nb(&j, &nb, i);
   check_good_size(str, ',', &i, &nb);
+  init_j_i(&i, &j);
   if ((tmp = malloc(sizeof(char) * (nb + 1))) == NULL)
     exit(1);
-  init_j_i(&i, &j);
   while (str[i] != ',')
     tmp[j++] = str[i++];
   tmp[j] = '\0';
   tetris->options->row = my_getnbr(tmp) + 2;
   init_j_nb(&j, &nb, ++i);
   check_good_size(str, '\0', &i, &nb);
+  init_j_i(&i, &j);
   if ((tmp = malloc(sizeof(char) * (nb + 1))) == NULL)
     exit(1);
-  init_j_i(&i, &j);
   while (str[i] != '\0')
     tmp[j++] = str[i++];
   tmp[j] = '\0';

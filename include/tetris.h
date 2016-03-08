@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Mon Mar  7 19:57:25 2016 Mathieu Sauvau
+** Last update Tue Mar  8 09:18:38 2016 maud marel
 */
 
 #ifndef TETRIS_H_
@@ -168,6 +168,7 @@ char		*my_realloc(char *, int);
 int		my_strcmp(char *, char *);
 int		my_strncmp(char *, char *, int);
 char		*my_strcpy(char *, char *);
+char		*my_strdup(char *);
 int		my_strlen(char *);
 int		my_put_nbr(int);
 void		my_putchar(char);
