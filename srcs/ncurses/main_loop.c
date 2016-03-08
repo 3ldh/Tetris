@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Mon Mar  7 20:17:18 2016 Mathieu Sauvau
+** Last update Tue Mar  8 15:14:30 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -30,12 +30,12 @@ t_tetri		*cpy_tetri(t_tetri *tetri)
   new_tetri->x = tetri->x;
   new_tetri->y = tetri->y;
   y = -1;
-  while (++y < new_tetri->height)
+  while (++y < new_tetri->max)
     {
       x = -1;
       if ((new_tetri->tetrimino[y] = malloc(sizeof(char) * tetri->max)) == NULL)
   	return (NULL);
-      while (++x < new_tetri->width)
+      while (++x < new_tetri->max)
       	new_tetri->tetrimino[y][x] = tetri->tetrimino[y][x];
     }
   return (new_tetri);

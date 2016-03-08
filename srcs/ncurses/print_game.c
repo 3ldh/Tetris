@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:37:35 2016 Mathieu Sauvau
-** Last update Mon Mar  7 16:43:31 2016 Mathieu Sauvau
+** Last update Tue Mar  8 15:12:20 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -45,8 +45,10 @@ void		print_tetri(WINDOW *game, t_tetri *tetri)
     {
       x = -1;
       while (++x < tetri->max)
-	if (tetri->tetrimino[y][x] == '*')
-	  mvwprintw(game, tetri->y + y, tetri->x + x, "%c", tetri->tetrimino[y][x]);
+	{
+	  if (tetri->tetrimino[y][x] == '*')
+	    mvwprintw(game, tetri->y + y, tetri->x + x, "%c", tetri->tetrimino[y][x]);
+	}
     }
   wrefresh(game);
   wattroff(game, COLOR_PAIR(tetri->color));
