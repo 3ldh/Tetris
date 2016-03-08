@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Tue Mar  8 16:34:01 2016 Mathieu Sauvau
+** Last update Tue Mar  8 17:34:46 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -98,13 +98,13 @@ typedef	struct	s_tetris
 typedef struct	s_check_opt
 {
   char		*opt;
-  void		(*ft_com)(t_tetris *, char *);
+  bool		(*ft_com)(t_tetris *, char *);
 }		t_check_opt;
 
 typedef struct	s_check_opt_smp
 {
   char		*opt;
-  void		(*ft_simp)(t_tetris *, char *);
+  bool		(*ft_simp)(t_tetris *, char *);
 }		t_check_opt_simp;
 
 typedef struct	s_key_fct
@@ -135,28 +135,28 @@ void		init_tetris(t_tetris *);
 ** Change options
 */
 
-void		check_arg(t_tetris *, int, char **);
-void		read_arg(t_tetris *, int, char **);
+int		check_arg(t_tetris *, int, char **);
+int		read_arg(t_tetris *, int, char **);
 int		check_complex_arg(t_tetris *, char *);
 int		check_simp_arg(t_tetris *, char *, char *);
-void		change_level(t_tetris *, char *);
-void		change_key_left(t_tetris *, char *);
-void		change_key_right(t_tetris *, char *);
-void		change_key_turn(t_tetris *, char *);
-void		change_key_drop(t_tetris *, char *);
-void		change_key_quit(t_tetris *, char *);
-void		change_key_pause(t_tetris *, char *);
-void		change_map_size(t_tetris *, char *);
-void		hide_next(t_tetris *, char *);
-void		change_without_next(t_tetris *, char *);
-void		change_level_simp(t_tetris *, char *);
-void		change_key_left_simp(t_tetris *, char *);
-void		change_key_right_simp(t_tetris *, char *);
-void		change_key_turn_simp(t_tetris *, char *);
-void		change_key_drop_simp(t_tetris *, char *);
-void		change_key_quit_simp(t_tetris *, char *);
-void		change_key_pause_simp(t_tetris *, char *);
-void		change_without_next_simp(t_tetris *, char *);
+bool		change_level(t_tetris *, char *);
+bool		change_key_left(t_tetris *, char *);
+bool		change_key_right(t_tetris *, char *);
+bool		change_key_turn(t_tetris *, char *);
+bool		change_key_drop(t_tetris *, char *);
+bool		change_key_quit(t_tetris *, char *);
+bool		change_key_pause(t_tetris *, char *);
+bool		change_map_size(t_tetris *, char *);
+bool		hide_next(t_tetris *, char *);
+bool		change_without_next(t_tetris *, char *);
+bool		change_level_simp(t_tetris *, char *);
+bool		change_key_left_simp(t_tetris *, char *);
+bool		change_key_right_simp(t_tetris *, char *);
+bool		change_key_turn_simp(t_tetris *, char *);
+bool		change_key_drop_simp(t_tetris *, char *);
+bool		change_key_quit_simp(t_tetris *, char *);
+bool		change_key_pause_simp(t_tetris *, char *);
+bool		change_without_next_simp(t_tetris *, char *);
 void		wrong_options(char *);
 void		verif_size_all(t_tetris *);
 

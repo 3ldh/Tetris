@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Tue Mar  8 15:12:06 2016 Mathieu Sauvau
+** Last update Tue Mar  8 17:35:16 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -80,7 +80,8 @@ int		main(int ac, char **av, char **env)
     return (-1);
   check_tetriminos(&tetris);
   init_tetris(&tetris);
-  read_arg(&tetris, ac, av);
+  if (read_arg(&tetris, ac, av) == -1)
+    return (-1);
   verif_size_all(&tetris);
   srand(time(0));
   //  show_list_tetri(tetris.list_tetri);

@@ -5,17 +5,26 @@
 ** Login   <marel_m@epitech.net>
 ** 
 ** Started on  Mon Mar  7 13:26:56 2016 maud marel
-** Last update Mon Mar  7 19:24:26 2016 maud marel
+** Last update Tue Mar  8 17:21:11 2016 maud marel
 */
 
 #include "tetris.h"
 
 void	check_if_space(char *str)
 {
-  if (my_strcmp(str, " ") == 0)
-    my_putstr("(space)");
-  else
-    my_putstr(str);
+  int	i;
+
+  i = 0;
+  while (str[i])
+    {
+      if (str[i] == 27)
+	my_putstr("^E");
+      else if (str[i] == ' ')
+	my_putstr("(space)");
+      else
+	my_putchar(str[i]);
+      i++;
+    }
   my_putchar('\n');
 }
 

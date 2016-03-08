@@ -5,12 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:50:55 2016 maud marel
-** Last update Tue Mar  8 09:39:08 2016 maud marel
+** Last update Tue Mar  8 15:39:10 2016 maud marel
 */
 
 #include "tetris.h"
 
-void	change_key_left(t_tetris *tetris, char *str)
+bool	change_key_left(t_tetris *tetris, char *str)
 {
   int   i;
   int	j;
@@ -23,7 +23,7 @@ void	change_key_left(t_tetris *tetris, char *str)
     wrong_options(str);
   if ((tetris->options->left = malloc(sizeof(char)
 				      * my_strlen(str) - (i + 1))) == NULL)
-    exit(1);
+    return (false);
   j = 0;
   while (str[i] != '\0')
     {
@@ -32,9 +32,12 @@ void	change_key_left(t_tetris *tetris, char *str)
       j++;
     }
   tetris->options->left[j] = '\0';
+  return (true);
 }
 
-void	change_key_left_simp(t_tetris *tetris, char *str)
+bool	change_key_left_simp(t_tetris *tetris, char *str)
 {
-  tetris->options->left = my_strdup(str);
+  if ((tetris->options->left = my_strdup(str)) == NULL)
+    return (false);
+  return (true);
 }

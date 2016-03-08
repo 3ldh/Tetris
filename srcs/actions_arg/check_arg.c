@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:40:47 2016 maud marel
-** Last update Tue Mar  8 15:38:27 2016 Mathieu Sauvau
+** Last update Tue Mar  8 17:34:33 2016 Mathieu Sauvau
 */
 
 #include <stdlib.h>
@@ -17,7 +17,7 @@ t_check_opt	*init_tab_comp_arg()
   t_check_opt	*tab;
 
   if ((tab = malloc(sizeof(t_check_opt) * MAX_CHECK_OPT)) == NULL)
-    exit(1);
+    return (NULL);
   tab[LEVEL].opt = "--level=";
   tab[LEVEL].ft_com = &change_level;
   tab[LEFT].opt = "--key-left=";
@@ -47,11 +47,13 @@ int		check_complex_arg(t_tetris *tetris, char *str)
   t_check_opt	*fptrtab;
 
   i = -1;
-  fptrtab = init_tab_comp_arg();
+  if ((fptrtab = init_tab_comp_arg()) == NULL)
+    return (-1);
   while (++i < MAX_CHECK_OPT)
     if (my_strncmp(fptrtab[i].opt, str, my_strlen(fptrtab[i].opt)) == 0)
       {
-	fptrtab[i].ft_com(tetris, str);
+	if (!(fptrtab[i].ft_com(tetris, str)))
+	  return (-1);
 	return (0);
       }
   return (1);
@@ -62,7 +64,7 @@ t_check_opt_simp	*init_tab_simp_arg()
   t_check_opt_simp	*tab;
 
   if ((tab = malloc(sizeof(t_check_opt_simp) * MAX_CHECK_OPT_SIMP)) == NULL)
-    exit(1);
+    return (NULL);
   tab[LEVEL_S].opt = "-l";
   tab[LEVEL_S].ft_simp = &change_level_simp;
   tab[LEFT_S].opt = "-kl";
@@ -86,11 +88,13 @@ int			check_simp_arg(t_tetris *tetris, char *str, char *new)
   t_check_opt_simp	*fptrtab;
 
   i = -1;
-  fptrtab = init_tab_simp_arg();
+  if ((fptrtab = init_tab_simp_arg()) == NULL)
+    return (-1);;
   while (++i < MAX_CHECK_OPT_SIMP)
     if (my_strcmp(fptrtab[i].opt, str) == 0)
       {
-	fptrtab[i].ft_simp(tetris, new);
+	if (!(fptrtab[i].ft_simp(tetris, new)))
+	  return (-1);
 	return (0);
       }
   return (1);

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Mar  5 16:37:41 2016 maud marel
-** Last update Mon Mar  7 13:35:46 2016 maud marel
+** Last update Tue Mar  8 16:08:09 2016 maud marel
 */
 
 #include "tetris.h"
@@ -17,10 +17,14 @@ int	check_good_arg(t_tetris *tetris, char **av, int *i)
   n = 0;
   if ((av[(*i)][0] == '-' && av[(*i)][1] == '-')
       || my_strcmp(av[(*i)], "-w") == 0)
-    n = check_complex_arg(tetris, av[(*i)]);
+    {
+      if ((n = check_complex_arg(tetris, av[(*i)])) == -1)
+	return (-1);
+    }
   else if (av[(*i)][0] == '-')
     {
-      n = check_simp_arg(tetris, av[(*i)], av[(*i) + 1]);
+      if ((n = check_simp_arg(tetris, av[(*i)], av[(*i) + 1])) == -1)
+	return (-1);
       (*i)++;
     }
   else
@@ -28,7 +32,7 @@ int	check_good_arg(t_tetris *tetris, char **av, int *i)
   return (n);
 }
 
-void    read_arg(t_tetris *tetris, int ac, char **av)
+int	read_arg(t_tetris *tetris, int ac, char **av)
 {
   int   i;
   int   n;
@@ -44,7 +48,8 @@ void    read_arg(t_tetris *tetris, int ac, char **av)
       else if (my_strcmp(av[i], "--help") == 0 && ac == 2)
 	display_help(av[0]);
       else
-	n = check_good_arg(tetris, av, &i);
+	if ((n = check_good_arg(tetris, av, &i)) == -1)
+	  return (-1);
       if (n == 1)
 	{
 	  my_putstr_error("Wrong arguments\n\n");
@@ -52,4 +57,5 @@ void    read_arg(t_tetris *tetris, int ac, char **av)
 	}
       }
   display_debug(tetris, debug);
+  return (0);
 }
