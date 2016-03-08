@@ -5,12 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:44:38 2016 maud marel
-** Last update Sun Mar  6 16:05:49 2016 
+** Last update Tue Mar  8 15:44:38 2016 maud marel
 */
 
 #include "tetris.h"
 
-void	change_level(t_tetris *tetris, char *str)
+bool	change_level(t_tetris *tetris, char *str)
 {
   int   i;
   int   j;
@@ -24,7 +24,7 @@ void	change_level(t_tetris *tetris, char *str)
     wrong_options(str);
   j = 0;
   if ((tmp = malloc(sizeof(char) * (my_strlen(str) - i))) == NULL)
-    exit(1);
+    return (false);
   while (str[i] != '\0')
     {
       if (str[i] < '0' || str[i] > '9')
@@ -35,15 +35,16 @@ void	change_level(t_tetris *tetris, char *str)
   tmp[j] = '\0';
   tetris->options->level = my_getnbr(tmp);
   free(tmp);
+  return (true);
 }
 
-void	change_level_simp(t_tetris *tetris, char *str)
+bool	change_level_simp(t_tetris *tetris, char *str)
 {
   int   i;
   char	*tmp;
 
   if ((tmp = malloc(sizeof(char) * (my_strlen(str) + 1))) == NULL)
-    exit(1);
+    return (false);
   i = -1;
   while (str[++i] != '\0' && str)
     {
@@ -54,4 +55,5 @@ void	change_level_simp(t_tetris *tetris, char *str)
   tmp[i] = '\0';
   tetris->options->level = my_getnbr(tmp);
   free(tmp);
+  return (true);
 }
