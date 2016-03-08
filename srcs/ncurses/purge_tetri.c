@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:46:31 2016 Mathieu Sauvau
-** Last update Tue Mar  8 14:37:07 2016 Mathieu Sauvau
+** Last update Tue Mar  8 15:26:41 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -13,17 +13,19 @@
 t_list_tetri	*get_valid_tetri(t_list_tetri *all_tetri)
 {
   t_list_tetri	*valid;
+  t_list_tetri	*tmp;
 
   valid = all_tetri->next;
+  tmp = NULL;
   while (valid != all_tetri)
     {
       if (valid->tetrimino->width == 0)
 	{
+	  tmp = valid;
 	  valid->prev->next = valid->next;
 	  valid->next->prev = valid->prev;
-	  free(valid->tetrimino->name);
-	  free(valid->tetrimino);
-	  /* free(valid); */
+	  free(tmp->tetrimino->name);
+	  free(tmp->tetrimino);
 	}
       valid = valid->next;
     }

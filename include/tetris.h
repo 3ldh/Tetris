@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Tue Mar  8 09:18:38 2016 maud marel
+** Last update Tue Mar  8 16:34:01 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -89,6 +89,10 @@ typedef	struct	s_tetris
   int		time;
   int		level;
   float		speed;
+  bool		pause;
+  bool		quit;
+  bool		moved;
+  float		i;
 }		t_tetris;
 
 typedef struct	s_check_opt
@@ -102,6 +106,13 @@ typedef struct	s_check_opt_smp
   char		*opt;
   void		(*ft_simp)(t_tetris *, char *);
 }		t_check_opt_simp;
+
+typedef struct	s_key_fct
+{
+  char		*key;
+  void		(*ft_simp)(t_tetris *, t_tetri *);
+}		t_key_fct;
+
 
 /*
 ** Init list

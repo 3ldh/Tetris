@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Tue Mar  8 15:14:30 2016 Mathieu Sauvau
+** Last update Tue Mar  8 17:20:52 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -81,19 +81,95 @@ void		reset_buffer(char *buffer)
     buffer[i] = 0;
 }
 
+void			rotate(UNUSED t_tetris *data, t_tetri *tetri)
+{
+  rotate_tetri(tetri);
+}
+
+void			move_left(t_tetris *data, t_tetri *tetri)
+{
+  if (can_move_left(data, tetri) && !data->moved)
+    {
+      tetri->x -= 1;
+      data->moved = true;
+    }
+}
+
+void			move_right(t_tetris *data, t_tetri *tetri)
+{
+  if (can_move_right(data, tetri) && !data->moved)
+    {
+      tetri->x += 1;
+      data->moved = true;
+    }
+}
+
+void			drop(t_tetris *data, UNUSED t_tetri *tetri)
+{
+  if (!data->pause)
+    data->i += 5;
+}
+
+void			quit(t_tetris *data, UNUSED t_tetri *tetri)
+{
+  data->quit = true;
+}
+
+void			do_pause(t_tetris *data, UNUSED t_tetri *tetri)
+{
+  data->pause = !data->pause;
+}
+
+t_key_fct		*get_fct_key(t_tetris *tetris)
+{
+  t_key_fct		*tab;
+
+  if ((tab = malloc(sizeof(t_check_opt_simp) * MAX_CHECK_OPT_SIMP)) == NULL)
+    exit(1);
+  tab[LEFT_S].key = tetris->options->left;
+  tab[LEFT_S].ft_simp = &move_left;
+  tab[RIGHT_S].key = tetris->options->right;
+  tab[RIGHT_S].ft_simp = &move_right;
+  tab[TURN_S].key = tetris->options->turn;
+  tab[TURN_S].ft_simp = &rotate;
+  tab[DROP_S].key = tetris->options->drop;
+  tab[DROP_S].ft_simp = &drop;
+  tab[QUIT_S].key = tetris->options->quit;
+  tab[QUIT_S].ft_simp = &quit;
+  tab[PAUSE_S].key = tetris->options->pause;
+  tab[PAUSE_S].ft_simp = &do_pause;
+  return (tab);
+}
+
+int			key(t_key_fct *key_tab, t_tetris *tetris,
+			    char *buffer, t_tetri *tetri)
+{
+  int			i;
+
+  i = 0;
+  while (++i < MAX_CHECK_OPT_SIMP)
+    {
+      if (my_strcmp(buffer, key_tab[i].key) == 0)
+	{
+	  key_tab[i].ft_simp(tetris, tetri);
+	  return (0);
+	}
+    }
+  return (1);
+}
+
 void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
 		     t_tetris *tetris)
 {
   int		r;
-  float		i;
   t_tetri	*tetri;
   t_tetri	*next;
   int		nb_tetri;
   bool		move;
   char		buffer[10];
-  bool		pause;
+  t_key_fct	*key_tab;
 
-  i = 0;
+  key_tab = get_fct_key(tetris);
   nb_tetri = max_tetri(tetris->list_tetri);
   tetri = random_tetri(tetris->list_tetri, nb_tetri);
   tetri->x = tetris->options->col / 2 - tetri->width / 2;
@@ -102,30 +178,17 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
   if (tetris->options->hide_next == 0)
     show_next(wnext, next);
   mode_canon(0, 0, 0);
-  pause = false;
   while (true)
     {
       if (!can_move_down(tetris, tetri))
 	{
-	  while (i < 20)
+	  while (tetris->i < 16)
 	    {
 	      reset_buffer(buffer);
 	      r = read(0, buffer, 10);
-	      //      mvprintw(1, 0, "%d", r);
-	      if (my_strcmp(buffer, tetris->options->left) == 0
-		  && can_move_left(tetris, tetri) && !move)
-		{
-		  tetri->x -= 1;
-		  move = true;
-		}
-	      if (my_strcmp(buffer, tetris->options->right) == 0
-		  && can_move_right(tetris, tetri) && !move)
-		{
-		  tetri->x += 1;
-		  move = true;
-		}
+	      key(key_tab, tetris, buffer, tetri);
 	      print_game(game, tetris, tetri);
-	      i += tetris->speed;
+	      tetris->i += tetris->speed;
 	    }
 	  if (!can_move_down(tetris, tetri))
 	    {
@@ -146,41 +209,21 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
       r = read(0, buffer, 10);
       //      mvprintw(1, 0, "%d", r);
       if (r > 0)
-	{
-	  //  mvprintw(0, 0, "%s", buffer);
-	  if (my_strcmp(buffer, tetris->options->quit) == 0)
-	    break;
-	  if (my_strcmp(buffer, tetris->options->left) == 0
-	      && can_move_left(tetris, tetri) && !move)
-	    {
-	      tetri->x -= 1;
-	      move = true;
-	    }
-	  if (my_strcmp(buffer, tetris->options->right) == 0
-	      && can_move_right(tetris, tetri) && !move)
-	    {
-	      tetri->x += 1;
-	      move = true;
-	    }
-	  if (my_strcmp(buffer, tetris->options->turn) == 0)
-	    rotate_tetri(tetri);
-	  if (my_strcmp(buffer, tetris->options->drop) == 0  && !pause)
-	    i += 5;
-	  if (my_strcmp(buffer, tetris->options->pause) == 0)
-	    pause = !pause;
-	}
-      if (!pause)
-	i += tetris->speed;
+	key(key_tab, tetris, buffer, tetri);
+      if (tetris->quit)
+	break;
+      if (!tetris->pause)
+	tetris->i += tetris->speed;
       //      mvprintw(2, 0, "i =%f", i);
       //      refresh();
-      if (i > 10)
+      if (tetris->i > 8)
 	{
 	  //	  mvprintw(2, 0, "i =%f", i);
 	  if (can_move_down(tetris, tetri))
 	    tetri->y += 1;
 	  print_game(game, tetris, tetri);
-	  move = false;
-	  i = 0;
+	  tetris->moved = false;
+	  tetris->i = 0;
 	}
       //      refresh();
       usleep(1);
