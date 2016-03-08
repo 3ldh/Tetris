@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Mon Mar  7 19:58:46 2016 Mathieu Sauvau
+** Last update Mon Mar  7 20:17:18 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -91,6 +91,7 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
   int		nb_tetri;
   bool		move;
   char		buffer[10];
+  bool		pause;
 
   i = 0;
   nb_tetri = max_tetri(tetris->list_tetri);
@@ -101,6 +102,7 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
   if (tetris->options->hide_next == 0)
     show_next(wnext, next);
   mode_canon(0, 0, 0);
+  pause = false;
   while (true)
     {
       if (!can_move_down(tetris, tetri))
@@ -162,10 +164,13 @@ void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
 	    }
 	  if (my_strcmp(buffer, tetris->options->turn) == 0)
 	    rotate_tetri(tetri);
-	  if (my_strcmp(buffer, tetris->options->drop) == 0)
+	  if (my_strcmp(buffer, tetris->options->drop) == 0  && !pause)
 	    i += 5;
+	  if (my_strcmp(buffer, tetris->options->pause) == 0)
+	    pause = !pause;
 	}
-      i += tetris->speed;
+      if (!pause)
+	i += tetris->speed;
       //      mvprintw(2, 0, "i =%f", i);
       //      refresh();
       if (i > 10)

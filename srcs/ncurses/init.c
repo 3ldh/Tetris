@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:27:24 2016 Mathieu Sauvau
-** Last update Sun Mar  6 18:28:56 2016 Mathieu Sauvau
+** Last update Mon Mar  7 20:16:34 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -32,6 +32,7 @@ void	init_score(t_tetris *data)
   data->lines = 0;
   data->level = 0;
   data->speed = 0.001;
+  data->time = 0;
 }
 
 void		check_color()

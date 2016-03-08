@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:46:31 2016 Mathieu Sauvau
-** Last update Mon Mar  7 12:57:47 2016 Mathieu Sauvau
+** Last update Tue Mar  8 14:04:54 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -37,16 +37,14 @@ void		center_tetri(t_list_tetri *list_tetri)
   while (elem_next != list_tetri)
     {
       y = -1;
-  printf("%s\n",elem_next->tetrimino->name);
-  printf("max %d\n",elem_next->tetrimino->max);
-
-      if (elem_next->tetrimino->width != elem_next->tetrimino->height)
-	{
+      printf("%s\n",elem_next->tetrimino->name);
+      printf("max %d\n",elem_next->tetrimino->max);
 	  while (++y < elem_next->tetrimino->max)
 	    {
 	      x = -1;
 	      while (++x < elem_next->tetrimino->max)
 		{
+		  printf("y %d x %d\n", y, x);
 		  /* if (elem_next->tetrimino->width == elem_next->tetrimino->max */
 		  /*     && y < elem_next->tetrimino->max / 2 */
 		  /*     && elem_next->tetrimino->max % 2 == 0) */
@@ -69,7 +67,6 @@ void		center_tetri(t_list_tetri *list_tetri)
 		    elem_next->tetrimino->tetrimino[y][x] = ' ';
 		}
 	    }
-	}
       elem_next = elem_next->next;
     }
 }
