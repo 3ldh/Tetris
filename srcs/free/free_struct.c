@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar  6 15:15:50 2016
-** Last update Sun Mar  6 16:10:56 2016 
+** Last update Tue Mar  8 09:02:34 2016 maud marel
 */
 
 #include "tetris.h"
@@ -14,10 +14,9 @@ void	free_tetri(t_list_tetri *tetris)
 {
   int	i;
 
-  free(tetris->tetrimino->name);
   i = 0;
   if (tetris->tetrimino->width != 0)
-    while (i < tetris->tetrimino->width || i < tetris->tetrimino->height)
+    while (i < tetris->tetrimino->max)
       {
 	free(tetris->tetrimino->tetrimino[i]);
 	i++;
@@ -32,7 +31,9 @@ void			free_struct(t_tetris *tetris)
   while (delete != tetris->list_tetri)
     {
       delete = delete->next;
+      free(delete->prev->tetrimino->name);
       free_tetri(delete->prev);
+      free(delete->prev->tetrimino);
       free(delete->prev);
     }
   free(tetris->list_tetri);

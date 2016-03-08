@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Sun Mar  6 16:01:41 2016 
+** Last update Tue Mar  8 09:45:19 2016 maud marel
 */
 
 #include <unistd.h>
@@ -20,9 +20,7 @@ void		stock_tetriminos(char *str, t_tetris *tetris)
   char		*file;
   char		*way;
 
-  if ((way = malloc(sizeof(char) * 12)) == NULL)
-    exit(1);
-  my_strcpy(way, "tetriminos/");
+  way = my_strdup("tetriminos/");
   if ((way = my_realloc(way, my_strlen(str) + 1)) == NULL)
     exit(1);
   my_strcat(way, str);
