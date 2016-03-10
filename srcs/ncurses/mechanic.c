@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:40:29 2016 Mathieu Sauvau
-** Last update Mon Mar  7 17:38:00 2016 Mathieu Sauvau
+** Last update Thu Mar 10 16:05:18 2016 Mathieu Sauvau
 */
 
 #include <unistd.h>
@@ -19,10 +19,10 @@ void		update_board(t_tetris *tetris, t_tetri *tetri)
   int		pos_y;
 
   y = -1;
-  while(++y < tetri->max)
+  while (++y < tetri->max)
     {
       x = -1;
-      while(++x < tetri->max)
+      while (++x < tetri->max)
 	{
 	  if (tetri->tetrimino[y][x] == '*')
 	    {
@@ -74,7 +74,7 @@ void	update_level(t_tetris *data, WINDOW *game,
   if (data->lines % 10 == 0)
     {
       ++data->level;
-      data->speed = (float)(data->level) / (float)(1000) * 2;
+      data->speed = (float)(data->level) / (float)(1500);
     }
   clear_line(data, y);
   fall(game, data);

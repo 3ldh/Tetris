@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Tue Mar  8 21:52:05 2016 maud marel
+** Last update Thu Mar 10 16:30:19 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -77,8 +77,14 @@ typedef struct	s_options
   char		*pause;
 }		t_options;
 
+typedef struct	s_key_fct t_key_fct;
+
 typedef	struct	s_tetris
 {
+  WINDOW	*wgame;
+  WINDOW	*wscore;
+  WINDOW	*wnext;
+  t_key_fct	*key_tab;
   t_options	*options;
   t_list_tetri	*list_tetri;
   char		**board;
@@ -93,6 +99,7 @@ typedef	struct	s_tetris
   bool		quit;
   bool		moved;
   float		i;
+  int		nb_tetri;
 }		t_tetris;
 
 typedef struct	s_check_opt
@@ -112,7 +119,6 @@ typedef struct	s_key_fct
   char		*key;
   void		(*ft_simp)(t_tetris *, t_tetri *);
 }		t_key_fct;
-
 
 /*
 ** Init list
@@ -216,17 +222,37 @@ void		clear_line(t_tetris *data, int line);
 void		fall(WINDOW *game, t_tetris *data);
 void		line_completion(t_tetris *data, WINDOW *game);
 t_list_tetri	*get_valid_tetri(t_list_tetri *all_tetri);
-t_tetri		*rotate_tetri(t_tetri *tetri);
-void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
-		     t_tetris *tetris);
-void		loop(WINDOW *game, WINDOW *score, WINDOW *wnext,
-		     t_tetris *tetris);
+t_tetri		*rotate_tetri(t_tetri *tetri, t_tetris *tetris);
+void		start_loop(t_tetris *tetris);
 void		init_ncurses();
 char		**init_board(t_tetris *tetris);
 void		init_score(t_tetris *data);
 void		center_tetri(t_list_tetri *list_tetri);
 bool		check_window(t_tetris *tetris);
 int		get_first_star_on_x(t_tetri *tetri);
+void		rotate(t_tetris *data, t_tetri *tetri);
+void		move_left(t_tetris *data, t_tetri *tetri);
+void		move_right(t_tetris *data, t_tetri *tetri);
+void		drop(t_tetris *data, t_tetri *tetri);
+void		quit(t_tetris *data, t_tetri *tetri);
+void		do_pause(t_tetris *data, t_tetri *tetri);
+t_key_fct	*get_fct_key(t_tetris *tetris);
+int		key(t_tetris *tetris,
+		    char *buffer, t_tetri *tetri);
+void		read_key(t_tetris *data, t_tetri *tetri);
+t_tetri		*cpy_tetri(t_tetri *tetri);
+int		max_tetri(t_list_tetri *list_tetri);
+void		reset_buffer(char *buffer);
+t_tetri		*random_tetri(t_list_tetri *list_tetri, int nb_tetri);
+t_tetri		*init_first_loop(t_tetris *tetris);
+int		get_last_star_on_x(t_tetri *tetri);
+
+/*
+**FREE
+*/
+void	free_tetri(t_tetri *tetri);
+void	free_struct(t_tetris *tetris);
+void	free_options(t_tetris *tetris);
 
 /*
 ** FREE
