@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:27:24 2016 Mathieu Sauvau
-** Last update Tue Mar  8 16:20:50 2016 Mathieu Sauvau
+** Last update Thu Mar 10 16:11:33 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -19,7 +19,8 @@ bool		check_window(t_tetris *tetris)
   if (x < tetris->options->col + 50 || y < tetris->options->row)
     {
       endwin();
-      printf("Your terminal is too small to display the game please resize it\n");
+      my_putstr("Your terminal is too small to display");
+      my_putstr(" the game please resize it\n");
       return (false);
     }
   return (true);
@@ -30,8 +31,8 @@ void	init_score(t_tetris *data)
   data->high_score = 0;
   data->score = 0;
   data->lines = 0;
-  data->level = 0;
-  data->speed = 0.001;
+  data->level = data->options->level;
+  data->speed = (float)(data->level) / (float)(1500);
   data->time = 0;
   data->pause = false;
   data->quit = false;
@@ -48,7 +49,7 @@ void		check_color()
       init_pair(3, COLOR_BLUE, COLOR_BLUE);
       init_pair(4, COLOR_YELLOW, COLOR_YELLOW);
       init_pair(5, COLOR_MAGENTA, COLOR_MAGENTA);
-      init_pair(6, COLOR_CYAN,COLOR_CYAN);
+      init_pair(6, COLOR_CYAN, COLOR_CYAN);
       init_pair(7, COLOR_WHITE, COLOR_WHITE);
     }
 }
@@ -77,7 +78,8 @@ char		**init_board(t_tetris *tetris)
   while (++y < tetris->options->row - 2)
     {
       x = -1;
-      if ((board[y] = malloc(sizeof(char) * (tetris->options->col - 2))) == NULL)
+      if ((board[y] = malloc(sizeof(char) *
+			     (tetris->options->col - 2))) == NULL)
 	return (NULL);
       while (++x < tetris->options->col - 2)
 	  board[y][x] = 0;

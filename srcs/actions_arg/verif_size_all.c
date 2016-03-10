@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar  4 21:14:35 2016 maud marel
-** Last update Mon Mar  7 13:36:25 2016 maud marel
+** Last update Thu Mar 10 16:24:11 2016 Mathieu Sauvau
 */
 
 #include <stdlib.h>
@@ -19,8 +19,8 @@ void	verif_size_all(t_tetris *tetris)
   while (elem_next != tetris->list_tetri)
     {
       if (elem_next->tetrimino->width != 0)
-	if (elem_next->tetrimino->height > tetris->options->row
-	    || elem_next->tetrimino->width > tetris->options->col)
+	if (elem_next->tetrimino->height > tetris->options->row - 2
+	    || elem_next->tetrimino->width > tetris->options->col - 2)
 	  {
 	    my_putstr_error("Size tetrimino too big for the board\n\n");
 	    display_help_error();

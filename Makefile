@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Mon Mar  7 13:27:46 2016 maud marel
+## Last update Thu Mar 10 15:55:30 2016 Mathieu Sauvau
 ##
 
 NAME		=	tetris
@@ -47,6 +47,11 @@ SRCS		=	srcs/main.c \
 			srcs/ncurses/mechanic.c \
 			srcs/ncurses/main_loop.c \
 			srcs/ncurses/purge_tetri.c \
+			srcs/ncurses/key.c \
+			srcs/ncurses/key2.c \
+			srcs/ncurses/cpy_tetri.c \
+			srcs/ncurses/rotate.c \
+			srcs/ncurses/get_star.c \
 			$(TETRI)check_tetriminos.c \
 			$(TETRI)stock.c \
 			$(TETRI)put_in_list.c \
