@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Thu Mar 10 16:12:20 2016 Mathieu Sauvau
+** Last update Thu Mar 10 16:30:01 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -46,9 +46,7 @@ void		show_tetri(t_tetri *tetri)
   while (++y < tetri->max)
     {
       x = -1;
-      while (++x < tetri->max)
-	printf("%c", tetri->tetrimino[y][x]);
-      printf("\n");
+      while (++x < tetri->max);
     }
 }
 
@@ -59,11 +57,7 @@ void		show_list_tetri(t_list_tetri *elem)
   elem_next = elem->next;
   while (elem_next != elem)
     {
-      printf("%s width = %d height = %d max = %d\n", elem_next->tetrimino->name
-	     , elem_next->tetrimino->width, elem_next->tetrimino->height,
-	     elem_next->tetrimino->max);
       show_tetri(elem_next->tetrimino);
-      printf("\n");
       elem_next = elem_next->next;
     }
 }
@@ -74,7 +68,8 @@ int		main(int ac, char **av, char **env)
 
   if (env == NULL)
     return (-1);
-  check_tetriminos(&tetris);
+  if (check_tetriminos(&tetris) == -1)
+    return (-1);
   init_tetris(&tetris);
   if (read_arg(&tetris, ac, av) == -1)
     return (-1);

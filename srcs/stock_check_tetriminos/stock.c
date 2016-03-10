@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 17:01:48 2016 maud marel
-** Last update Fri Mar  4 17:18:49 2016 maud marel
+** Last update Tue Mar  8 20:06:18 2016 maud marel
 */
 
 #include <unistd.h>
@@ -55,19 +55,25 @@ int	check_info(char *f_l, t_list_tetri *tetris)
   return (0);
 }
 
-int	stock(char *file, t_tetris *tetris, int fd, char *name)
+int		stock(char *file, t_tetris *tetris, int fd, char *name)
 {
   t_list_tetri  *new;
+  int		ret;
 
-  new = which_order(tetris, name);
+  if ((new = which_order(tetris, name)) == NULL)
+    return (-1);
   if ((new->tetrimino = malloc(sizeof(t_tetri))) == NULL)
-    exit(1);
+    return (-1);
   if ((new->tetrimino->name = malloc(sizeof(char)
 				     * my_strlen(name) + 1)) == NULL)
-    exit(1);
+    return (-1);
   my_strcpy(new->tetrimino->name, name);
   if (check_info(file, new) != 1)
-    if (check_form(new, fd) == 1)
-      return (1);
+    {
+      if ((ret = check_form(new, fd)) == 1)
+	return (1);
+      else if (ret == -1)
+	return (-1);
+    }
   return (0);
 }

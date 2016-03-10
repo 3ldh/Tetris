@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Thu Mar 10 15:24:29 2016 Mathieu Sauvau
+** Last update Thu Mar 10 16:30:19 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -126,7 +126,7 @@ typedef struct	s_key_fct
 
 t_list_tetri	*add_list_before(t_list_tetri *);
 t_list_tetri	*which_order(t_tetris *, char *);
-void		create_list(t_tetris *);
+int		create_list(t_tetris *);
 
 /*
 ** Stock infos
@@ -134,8 +134,8 @@ void		create_list(t_tetris *);
 
 int		check_form(t_list_tetri *, int);
 int		stock(char *, t_tetris *, int, char *);
-void		check_tetriminos(t_tetris *);
-void		init_tetris(t_tetris *);
+int		check_tetriminos(t_tetris *);
+int		init_tetris(t_tetris *);
 
 /*
 ** Change options
@@ -199,6 +199,7 @@ void		mode_canon(int i, int time, int nb_char);
 /*
 **GAME PART
 */
+
 WINDOW		*create_newwin(int, int, int, int);
 void		show_score(WINDOW *, t_tetris *);
 void		init_tetri(t_tetri *tetri);
@@ -252,5 +253,12 @@ int		get_last_star_on_x(t_tetri *tetri);
 void	free_tetri(t_tetri *tetri);
 void	free_struct(t_tetris *tetris);
 void	free_options(t_tetris *tetris);
+
+/*
+** FREE
+*/
+
+void		free_options(t_tetris *);
+void		free_struct(t_tetris *);
 
 #endif /* !TETRIS_H_ */

@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar 10 15:55:30 2016 Mathieu Sauvau
+## Last update Thu Mar 10 16:30:48 2016 Mathieu Sauvau
 ##
 
 NAME		=	tetris
@@ -21,7 +21,7 @@ TETRI		=	srcs/stock_check_tetriminos/
 FREE		=	srcs/free/
 
 SRCS		=	srcs/main.c \
-			srcs/get_next_line.c \
+			$(ARGS)get_next_line.c \
 			$(ARGS)check_arg.c \
 			$(ARGS)read_arg.c \
 			$(ARGS)init_options.c \
@@ -71,10 +71,9 @@ CFLAGS		+=	$(LIBS)
 
 FLAGS		=	$(LDFLAGS)
 
-CC		=	gcc -g
+CC		=	gcc
 
 RM		=	rm -f
-
 
 $(NAME):		$(OBJS)
 			$(CC) $(OBJS) -o $(NAME) $(FLAGS)
