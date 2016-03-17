@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Thu Mar 17 10:58:19 2016 Mathieu Sauvau
+** Last update Thu Mar 17 12:02:00 2016 
 */
 
 #include <time.h>
@@ -109,6 +109,7 @@ int		main(int ac, char **av, char **env)
   if (!launch_all(&tetris))
     return (1);
   endwin();
+  recup_high_score(&tetris);
   free_struct(&tetris);
   return (0);
 }

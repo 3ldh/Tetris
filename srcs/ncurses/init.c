@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:27:24 2016 Mathieu Sauvau
-** Last update Thu Mar 17 12:47:16 2016 Mathieu Sauvau
+** Last update Thu Mar 17 12:49:23 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -28,7 +28,7 @@ bool		check_window(t_tetris *tetris)
 
 void	init_score(t_tetris *data)
 {
-  data->high_score = 0;
+  check_high_score(data);
   data->score = 0;
   data->lines = 0;
   data->level = data->options->level;
