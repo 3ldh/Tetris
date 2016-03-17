@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Thu Mar 10 16:30:19 2016 Mathieu Sauvau
+** Last update Mon Mar 14 19:34:20 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -224,7 +224,7 @@ void		line_completion(t_tetris *data, WINDOW *game);
 t_list_tetri	*get_valid_tetri(t_list_tetri *all_tetri);
 t_tetri		*rotate_tetri(t_tetri *tetri, t_tetris *tetris);
 void		start_loop(t_tetris *tetris);
-void		init_ncurses();
+bool		init_ncurses();
 char		**init_board(t_tetris *tetris);
 void		init_score(t_tetris *data);
 void		center_tetri(t_list_tetri *list_tetri);
@@ -246,6 +246,8 @@ void		reset_buffer(char *buffer);
 t_tetri		*random_tetri(t_list_tetri *list_tetri, int nb_tetri);
 t_tetri		*init_first_loop(t_tetris *tetris);
 int		get_last_star_on_x(t_tetri *tetri);
+int		get_last_star_on_y(t_tetri *tetri);
+void		show_logo(WINDOW *);
 
 /*
 **FREE

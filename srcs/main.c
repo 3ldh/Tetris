@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Thu Mar 10 16:30:01 2016 Mathieu Sauvau
+** Last update Mon Mar 14 19:36:06 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -62,6 +62,36 @@ void		show_list_tetri(t_list_tetri *elem)
     }
 }
 
+void		show_logo(WINDOW *win)
+{
+  mvwprintw(win, 0, 0, "***  ** *** *** * ***\n");
+  mvwprintw(win, 1, 0, " *   *   *  * *   *  \n");
+  mvwprintw(win, 2, 0, " *   **  *   ** * ***\n");
+  mvwprintw(win, 3, 0, " *   *   *  * * *   *\n");
+  mvwprintw(win, 4, 0, " *   **  *  * * * ***\n");
+  wrefresh(win);
+}
+
+bool		launch_all(t_tetris *tetris)
+{
+  if (!init_ncurses() && !check_window(tetris))
+    return (false);
+  init_score(tetris);
+  tetris->start_time = time(0);
+  if ((tetris->wscore = create_newwin(15, 22, 5, 0)) == NULL
+      || (tetris->wnext = create_newwin(7, 15, 0, tetris->options->col + 35)) == NULL)
+    return (false);
+  show_score(tetris->wscore, tetris);
+  if ((tetris->board = init_board(tetris)) == NULL)
+    return (false);
+  if ((tetris->wgame
+       = create_newwin(tetris->options->row, tetris->options->col, 0, 30)) == NULL)
+    return (false);
+  start_loop(tetris);
+  mode_canon(1, 0, 0);
+  return (true);
+}
+
 int		main(int ac, char **av, char **env)
 {
   t_tetris	tetris;
@@ -76,23 +106,8 @@ int		main(int ac, char **av, char **env)
   verif_size_all(&tetris);
   srand(time(0));
   tetris.list_tetri = get_valid_tetri(tetris.list_tetri);
-  init_ncurses();
-  if (!check_window(&tetris))
+  if (!launch_all(&tetris))
     return (1);
-  init_score(&tetris);
-  tetris.start_time = time(0);
-  if ((tetris.wscore = create_newwin(15, 22, 5, 0)) == NULL
-      || (tetris.wnext = create_newwin(7, 15, 0, tetris.options->col + 35)) == NULL)
-    return (1);
-  show_score(tetris.wscore, &tetris);
-  if ((tetris.board = init_board(&tetris)) == NULL)
-    return (1);
-  if ((tetris.wgame
-       = create_newwin(tetris.options->row, tetris.options->col, 0, 30)) == NULL)
-    return (1);
-  start_loop(&tetris);
-  mode_canon(1, 0, 0);
-  getch();
   endwin();
   free_struct(&tetris);
   return (0);
