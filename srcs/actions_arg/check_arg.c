@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:40:47 2016 maud marel
-** Last update Tue Mar  8 17:34:33 2016 Mathieu Sauvau
+** Last update Thu Mar 10 20:05:58 2016 
 */
 
 #include <stdlib.h>
@@ -88,8 +88,13 @@ int			check_simp_arg(t_tetris *tetris, char *str, char *new)
   t_check_opt_simp	*fptrtab;
 
   i = -1;
+  if (new == NULL)
+    {
+      write(2, "Wrong arguments\n\n", 17);
+      display_help_error();
+    }
   if ((fptrtab = init_tab_simp_arg()) == NULL)
-    return (-1);;
+    return (-1);
   while (++i < MAX_CHECK_OPT_SIMP)
     if (my_strcmp(fptrtab[i].opt, str) == 0)
       {
