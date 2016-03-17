@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar 17 11:25:46 2016 
+## Last update Thu Mar 17 11:53:05 2016 
 ##
 
 NAME		=	tetris
@@ -53,6 +53,7 @@ SRCS		=	srcs/main.c \
 			srcs/ncurses/rotate.c \
 			srcs/ncurses/get_star.c \
 			srcs/ncurses/check_high_score.c \
+			srcs/ncurses/itoa.c \
 			$(TETRI)check_tetriminos.c \
 			$(TETRI)stock.c \
 			$(TETRI)put_in_list.c \

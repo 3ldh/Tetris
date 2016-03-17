@@ -5,11 +5,10 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Fri Jan 22 16:03:20 2016 Mathieu Sauvau
-** Last update Sat Feb 20 13:23:50 2016 Mathieu Sauvau
+** Last update Thu Mar 17 11:54:00 2016 
 */
 
-#include "libgui.h"
-#include "helper.h"
+#include "tetris.h"
 
 char	*my_revstr(char *str)
 {
