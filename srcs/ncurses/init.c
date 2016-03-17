@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:27:24 2016 Mathieu Sauvau
-** Last update Mon Mar 14 19:36:26 2016 Mathieu Sauvau
+** Last update Thu Mar 17 12:47:16 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -56,8 +56,6 @@ void		check_color()
 
 bool		init_ncurses()
 {
-  WINDOW	*wtetris;
-
   initscr();
   curs_set(0);
   nodelay(stdscr, true);
@@ -65,9 +63,7 @@ bool		init_ncurses()
   noecho();
   clear();
   refresh();
-  if ((wtetris = create_newwin(5, 22, 0, 0)) == NULL)
-    return (false);
-  show_logo(wtetris);
+  show_logo(stdscr);
   check_color();
   return (true);
 }

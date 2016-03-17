@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:35:45 2016 Mathieu Sauvau
-** Last update Thu Mar 17 11:40:25 2016 Mathieu Sauvau
+** Last update Thu Mar 17 12:06:55 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -24,13 +24,10 @@ bool		space_occupied_down(t_tetris *data, t_tetri *tetri)
       x = -1;
       while (++x < tetri->max)
 	{
-	  //	  if (tetri->y < 0)
-	  //	  dprintf(2, "tetri->y %d y %d last_star %d tetri->max %d",
-	  //	  tetri->y, y, last_star, tetri->max);
 	  if (tetri->y + y >= data->options->row - 2
 	      && last_star == tetri->max - 1)
 	    return (true);
-	  if (tetri->y > 0
+	  if (tetri->y >= 0
 	      && tetri->tetrimino[y][x] == '*'
 	      && data->board[y + tetri->y][x + tetri->x - 1] != 0)
 	    return (true);
@@ -49,7 +46,7 @@ bool		space_occupied_right(t_tetris *data, t_tetri *tetri)
     {
       x = -1;
       while (++x < tetri->max)
-	if (tetri->y > 0 && tetri->tetrimino[y][x] == '*'
+	if (tetri->y >= 0 && tetri->tetrimino[y][x] == '*'
 	    && data->board[y + tetri->y - 1][x + tetri->x] != 0)
 	  return (true);
     }
@@ -67,7 +64,7 @@ bool		space_occupied_left(t_tetris *data, t_tetri *tetri)
       x = -1;
       while (++x < tetri->max)
 	{
-	  if (tetri->y > 0 && tetri->tetrimino[y][x] == '*'
+	  if (tetri->y >= 0 && tetri->tetrimino[y][x] == '*'
 	      && data->board[y + tetri->y - 1][x + tetri->x - 2] != 0)
 	    return (true);
 	}

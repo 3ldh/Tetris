@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Wed Mar  9 14:11:11 2016 Mathieu Sauvau
-** Last update Thu Mar 10 16:00:34 2016 Mathieu Sauvau
+** Last update Thu Mar 17 11:57:13 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
@@ -77,7 +77,7 @@ t_tetri		*init_first_loop(t_tetris *tetris)
   tetris->nb_tetri = max_tetri(tetris->list_tetri);
   tetri = random_tetri(tetris->list_tetri, tetris->nb_tetri);
   tetri->x = tetris->options->col / 2 - tetri->width / 2;
-  tetri->y = -tetri->height;
+  tetri->y = 0;
   mode_canon(0, 0, 0);
   return (tetri);
 }

@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Thu Mar 17 11:10:33 2016 Mathieu Sauvau
+** Last update Thu Mar 17 12:25:33 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -21,11 +21,18 @@ void		done(t_tetris *tetris,
     {
       update_board(tetris, (*tetri));
       line_completion(tetris, tetris->wgame);
-      show_board(tetris);
       *tetri = *next;
       (*tetri)->x = tetris->options->col / 2 - (*tetri)->width / 2;
-      (*tetri)->y = -(*tetri)->height;
+      (*tetri)->y = 0;
       *next = random_tetri(tetris->list_tetri, tetris->nb_tetri);
+    }
+  if (!can_move_down(tetris, *tetri))
+    {
+      you_loose(tetris);
+      clear_board(tetris);
+      tetris->high_score = tetris->score;
+      tetris->score = 0;
+      mode_canon(1, 0, 0);
     }
 }
 
