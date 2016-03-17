@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Thu Mar 10 15:44:01 2016 Mathieu Sauvau
+** Last update Thu Mar 17 11:10:33 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -22,7 +22,6 @@ void		done(t_tetris *tetris,
       update_board(tetris, (*tetri));
       line_completion(tetris, tetris->wgame);
       show_board(tetris);
-      //free_tetri(*tetri);
       *tetri = *next;
       (*tetri)->x = tetris->options->col / 2 - (*tetri)->width / 2;
       (*tetri)->y = -(*tetri)->height;
