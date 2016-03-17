@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 17 11:16:54 2016
-** Last update Thu Mar 17 12:32:45 2016 
+** Last update Thu Mar 17 12:39:47 2016 
 */
 
 #include "tetris.h"
@@ -53,7 +53,7 @@ int	recup_high_score(t_tetris *data)
   char *nb;
   char	*h_s;
 
-  if ((h_s = malloc(sizeof(char) * count_nb(data->score))) == NULL)
+  if ((h_s = malloc(sizeof(char) * (count_nb(data->score) + 1))) == NULL)
     return (-1);
   h_s = itoa(data->score, h_s, 10);
   if ((fd = open("high_score", O_RDONLY)) == -1)
