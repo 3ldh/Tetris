@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Thu Mar 17 12:25:33 2016 Mathieu Sauvau
+** Last update Thu Mar 17 12:51:52 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -28,6 +28,7 @@ void		done(t_tetris *tetris,
     }
   if (!can_move_down(tetris, *tetri))
     {
+      recup_high_score(tetris);
       you_loose(tetris);
       clear_board(tetris);
       tetris->high_score = tetris->score;
