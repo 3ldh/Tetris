@@ -5,14 +5,15 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Tue Mar  8 17:47:24 2016 Mathieu Sauvau
-** Last update Thu Mar 10 16:04:21 2016 Mathieu Sauvau
+** Last update Thu Mar 17 11:36:51 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
 
 void			rotate(t_tetris *data, t_tetri *tetri)
 {
-  rotate_tetri(tetri, data);
+  if (tetri->y + tetri->width < data->options->row - 2)
+    rotate_tetri(tetri, data);
 }
 
 void			drop(t_tetris *data, UNUSED t_tetri *tetri)
