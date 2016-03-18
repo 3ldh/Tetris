@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Thu Mar 17 12:49:42 2016 Mathieu Sauvau
+** Last update Fri Mar 18 13:17:41 2016 Mathieu Sauvau
 */
 
 #ifndef TETRIS_H_
@@ -92,6 +92,7 @@ typedef	struct	s_tetris
   int		score;
   int		lines;
   int		start_time;
+  int		save_time;
   int		time;
   int		level;
   float		speed;
