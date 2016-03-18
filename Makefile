@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Thu Mar 17 12:50:06 2016 Mathieu Sauvau
+## Last update Fri Mar 18 13:28:31 2016 
 ##
 
 NAME		=	tetris
@@ -74,7 +74,7 @@ CFLAGS		+=	$(LIBS)
 
 FLAGS		=	$(LDFLAGS)
 
-CC		=	gcc
+CC		=	gcc -g
 
 RM		=	rm -f
 

@@ -5,8 +5,10 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Wed Sep 30 14:07:08 2015 maud marel
-** Last update Fri Mar  4 20:55:05 2016 maud marel
+** Last update Fri Mar 18 14:32:16 2016 
 */
+
+#include "my.h"
 
 int	isneg2(int *nb)
 {

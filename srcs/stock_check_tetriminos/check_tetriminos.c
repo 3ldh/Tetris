@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Sat Mar 12 13:25:33 2016 
+** Last update Fri Mar 18 14:06:59 2016 
 */
 
 #include <unistd.h>
@@ -28,8 +28,10 @@ int		stock_tetriminos(char *str, t_tetris *tetris)
       || (file = get_next_line(fd)) == NULL
       || stock(file, tetris, fd, str) == -1)
     return (-1);
+  free(file);
   free(way);
-  while (get_next_line(fd) != NULL);
+  while ((file = get_next_line(fd)) != NULL)
+    free(file);
   if (close(fd) == -1)
     return (-1);
   return (0);
@@ -86,5 +88,6 @@ int		check_tetriminos(t_tetris *tetris)
       my_putstr_error("No tetrimino exiting\n");
       return (-1);
     }
+  free(dirp);
   return (0);
 }
