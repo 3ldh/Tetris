@@ -5,7 +5,7 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:43:17 2016 Mathieu Sauvau
-** Last update Thu Mar 17 12:51:52 2016 Mathieu Sauvau
+** Last update Fri Mar 18 13:33:24 2016 Mathieu Sauvau
 */
 
 #include <termios.h>
@@ -62,6 +62,7 @@ void		last_call(WINDOW *game, t_tetris *tetris,
 
 void		main_loop(t_tetris *tetris, t_tetri *tetri, t_tetri *next)
 {
+  tetris->save_time = 0;
   while (true)
     {
       if (!can_move_down(tetris, tetri))
@@ -71,7 +72,11 @@ void		main_loop(t_tetris *tetris, t_tetri *tetri, t_tetri *next)
 	  if (tetris->options->hide_next == 0)
 	    show_next(tetris->wnext, next);
 	}
-      tetris->time = time(0) - tetris->start_time;
+      if (!tetris->pause)
+	tetris->time = time(0) - tetris->start_time - tetris->save_time;
+      else
+	tetris->save_time = time(0) - tetris->start_time - tetris->time;
+
       show_score(tetris->wscore, tetris);
       read_key(tetris, tetri);
       if (tetris->quit)
