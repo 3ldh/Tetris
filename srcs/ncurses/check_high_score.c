@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 17 11:16:54 2016
-** Last update Thu Mar 17 12:39:47 2016 
+** Last update Fri Mar 18 23:00:26 2016 
 */
 
 #include "tetris.h"
@@ -28,9 +28,11 @@ int	check_high_score(t_tetris *data)
   if (nb == NULL)
     {
       data->high_score = 0;
+      free(nb);
       return (0);
     }
   data->high_score = my_getnbr(nb);
+  free(nb);
   return (0);
 }
 
@@ -67,7 +69,9 @@ int	recup_high_score(t_tetris *data)
     {
       fd = open("high_score", O_TRUNC | O_RDWR, 0644);
       write(fd, h_s, my_strlen(h_s));
+      free(nb);
       return (0);
     }
+  free(nb);
   return (0);
 }

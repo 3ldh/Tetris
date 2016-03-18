@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Fri Mar 18 14:06:59 2016 
+** Last update Fri Mar 18 23:32:04 2016 
 */
 
 #include <unistd.h>
@@ -37,28 +37,28 @@ int		stock_tetriminos(char *str, t_tetris *tetris)
   return (0);
 }
 
+int	check_end_tetri(char *name)
+{
+  int	size;
+
+  size = my_strlen(name) - 1;
+  if (name[size - 9] != '.' || name[size - 8] != 't'
+      || name[size - 7] != 'e' || name[size - 6] != 't'
+      || name[size - 5] != 'r' || name[size - 4] != 'i'
+      || name[size - 3] != 'm' || name[size - 2] != 'i'
+      || name[size - 1] != 'n' || name[size] != 'o')
+    {
+      if (my_strlen(name) != 1 && my_strlen(name) != 2)
+	my_putstr_error("Wrong name of tetriminos\n");
+      return (-1);
+    }
+  return (0);
+}
+
 int	check_first(t_tetris *tetris, char *name)
 {
-  int	i;
-
-  i = 0;
-  while (name[i] != '.' && name[i] != '\0')
-    i++;
-  i++;
-  if (name[i] == '\0')
-    {
-      my_putstr_error("Wrong name of tetriminos\n");
-      return (-1);
-    }
-  if (name[i++] != 't' && name[i++] != 'e' &&
-      name[i++] != 't' && name[i++] != 'r' &&
-      name[i++] != 'i' && name[i++] != 'm' &&
-      name[i++] != 'i' && name[i++] != 'n' &&
-      name[i++] != 'o')
-    {
-      my_putstr_error("Wrong name of tetriminos\n");
-      return (-1);
-    }
+  if (check_end_tetri(name) == -1)
+    return (-1);
   if (stock_tetriminos(name, tetris) == -1)
     return (-1);
   return (0);
@@ -78,11 +78,10 @@ int		check_tetriminos(t_tetris *tetris)
     return (-1);
   tetris->list_tetri->nb_tetri = 0;
   while ((entry = readdir(dirp)) != NULL)
-    if (entry->d_name[0] != '.')
-      {
-	tetris->list_tetri->nb_tetri++;
-	check_first(tetris, entry->d_name);
-      }
+    {
+      tetris->list_tetri->nb_tetri++;
+      check_first(tetris, entry->d_name);
+    }
   if (tetris->list_tetri->nb_tetri == 0)
     {
       my_putstr_error("No tetrimino exiting\n");

@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Fri Mar 18 13:28:31 2016 
+## Last update Fri Mar 18 23:39:02 2016 
 ##
 
 NAME		=	tetris
@@ -30,6 +30,7 @@ SRCS		=	srcs/main.c \
 			$(DISP)display_help_error.c \
 			$(DISP)display_debug.c \
 			$(DISP)display_debug_key.c \
+			$(DISP)display_board.c \
 			$(OPTS)change_key_drop.c \
 			$(OPTS)change_key_left.c \
 			$(OPTS)change_key_pause.c \

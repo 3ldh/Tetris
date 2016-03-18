@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Fri Mar 18 13:17:41 2016 Mathieu Sauvau
+** Last update Fri Mar 18 23:42:03 2016 
 */
 
 #ifndef TETRIS_H_
@@ -251,6 +251,7 @@ int		get_last_star_on_y(t_tetri *tetri);
 void		show_logo(WINDOW *);
 void		you_loose(t_tetris *data);
 void		clear_board(t_tetris *data);
+
 /*
 **HIGH_SCORE
 */

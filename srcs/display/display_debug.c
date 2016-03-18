@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Mon Mar  7 19:56:48 2016 Mathieu Sauvau
+** Last update Fri Mar 18 23:36:01 2016 
 */
 
 #include <termios.h>
@@ -34,14 +34,26 @@ void	display_more_info(t_tetris *tetris)
   my_putchar('\n');
 }
 
+void	print_name(char *name)
+{
+  int	size;
+  int	i;
+
+  i = 0;
+  size = my_strlen(name);
+  while (i < size - 10)
+    {
+      my_putchar(name[i]);
+      i++;
+    }
+}
+
 void	print_tetriminos(t_list_tetri *tetris)
 {
   int	i;
 
-  i = -1;
   my_putstr("Tetriminos : Name ");
-  while (tetris->tetrimino->name[++i] != '.')
-    my_putchar(tetris->tetrimino->name[i]);
+  print_name(tetris->tetrimino->name);
   my_putstr(" : ");
   if (tetris->tetrimino->width == 0)
     my_putstr("Error\n");
@@ -60,18 +72,6 @@ void	print_tetriminos(t_list_tetri *tetris)
 	  my_putstr(tetris->tetrimino->tetrimino[i]);
 	  my_putchar('\n');
 	}
-    }
-}
-
-void		display_tetriminos(t_tetris *tetris)
-{
-  t_list_tetri	*elem_next;
-
-  elem_next = tetris->list_tetri->next;
-  while (elem_next != tetris->list_tetri)
-    {
-      print_tetriminos(elem_next);
-      elem_next = elem_next->next;
     }
 }
 
@@ -97,12 +97,19 @@ void		mode_canon(int i, int time, int nb_char)
 void			display_debug(t_tetris *tetris, int n)
 {
   char			buffer[10];
+  t_list_tetri		*elem_next;
+
   if (n == 1)
     {
       my_putstr("*** DEBUG MODE ***\n");
       display_key(tetris);
       display_more_info(tetris);
-      display_tetriminos(tetris);
+      elem_next = tetris->list_tetri->next;
+      while (elem_next != tetris->list_tetri)
+	{
+	  print_tetriminos(elem_next);
+	  elem_next = elem_next->next;
+	}
       my_putstr("Press a key to start Tetris\n");
       mode_canon(0, 0, 1);
       read(0, buffer, 10);
