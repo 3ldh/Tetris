@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Fri Mar 18 23:32:04 2016 
+** Last update Sat Mar 19 00:04:39 2016 
 */
 
 #include <unistd.h>
@@ -76,7 +76,7 @@ int		check_tetriminos(t_tetris *tetris)
     }
   if (create_list(tetris) == -1)
     return (-1);
-  tetris->list_tetri->nb_tetri = 0;
+  tetris->list_tetri->nb_tetri = -2;
   while ((entry = readdir(dirp)) != NULL)
     {
       tetris->list_tetri->nb_tetri++;
