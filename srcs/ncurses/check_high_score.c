@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 17 11:16:54 2016
-** Last update Fri Mar 18 23:00:26 2016 
+** Last update Sat Mar 19 12:48:53 2016 
 */
 
 #include "tetris.h"
@@ -60,7 +60,7 @@ int	recup_high_score(t_tetris *data)
   h_s = itoa(data->score, h_s, 10);
   if ((fd = open("high_score", O_RDONLY)) == -1)
     {
-      fd = creat("high_score", 0644);
+      fd = open("high_score", O_CREAT | O_RDWR, 0644);
       write(fd, h_s, my_strlen(h_s));
       return (0);
     }
