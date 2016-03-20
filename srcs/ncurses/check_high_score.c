@@ -5,14 +5,14 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar 17 11:16:54 2016
-** Last update Thu Mar 17 12:39:47 2016 
+** Last update Sun Mar 20 13:18:21 2016 Mathieu Sauvau
 */
 
-#include "tetris.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include "tetris.h"
 
 int	check_high_score(t_tetris *data)
 {
