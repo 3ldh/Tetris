@@ -5,8 +5,10 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Oct  6 14:22:38 2015 maud marel
-** Last update Tue Mar  1 09:55:46 2016 maud marel
+** Last update Fri Mar 18 14:32:35 2016 
 */
+
+#include "my.h"
 
 char	*my_strcat(char *dest, char *src)
 {

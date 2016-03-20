@@ -5,44 +5,12 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Sun Mar 20 13:17:41 2016 Mathieu Sauvau
+** Last update Sun Mar 20 13:23:54 2016 Mathieu Sauvau
 */
 
 #include <time.h>
 #include <stdlib.h>
 #include "tetris.h"
-
-WINDOW		*create_newwin(int height, int width, int starty, int startx)
-{
-  WINDOW	*local_win;
-
-  local_win = newwin(height, width, starty, startx);
-  wborder(local_win, '|', '|', '-', '-', '+', '+', '+', '+');
-  wrefresh(local_win);
-  return (local_win);
-}
-
-void		show_list_tetri(t_list_tetri *elem)
-{
-  t_list_tetri	*elem_next;
-
-  elem_next = elem->next;
-  while (elem_next != elem)
-    {
-      show_tetri(elem_next->tetrimino);
-      elem_next = elem_next->next;
-    }
-}
-
-void		show_logo(WINDOW *win)
-{
-  mvwprintw(win, 0, 0, "***  ** *** *** * ***\n");
-  mvwprintw(win, 1, 0, " *   *   *  * *   *  \n");
-  mvwprintw(win, 2, 0, " *   **  *   ** * ***\n");
-  mvwprintw(win, 3, 0, " *   *   *  * * *   *\n");
-  mvwprintw(win, 4, 0, " *   **  *  * * * ***\n");
-  wrefresh(win);
-}
 
 bool		launch_all(t_tetris *tetris)
 {

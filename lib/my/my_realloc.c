@@ -5,9 +5,10 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Mon Nov 23 11:36:14 2015 maud marel
-** Last update Mon Feb 29 21:19:49 2016 maud marel
+** Last update Fri Mar 18 14:33:08 2016 
 */
 
+#include "my.h"
 #include <stdlib.h>
 
 char	*my_realloc(char *old, int size)
@@ -17,5 +18,6 @@ char	*my_realloc(char *old, int size)
   if ((new = malloc(sizeof(char *) *size)) == NULL)
     return (NULL);
   my_strcpy(new, old);
+  free(old);
   return (new);
 }

@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Thu Mar  3 14:33:13 2016 maud marel
-** Last update Tue Mar  8 21:54:19 2016 maud marel
+** Last update Fri Mar 18 14:14:34 2016 
 */
 
 #include "tetris.h"
@@ -55,7 +55,8 @@ int	copy_tetri(t_list_tetri *tetris, int h, char *file, int w)
   if (n > w)
     w = n;
   if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
-						   * (tetris->tetrimino->max + 1))) == NULL)
+						   * (tetris->tetrimino->max
+						      + 1))) == NULL)
     return (-2);
   i = -1;
   while (++i < w)
@@ -72,7 +73,8 @@ int	complete_form(t_list_tetri *tetris, int h)
     {
       i = -1;
       if ((tetris->tetrimino->tetrimino[h] = malloc(sizeof(char)
-						    * (tetris->tetrimino->max + 1))) == NULL)
+						    * (tetris->tetrimino->max
+						       + 1))) == NULL)
 	return (-1);
       while (++i < tetris->tetrimino->max)
 	tetris->tetrimino->tetrimino[h][i] = 0;
@@ -96,15 +98,13 @@ int	check_form(t_list_tetri *tetris, int fd)
   while ((file = get_next_line(fd)) != NULL)
     {
       if ((w = copy_tetri(tetris, h++, file, w)) == -1)
-	return (1);
+	return (free(file), 1);
       else if (w == -2)
-	return (-1);
+	return (free(file), -1);
+      free(file);
     }
   if (w != tetris->tetrimino->width || h != tetris->tetrimino->height)
-    {
-      tetris->tetrimino->width = 0;
-      return (1);
-    }
+    return (tetris->tetrimino->width = 0, 1);
   if (complete_form(tetris, h) == -1)
     return (-1);
   return (0);

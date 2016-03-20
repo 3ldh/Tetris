@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Mar  6 15:15:50 2016
-** Last update Wed Mar  9 14:08:34 2016 Mathieu Sauvau
+** Last update Fri Mar 18 23:19:42 2016 
 */
 
 #include "tetris.h"
@@ -33,14 +33,16 @@ void	free_tetri(t_tetri *tetri)
 
 void			free_list_tetri(t_tetris *tetris)
 {
-  t_list_tetri		*delete;
+  t_list_tetri		*tmp;
+  t_list_tetri		*tmp2;
 
-  delete = tetris->list_tetri->next;
-  while (delete != tetris->list_tetri)
+  tmp2 = tetris->list_tetri->next;
+  while (tmp2 != tetris->list_tetri)
     {
-      delete = delete->next;
-      free_tetri(delete->prev->tetrimino);
-      free(delete->prev);
+      tmp = tmp2;
+      tmp2 = tmp->next;
+      free_tetri(tmp->tetrimino);
+      free(tmp);
     }
   free(tetris->list_tetri);
 }

@@ -5,9 +5,10 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar  4 21:41:01 2016 maud marel
-** Last update Fri Mar  4 21:41:28 2016 maud marel
+** Last update Fri Mar 18 14:31:20 2016 
 */
 
+#include <unistd.h>
 #include <stdlib.h>
 
 void	my_putchar_error(char c)
