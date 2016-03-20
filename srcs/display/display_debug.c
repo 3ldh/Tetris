@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sun Feb 28 18:25:57 2016 maud marel
-** Last update Fri Mar 18 23:36:01 2016 
+** Last update Sun Mar 20 21:17:14 2016 Marel la plus belle <3
 */
 
 #include <termios.h>
@@ -94,7 +94,7 @@ void		mode_canon(int i, int time, int nb_char)
     ioctl(0, TCSETS, &old);
 }
 
-void			display_debug(t_tetris *tetris, int n)
+int			display_debug(t_tetris *tetris, int n)
 {
   char			buffer[10];
   t_list_tetri		*elem_next;
@@ -111,8 +111,14 @@ void			display_debug(t_tetris *tetris, int n)
 	  elem_next = elem_next->next;
 	}
       my_putstr("Press a key to start Tetris\n");
-      mode_canon(0, 0, 1);
-      read(0, buffer, 10);
-      mode_canon(1, 0, 0);
+      if (elem_next->nb_error != elem_next->nb_tetri)
+	{
+	  mode_canon(0, 0, 1);
+	  read(0, buffer, 10);
+	  mode_canon(1, 0, 0);
+	}
+      else
+	return (-1);
     }
+  return (0);
 }

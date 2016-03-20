@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 17:01:48 2016 maud marel
-** Last update Tue Mar  8 20:06:18 2016 maud marel
+** Last update Sun Mar 20 21:13:26 2016 Marel la plus belle <3
 */
 
 #include <unistd.h>
@@ -59,6 +59,7 @@ int		stock(char *file, t_tetris *tetris, int fd, char *name)
 {
   t_list_tetri  *new;
   int		ret;
+  int		nb;
 
   if ((new = which_order(tetris, name)) == NULL)
     return (-1);
@@ -68,12 +69,14 @@ int		stock(char *file, t_tetris *tetris, int fd, char *name)
 				     * my_strlen(name) + 1)) == NULL)
     return (-1);
   my_strcpy(new->tetrimino->name, name);
-  if (check_info(file, new) != 1)
+  if ((nb = check_info(file, new)) != 1)
     {
       if ((ret = check_form(new, fd)) == 1)
-	return (1);
+	return (tetris->list_tetri->nb_error++, 1);
       else if (ret == -1)
 	return (-1);
     }
+  if (nb == 1)
+    tetris->list_tetri->nb_error++;
   return (0);
 }

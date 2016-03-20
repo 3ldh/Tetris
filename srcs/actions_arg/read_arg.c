@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Mar  5 16:37:41 2016 maud marel
-** Last update Tue Mar  8 16:08:09 2016 maud marel
+** Last update Sun Mar 20 21:16:59 2016 Marel la plus belle <3
 */
 
 #include "tetris.h"
@@ -56,6 +56,7 @@ int	read_arg(t_tetris *tetris, int ac, char **av)
 	  display_help_error();
 	}
       }
-  display_debug(tetris, debug);
+  if (display_debug(tetris, debug) == -1)
+    return (-1);
   return (0);
 }

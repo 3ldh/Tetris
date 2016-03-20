@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Fri Mar 18 23:42:03 2016 
+** Last update Sun Mar 20 21:16:28 2016 Marel la plus belle <3
 */
 
 #ifndef TETRIS_H_
@@ -59,6 +59,7 @@ typedef	struct			s_list_tetrimino
 {
   t_tetri			*tetrimino;
   int				nb_tetri;
+  int				nb_error;
   struct s_list_tetrimino	*next;
   struct s_list_tetrimino	*prev;
 }				t_list_tetri;
@@ -171,7 +172,7 @@ void		verif_size_all(t_tetris *);
 ** Display
 */
 
-void		display_debug(t_tetris *, int);
+int		display_debug(t_tetris *, int);
 void		display_debug_key(char *);
 void		display_key(t_tetris *);
 void		display_help(char *);

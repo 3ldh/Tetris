@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Sat Mar 19 00:04:39 2016 
+** Last update Sun Mar 20 20:53:00 2016 Marel la plus belle <3
 */
 
 #include <unistd.h>
@@ -47,11 +47,7 @@ int	check_end_tetri(char *name)
       || name[size - 5] != 'r' || name[size - 4] != 'i'
       || name[size - 3] != 'm' || name[size - 2] != 'i'
       || name[size - 1] != 'n' || name[size] != 'o')
-    {
-      if (my_strlen(name) != 1 && my_strlen(name) != 2)
-	my_putstr_error("Wrong name of tetriminos\n");
-      return (-1);
-    }
+    return (-1);
   return (0);
 }
 
@@ -77,6 +73,7 @@ int		check_tetriminos(t_tetris *tetris)
   if (create_list(tetris) == -1)
     return (-1);
   tetris->list_tetri->nb_tetri = -2;
+  tetris->list_tetri->nb_error = 0;
   while ((entry = readdir(dirp)) != NULL)
     {
       tetris->list_tetri->nb_tetri++;
