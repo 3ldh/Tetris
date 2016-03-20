@@ -5,11 +5,10 @@
 ** Login   <sauvau_m@epitech.net>
 **
 ** Started on  Sun Mar  6 18:35:45 2016 Mathieu Sauvau
-** Last update Thu Mar 17 12:06:55 2016 Mathieu Sauvau
+** Last update Sun Mar 20 13:18:05 2016 Mathieu Sauvau
 */
 
 #include "tetris.h"
-
 
 bool		space_occupied_down(t_tetris *data, t_tetri *tetri)
 {

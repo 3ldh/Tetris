@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:39:59 2016 maud marel
-** Last update Fri Mar 18 23:38:45 2016 
+** Last update Sun Mar 20 13:23:54 2016 Mathieu Sauvau
 */
 
 #include <time.h>
@@ -19,15 +19,15 @@ bool		launch_all(t_tetris *tetris)
   init_score(tetris);
   tetris->start_time = time(0);
   if ((tetris->wscore = create_newwin(15, 22, 5, 0)) == NULL
-      || (tetris->wnext = create_newwin(7, 15, 0, tetris->options->col + 35))
-      == NULL)
+      || (tetris->wnext = create_newwin(7, 15, 0,
+					tetris->options->col + 35)) == NULL)
     return (false);
   show_score(tetris->wscore, tetris);
   if ((tetris->board = init_board(tetris)) == NULL)
     return (false);
   if ((tetris->wgame
-       = create_newwin(tetris->options->row, tetris->options->col, 0, 30))
-      == NULL)
+       = create_newwin(tetris->options->row,
+		       tetris->options->col, 0, 30)) == NULL)
     return (false);
   start_loop(tetris);
   mode_canon(1, 0, 0);
