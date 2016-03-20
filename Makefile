@@ -5,7 +5,7 @@
 ## Login   <marel_m@epitech.net>
 ##
 ## Started on  Sun Jan 31 11:11:37 2016 Maud MAREL
-## Last update Fri Mar 18 23:39:02 2016 
+## Last update Sun Mar 20 23:19:09 2016 Marel la plus belle <3
 ##
 
 NAME		=	tetris
@@ -60,6 +60,7 @@ SRCS		=	srcs/main.c \
 			$(TETRI)stock.c \
 			$(TETRI)put_in_list.c \
 			$(TETRI)stock_tetrimino.c \
+			$(TETRI)check_empty.c \
 			$(FREE)free_options.c \
 			$(FREE)free_struct.c \
 
@@ -75,7 +76,7 @@ CFLAGS		+=	$(LIBS)
 
 FLAGS		=	$(LDFLAGS)
 
-CC		=	gcc -g
+CC		=	gcc
 
 RM		=	rm -f
 

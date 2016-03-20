@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 17:01:48 2016 maud marel
-** Last update Sun Mar 20 21:13:26 2016 Marel la plus belle <3
+** Last update Sun Mar 20 22:36:21 2016 Marel la plus belle <3
 */
 
 #include <unistd.h>
@@ -19,7 +19,7 @@ int	stock_elem(t_list_tetri *tetris, int j, int i, char *f_l)
     tetris->tetrimino->height = f_l[i] - 48;
   else
     {
-      if (f_l[i] <= '0' || f_l[i] > '7')
+      if (f_l[i] < '1' || f_l[i] > '7')
 	return (1);
       tetris->tetrimino->color = f_l[i] - 48;
     }

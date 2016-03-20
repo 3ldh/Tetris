@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Sun Mar 20 21:16:28 2016 Marel la plus belle <3
+** Last update Sun Mar 20 23:24:16 2016 Marel la plus belle <3
 */
 
 #ifndef TETRIS_H_
@@ -138,6 +138,7 @@ int		check_form(t_list_tetri *, int);
 int		stock(char *, t_tetris *, int, char *);
 int		check_tetriminos(t_tetris *);
 int		init_tetris(t_tetris *);
+int		check_empty(t_tetris *, char *);
 
 /*
 ** Change options
