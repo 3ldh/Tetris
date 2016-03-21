@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Fri Mar 18 23:37:50 2016
-** Last update Fri Mar 18 23:40:18 2016 
+** Last update Mon Mar 21 10:56:27 2016 Marel la plus belle <3
 */
 
 #include "tetris.h"
@@ -30,7 +30,7 @@ void		show_board(t_tetris *tetris)
     {
       x = -1;
       while (++x < tetris->options->col - 2)
-	mvprintw(y, x + 60,"%d", tetris->board[y][x]);
+	mvprintw(y, x + 60, "%d", tetris->board[y][x]);
       printw("\n");
     }
 }
