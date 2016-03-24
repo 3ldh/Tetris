@@ -5,7 +5,7 @@
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Tue Feb 23 15:11:43 2016 maud marel
-** Last update Sun Mar 20 20:53:00 2016 Marel la plus belle <3
+** Last update Sun Mar 20 23:23:24 2016 Marel la plus belle <3
 */
 
 #include <unistd.h>
@@ -24,20 +24,26 @@ int		stock_tetriminos(char *str, t_tetris *tetris)
       || (way = my_realloc(way, my_strlen(str) + 1)) == NULL)
     return (-1);
   my_strcat(way, str);
-  if ((fd = open(way, O_RDONLY)) == -1
-      || (file = get_next_line(fd)) == NULL
-      || stock(file, tetris, fd, str) == -1)
+  if ((fd = open(way, O_RDONLY)) == -1)
+    return (-1);
+  if ((file = get_next_line(fd)) == NULL)
+    {
+      if (check_empty(tetris, str) == -1)
+	return (-1);
+      free(way);
+      return (free(file), 0);
+    }
+  if (stock(file, tetris, fd, str) == -1)
     return (-1);
   free(file);
-  free(way);
   while ((file = get_next_line(fd)) != NULL)
     free(file);
   if (close(fd) == -1)
     return (-1);
-  return (0);
+  return (free(way), 0);
 }
 
-int	check_end_tetri(char *name)
+int	check_end_tetri(t_tetris *tetris, char *name)
 {
   int	size;
 
@@ -47,14 +53,25 @@ int	check_end_tetri(char *name)
       || name[size - 5] != 'r' || name[size - 4] != 'i'
       || name[size - 3] != 'm' || name[size - 2] != 'i'
       || name[size - 1] != 'n' || name[size] != 'o')
-    return (-1);
+    {
+      if (my_strlen(name) != 1 && my_strlen(name) != 2)
+	{
+	  tetris->list_tetri->nb_tetri--;
+	  return (-1);
+	}
+      return (1);
+    }
   return (0);
 }
 
 int	check_first(t_tetris *tetris, char *name)
 {
-  if (check_end_tetri(name) == -1)
+  int	nb;
+
+  if ((nb = check_end_tetri(tetris, name)) == -1)
     return (-1);
+  else if (nb == 1)
+    return (0);
   if (stock_tetriminos(name, tetris) == -1)
     return (-1);
   return (0);
@@ -77,7 +94,8 @@ int		check_tetriminos(t_tetris *tetris)
   while ((entry = readdir(dirp)) != NULL)
     {
       tetris->list_tetri->nb_tetri++;
-      check_first(tetris, entry->d_name);
+      if (check_first(tetris, entry->d_name) == -1)
+	return (-1);
     }
   if (tetris->list_tetri->nb_tetri == 0)
     {

@@ -1,11 +1,11 @@
- /*
+/*
 ** tetris.h for tetris in /home/marel_m/Rendu/Semestre_2/Systeme_Unix/PSU_2015_tetris
 **
 ** Made by maud marel
 ** Login   <marel_m@epitech.net>
 **
 ** Started on  Sat Feb 27 23:25:21 2016 maud marel
-** Last update Sun Mar 20 21:16:28 2016 Marel la plus belle <3
+** Last update Mon Mar 21 10:55:53 2016 Marel la plus belle <3
 */
 
 #ifndef TETRIS_H_
@@ -138,6 +138,7 @@ int		check_form(t_list_tetri *, int);
 int		stock(char *, t_tetris *, int, char *);
 int		check_tetriminos(t_tetris *);
 int		init_tetris(t_tetris *);
+int		check_empty(t_tetris *, char *);
 
 /*
 ** Change options
@@ -218,7 +219,7 @@ int		max_tetri(t_list_tetri *list_tetri);
 t_tetri		*cpy_tetri(t_tetri *tetri);
 t_tetri		*random_tetri(t_list_tetri *list_tetri, int nb_tetri);
 bool		can_move_down(t_tetris *data, t_tetri *tetri);
-void		show_next(WINDOW *wnext,t_tetri *next);
+void		show_next(WINDOW *wnext, t_tetri *next);
 void		update_board(t_tetris *tetris, t_tetri *tetri);
 void		clear_line(t_tetris *data, int line);
 void		fall(WINDOW *game, t_tetris *data);
